@@ -10,7 +10,7 @@
   "parser": "@typescript-eslint/parser",
   "ignorePatterns": [".eslintrc.js"],
   "rules": {
-    "no-console": "warn",
+    "no-console": "error",
     "no-debugger": "warn",
     "no-alert": "warn"
   },
