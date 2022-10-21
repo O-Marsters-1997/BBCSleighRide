@@ -6,11 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
-    "lint": "cd frontend && yarn lint:staged"
+    "lint": "cd frontend && yarn lint:all"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "cross-env FORCE_COLOR=1 lint"
+      "pre-commit": "env FORCE_COLOR=1 yarn lint"
     }
   },
   "repository": {

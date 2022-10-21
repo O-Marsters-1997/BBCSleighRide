@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
 
-// hello
-
 console.log('hello');
 
 function App() {
