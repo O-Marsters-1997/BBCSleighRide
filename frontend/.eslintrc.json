@@ -10,10 +10,18 @@
   "parser": "@typescript-eslint/parser",
   "ignorePatterns": [".eslintrc.js"],
   "rules": {
-    "no-console": "off",
+    "@typescript-eslint/no-unused-expressions": "error",
+    "no-console": "error",
     "no-debugger": "warn",
     "no-alert": "warn",
-    "semi": "error"
+    "semi": "error",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ]
   },
   "settings": {
     "import/parsers": {
