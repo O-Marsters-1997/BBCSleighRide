@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-const name = 'Olly';
+// hello
 
 const App = () => {
   return (
