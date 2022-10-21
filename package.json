@@ -8,6 +8,11 @@
     "prepare": "husky install",
     "lint": "cd frontend && yarn lint:all"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "cross-env FORCE_COLOR=1 lint"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/O-Marsters-1997/BBCSleighRide.git"
