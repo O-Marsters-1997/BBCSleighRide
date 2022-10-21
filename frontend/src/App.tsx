@@ -1,7 +1,11 @@
 import React from 'react';
 import './App.css';
 
+// jsdkhf
 console.log('hello');
+
+// prettier-ignore
+const name = "Olly";
 
 const App = () => {
   return (

@@ -13,14 +13,7 @@
     "no-console": "off",
     "no-debugger": "warn",
     "no-alert": "warn",
-    "semi": "error",
-    "react/function-component-definition": [
-      2,
-      {
-        "namedComponents": "arrow-function",
-        "unnamedComponents": "arrow-function"
-      }
-    ]
+    "semi": "error"
   },
   "settings": {
     "import/parsers": {
