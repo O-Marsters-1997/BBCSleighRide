@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "prettier"
+  ],
+  "plugins": ["import"],
+  "parser": "@typescript-eslint/parser",
+  "ignorePatterns": [".eslintrc.js"],
+  "rules": {
+    "no-console": "warn",
+    "no-debugger": "warn",
+    "no-alert": "warn"
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    }
+  }
+}
