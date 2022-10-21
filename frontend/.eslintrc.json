@@ -12,7 +12,8 @@
   "rules": {
     "no-console": "warn",
     "no-debugger": "warn",
-    "no-alert": "warn"
+    "no-alert": "warn",
+    "semi": "error"
   },
   "settings": {
     "import/parsers": {

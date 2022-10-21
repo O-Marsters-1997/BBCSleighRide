@@ -3,6 +3,9 @@ import './App.css';
 
 console.log('hello');
 
+// prettier-ignore
+const mind = "matter";
+
 function App() {
   return (
     <div className="App">
