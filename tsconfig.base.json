@@ -5,8 +5,7 @@
     "module": "commonjs",
     "lib": ["dom", "es2017"],
     // "sourceMap": true,
-    // "moduleResolution": "node",
-    // "removeComments": true,
+    "moduleResolution": "node",
 
     // "noImplicitAny": true,
     // "strictNullChecks": true,
@@ -21,9 +20,9 @@
     // "allowSyntheticDefaultImports": false,
     "outDir": "./dist",
     // "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "strict": true,
     // "skipLibCheck": true,
-    // "watch": true
+    "watch": true
   },
   "exclude": ["node_modules"],
   "include": ["./scrc/**/.tsx", "./src/**/*.ts"]
