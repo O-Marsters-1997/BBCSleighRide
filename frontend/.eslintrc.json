@@ -1,0 +1,86 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "testing-library",
+    "jest-dom",
+    "import"
+  ],
+  "ignorePatterns": [".eslintrc.js"],
+  "overrides": [
+    {
+      "files": ["**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": [
+        "plugin:testing-library/react",
+        "plugin:jest-dom/recommended"
+      ],
+      "rules": {
+        "testing-library/no-render-in-setup": "off"
+      }
+    }
+  ],
+  "rules": {
+    "semi": "warn",
+    "@typescript-eslint/semi": "warn",
+    "no-console": "error",
+    "no-debugger": "warn",
+    "no-alert": "warn",
+    "arrow-body-style": ["warn", "as-needed"],
+    "no-nested-ternary": "off",
+    "import/prefer-default-export": "off",
+    "jsx-one-expression-per-line": "off",
+    "implicit-arrow-linebreak": "off",
+    "eqeqeq": "off",
+    "quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "@typescript-eslint/quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ]
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    }
+  }
+}
