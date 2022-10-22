@@ -1,7 +1,15 @@
 {
-  "printWidth": 80,
   "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": false,
   "trailingComma": "all",
-  "singleQuote": true,
-  "semi": true
+  "printWidth": 80,
+  "overrides": [
+    {
+      "files": "*.test.tsx",
+      "options": {
+        "semi": true
+      }
+    }
+  ]
 }
