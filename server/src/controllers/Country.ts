@@ -7,3 +7,5 @@ const readAll = (req: Request, res: Response, next: NextFunction) => {
     .then((countries) => res.status(200).json({ countries }))
     .catch((error) => res.status(500).json({ error }));
 };
+
+export default { readAll };
