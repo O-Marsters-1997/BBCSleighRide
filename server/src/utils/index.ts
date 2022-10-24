@@ -6,7 +6,7 @@ export const seedData = async (schema: any, items: any) => {
     await schema.deleteMany({});
     let done: number = 0;
     for (let i = 0; i < items.length; i++) {
-      items[i].save().then((res: any) => {
+      items[i].save().then(() => {
         done++;
         if (done == items.length) {
           exit();
