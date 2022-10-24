@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
-import Quiz from "../models/Quiz";
+import Joke from "../models/Joke";
 
 const readAll = (req: Request, res: Response, next: NextFunction) => {
-  return Quiz.find()
-    .then((questions) => res.status(200).json({ questions }))
+  return Joke.find()
+    .then((jokes) => res.status(200).json({ jokes }))
     .catch((error) => res.status(500).json({ error }));
 };
