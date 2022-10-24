@@ -1,11 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-export interface IJoke {
-  joke: string;
-  punchline: string;
-}
-
-export interface IJokeModel extends IJoke, Document {}
+export interface IJokeModel extends Joke, Document {}
 
 const JokeSchema: Schema = new Schema(
   {

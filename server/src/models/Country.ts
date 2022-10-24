@@ -1,17 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-export interface ICountry {
-  name: string;
-  continent: string;
-  song?: string;
-  greeting: string;
-  celebrated: string;
-  meal?: string;
-  decorations: string;
-  didYouKnow?: string;
-}
-
-export interface ICountryModel extends ICountry, Document {}
+export interface ICountryModel extends Country, Document {}
 
 const CountrySchema: Schema = new Schema(
   {

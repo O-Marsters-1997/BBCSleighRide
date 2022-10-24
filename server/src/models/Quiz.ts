@@ -1,12 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-export interface IQuiz {
-  question: string;
-  correct: string;
-  options?: string[];
-}
-
-export interface IQuizModel extends IQuiz, Document {}
+export interface IQuizModel extends Quiz, Document {}
 
 const QuizSchema: Schema = new Schema(
   {
