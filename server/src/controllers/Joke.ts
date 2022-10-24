@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 import Joke from "../models/Joke";
 
+// test commit
 const readAll = (req: Request, res: Response, next: NextFunction) => {
   return Joke.find()
     .then((jokes) => res.status(200).json({ jokes }))
