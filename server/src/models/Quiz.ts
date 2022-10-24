@@ -3,16 +3,16 @@ import mongoose, { Document, Schema } from "mongoose";
 export interface IQuiz {
   question: string;
   correct: string;
-  options: string[];
+  options?: string[];
 }
 
 export interface IQuizModel extends IQuiz, Document {}
 
 const QuizSchema: Schema = new Schema(
   {
-    name: { type: String, required: true },
+    question: { type: String, required: true },
     correct: { type: String, required: true },
-    options: { type: Array<String>, required: true },
+    options: { type: Array<String>, required: false },
   },
   {
     versionKey: false,

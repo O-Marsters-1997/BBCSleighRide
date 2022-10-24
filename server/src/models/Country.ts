@@ -6,9 +6,9 @@ export interface ICountry {
   song?: string;
   greeting: string;
   celebrated: string;
-  meal: string;
+  meal?: string;
   decorations: string;
-  didYouKnow: string;
+  didYouKnow?: string;
 }
 
 export interface ICountryModel extends ICountry, Document {}
@@ -20,9 +20,9 @@ const CountrySchema: Schema = new Schema(
     song: { type: String, required: false },
     greeting: { type: String, required: true },
     celebrated: { type: String, required: true },
-    meal: { type: String, required: true },
+    meal: { type: String, required: false },
     decorations: { type: String, required: true },
-    didYouKnow: { type: String, required: true },
+    didYouKnow: { type: String, required: false },
   },
   {
     versionKey: false,

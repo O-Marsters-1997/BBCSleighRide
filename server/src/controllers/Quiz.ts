@@ -4,7 +4,7 @@ import Quiz from "../models/Quiz";
 
 const readAll = (req: Request, res: Response, next: NextFunction) => {
   return Quiz.find()
-    .then((questions) => res.status(200).json({ questions }))
+    .then((quiz) => res.status(200).json({ quiz }))
     .catch((error) => res.status(500).json({ error }));
 };
 

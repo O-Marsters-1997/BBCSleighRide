@@ -5,13 +5,15 @@ import controllerJoke from "../controllers/Joke";
 
 const createRouter = function (collection: string) {
   const router = express.Router();
-  if ((collection = "countries")) {
+
+  if (collection == "countries") {
     router.get("/", controllerCountry.readAll);
-  } else if (collection == "quiz") {
-    router.get("/", controllerQuiz.readAll);
-  } else {
+  } else if (collection == "jokes") {
     router.get("/", controllerJoke.readAll);
+  } else {
+    router.get("/", controllerQuiz.readAll);
   }
+  return router;
 };
 
 export = createRouter;
