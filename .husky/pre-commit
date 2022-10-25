@@ -3,4 +3,4 @@
 
 exec 1> /dev/tty
 
-yarn lint
+yarn lint:front
