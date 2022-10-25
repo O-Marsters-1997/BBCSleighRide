@@ -9,8 +9,6 @@ import cors from "cors";
 const app = express();
 app.use(cors());
 
-const hello = "greeting";
-
 // Connecting to mongoose
 mongoose
   .connect(config.mongo.url, {
