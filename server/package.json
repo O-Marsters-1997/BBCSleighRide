@@ -19,6 +19,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "seed": "bash bin/seed.sh",
+    "lint:staged": "lint-staged",
     "lint:all": "eslint ."
   },
   "lint-staged": {

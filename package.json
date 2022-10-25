@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
-    "lint:front": "cd frontend && yarn lint:staged"
+    "lint:front": "cd frontend && yarn lint:staged",
+    "lint:back": "cd server && yarn lint:staged"
   },
   "husky": {
     "hooks": {
