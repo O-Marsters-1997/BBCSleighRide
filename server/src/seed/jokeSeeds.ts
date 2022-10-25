@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { NextFunction, Request, Response } from "express";
 import { config } from "../config/config";
 import logger from "../logger";
 import Joke from "../models/Joke";

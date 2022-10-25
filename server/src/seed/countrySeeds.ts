@@ -1,12 +1,8 @@
 import mongoose from "mongoose";
-import { NextFunction, Request, Response } from "express";
 import { config } from "../config/config";
 import logger from "../logger";
-import Country from "../models/Country";
 import { seedData } from "../utils";
 import CountryModel from "../models/Country";
-// import QuizModel from "../models/Quiz"
-// import JokeModel from "../models/Joke"
 
 mongoose
   .connect(config.mongo.url, { retryWrites: true, w: "majority" })
@@ -172,4 +168,4 @@ const countries = [
   }),
 ];
 
-seedData(Country, countries);
+seedData(CountryModel, countries);

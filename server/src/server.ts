@@ -62,12 +62,9 @@ export const startServer = () => {
   });
 
   // Routes
-  const db = mongoose.connection;
-  //   const quizCollection = db.collection("quiz");
-  //   const jokesCollection = db.collection("jokes");
+
   const jokesRouter = createRouter("jokes");
   app.use("/jokes", jokesRouter);
-  //   const countriesCollection = db.collection("countries");
 
   const countriesRouter = createRouter("countries");
   app.use("/countries", countriesRouter);

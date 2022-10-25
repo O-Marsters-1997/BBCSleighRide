@@ -6,19 +6,23 @@ export const seedData = async (schema: any, items: any) => {
     await schema.deleteMany({});
     let done: number = 0;
     for (let i = 0; i < items.length; i++) {
-      items[i].save().then(() => {
+      items[i].save().then(async () => {
         done++;
         if (done == items.length) {
-          exit();
+          await exit().catch((error) => logger.info(error));
         }
       });
     }
   } catch (error) {
-    console.log(error);
+    logger.info(error);
   }
 };
 
-function exit(): void {
-  mongoose.disconnect();
-  logger.info("disconnecting");
+async function exit(): Promise<void> {
+  try {
+    await mongoose.disconnect();
+    logger.info("disconnecting");
+  } catch (error) {
+    logger.info(error);
+  }
 }
