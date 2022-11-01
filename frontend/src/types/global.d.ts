@@ -25,6 +25,7 @@ declare global {
 
   declare namespace Quiz {
     interface QuizGame {
+      readyToPlay: boolean;
       correctQuestions: number;
       incorrectQuestions: number;
       totalQuestions: number;

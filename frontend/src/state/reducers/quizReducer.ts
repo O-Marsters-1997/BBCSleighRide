@@ -1,6 +1,7 @@
 import { ActionType } from "../actionTypes";
 
 const inititalState = {
+  readyToPlay: false,
   correctQuestions: 0,
   incorrectQuestions: 0,
   totalQuestions: 0,
@@ -10,7 +11,7 @@ const inititalState = {
 const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
   switch (action.type) {
     case ActionType.START_QUIZ:
-      return inititalState;
+      return { ...inititalState, readyToPlay: true };
     case ActionType.ANSWER_CORRECTLY:
       return {
         ...state,

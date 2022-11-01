@@ -7,8 +7,9 @@ import { getQuestions } from "../services";
 
 const Quiz = () => {
   const [questions, setQuestions] = useState<Quiz[] | undefined>();
-  const [readyToPlay] = useState<boolean>(false);
-  const { totalQuestions } = useSelector((state: State) => state.quiz);
+  const { totalQuestions, readyToPlay } = useSelector(
+    (state: State) => state.quiz,
+  );
 
   const shuffleArray = (array: Quiz[]) => {
     let currentIndex: number = array.length;
@@ -40,7 +41,7 @@ const Quiz = () => {
 
   return (
     <div>
-      {readyToPlay ? (
+      {!readyToPlay ? (
         <QuizWelcome />
       ) : (
         <QuizQuestion question={questions[totalQuestions]} />
