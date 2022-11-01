@@ -25,8 +25,10 @@ declare global {
 
   declare namespace Quiz {
     interface QuizGame {
+      correctQuestions: number;
+      incorrectQuestions: number;
+      totalQuestions: number;
       questionsRemaining: number;
-      livesLost: number;
     }
 
     interface Start {

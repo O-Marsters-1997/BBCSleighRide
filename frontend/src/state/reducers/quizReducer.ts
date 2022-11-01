@@ -1,8 +1,10 @@
 import { ActionType } from "../actionTypes";
 
 const inititalState = {
+  correctQuestions: 0,
+  incorrectQuestions: 0,
+  totalQuestions: 0,
   questionsRemaining: 5,
-  livesLost: 0,
 };
 
 const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
@@ -13,12 +15,13 @@ const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
       return {
         ...state,
         questionsRemaining: state.questionsRemaining - 1,
+        correctQuestions: state.correctQuestions + 1,
       };
     case ActionType.ANSWER_INCORRECTLY:
       return {
         ...state,
         questionsRemaining: state.questionsRemaining - 1,
-        livesLost: state.livesLost + 1,
+        incorrectQuestions: state.incorrectQuestions + 1,
       };
     default:
       return state;
