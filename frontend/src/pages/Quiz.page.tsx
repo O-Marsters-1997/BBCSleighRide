@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import { useSelector } from "react-redux";
 import { State } from "../state/reducers";
 import QuizWelcome from "../components/Quiz/QuizWelcome";
@@ -35,10 +36,6 @@ const Quiz = () => {
   useEffect(() => {
     getMyQuestions();
   }, []);
-
-  useEffect(() => {
-    console.log("testing");
-  }, [totalQuestions]);
 
   if (!questions) {
     return <p>No questions have been loaded</p>;

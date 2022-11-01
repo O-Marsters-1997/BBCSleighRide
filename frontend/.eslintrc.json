@@ -63,6 +63,8 @@
     "@typescript-eslint/return-await": "off",
     "no-param-reassign": "off",
     "react/jsx-no-useless-fragment": "warn",
+    "@typescript-eslint/no-unused-expressions": "warn",
+    "react/no-array-index-key": "warn",
     "quotes": [
       "error",
       "double",
