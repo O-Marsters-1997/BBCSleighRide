@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import ActionsProvider from "./contexts/StateActions.context";
+import QuizActionsProvider from "./contexts/StateActions.context";
 
 import BBCSleighride from "./pages/BBCSleighride.page";
 import Map from "./pages/Map.page";
@@ -17,16 +17,23 @@ const App: React.FC = () => {
   };
 
   return (
-    <ActionsProvider>
+    <>
       <Header showSanta={showSanta} />
       <Routes>
         <Route path="/" element={<BBCSleighride />} />
         <Route path="map/" element={<Map />} />
-        <Route path="quiz/" element={<Quiz />} />
+        <Route
+          path="quiz/"
+          element={
+            <QuizActionsProvider>
+              <Quiz />
+            </QuizActionsProvider>
+          }
+        />
         <Route path="*" element={<Error />} />
         <Route path="*" element={<ReduxTest />} />
       </Routes>
-    </ActionsProvider>
+    </>
   );
 };
 

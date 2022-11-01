@@ -16,6 +16,7 @@ const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
         ...state,
         questionsRemaining: state.questionsRemaining - 1,
         correctQuestions: state.correctQuestions + 1,
+        totalQuestions: state.totalQuestions + 1,
       };
     case ActionType.ANSWER_INCORRECTLY:
       return {

@@ -6,7 +6,7 @@ import { actionCreators } from "../state/actionCreators";
 
 export const ActionsContext = createContext<Quiz.Context | null>(null);
 
-const ActionsProvider = ({ children }: { children: ReactNode }) => {
+const QuizActionsProvider = ({ children }: { children: ReactNode }) => {
   const dispatch: Dispatch = useDispatch();
   const actions = bindActionCreators(actionCreators, dispatch);
 
@@ -17,4 +17,4 @@ const ActionsProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default ActionsProvider;
+export default QuizActionsProvider;
