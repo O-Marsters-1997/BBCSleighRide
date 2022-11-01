@@ -25,11 +25,23 @@ declare global {
 
   declare namespace Quiz {
     interface QuizGame {
+      questions: Quiz[];
       readyToPlay: boolean;
       correctQuestions: number;
       incorrectQuestions: number;
       totalQuestions: number;
       questionsRemaining: number;
+    }
+
+    interface Load {
+      type: ActionType.LOAD_QUESTIONS;
+    }
+
+    interface Get {
+      type: ActionType.GET_QUESTIONS;
+      payload: {
+        quiz: Quiz[];
+      };
     }
 
     interface Start {
@@ -52,6 +64,7 @@ declare global {
 
     type Context = {
       startQuiz: () => void;
+      endQuiz: () => void;
       answerCorrectly: () => void;
       answerIncorrectly: () => void;
     };

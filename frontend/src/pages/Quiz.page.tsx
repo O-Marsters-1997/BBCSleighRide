@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { State } from "../state/reducers";
 import QuizWelcome from "../components/Quiz/QuizWelcome";
 import QuizQuestion from "../components/Quiz/QuizQuestion";
+import QuizEnd from "../components/Quiz/QuizEnd";
 import { getQuestions } from "../services";
 
 const Quiz = () => {
@@ -35,10 +36,18 @@ const Quiz = () => {
     getMyQuestions();
   }, []);
 
+  useEffect(() => {
+    console.log("testing");
+  }, [totalQuestions]);
+
   if (!questions) {
     return <p>No questions have been loaded</p>;
   }
 
+  if (totalQuestions == questions.length) {
+    getMyQuestions();
+    return <QuizEnd />;
+  }
   return (
     <div>
       {!readyToPlay ? (

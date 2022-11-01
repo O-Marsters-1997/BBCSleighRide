@@ -1,6 +1,7 @@
 import { ActionType } from "../actionTypes";
 
-const inititalState = {
+const inititalState: Quiz.QuizGame = {
+  questions: [],
   readyToPlay: false,
   correctQuestions: 0,
   incorrectQuestions: 0,
@@ -25,6 +26,8 @@ const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
         questionsRemaining: state.questionsRemaining - 1,
         incorrectQuestions: state.incorrectQuestions + 1,
       };
+    case ActionType.END_QUIZ:
+      return inititalState;
     default:
       return state;
   }

@@ -7,6 +7,12 @@ export const startQuiz = () => (dispatch: Dispatch<Quiz.Action>) => {
   });
 };
 
+export const endQuiz = () => (dispatch: Dispatch<Quiz.Action>) => {
+  dispatch({
+    type: ActionType.END_QUIZ,
+  });
+};
+
 export const answerCorrectly = () => (dispatch: Dispatch<Quiz.Action>) => {
   dispatch({
     type: ActionType.ANSWER_CORRECTLY,
