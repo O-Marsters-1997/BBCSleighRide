@@ -31,6 +31,7 @@ declare global {
       incorrectQuestions: number;
       totalQuestions: number;
       questionsRemaining: number;
+      livesLeft: number;
     }
 
     interface Load {

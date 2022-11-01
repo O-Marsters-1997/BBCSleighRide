@@ -7,6 +7,7 @@ const inititalState: Quiz.QuizGame = {
   incorrectQuestions: 0,
   totalQuestions: 0,
   questionsRemaining: 5,
+  livesLeft: 5,
 };
 
 const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
@@ -25,7 +26,7 @@ const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
         ...state,
         questionsRemaining: state.questionsRemaining - 1,
         incorrectQuestions: state.incorrectQuestions + 1,
-        totalQuestions: state.totalQuestions + 1,
+        livesLeft: state.livesLeft - 1,
       };
     case ActionType.END_QUIZ:
       return inititalState;

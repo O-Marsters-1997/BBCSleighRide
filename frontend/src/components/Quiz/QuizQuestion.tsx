@@ -16,7 +16,6 @@ type Props = {
 const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
   const { answerCorrectly } = useContext(ActionsContext) ?? {};
   const dispatch: Dispatch = useDispatch();
-
   const [sound1] = useSound(correct);
   const [sound2] = useSound(incorrect);
 
@@ -30,6 +29,7 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
       toPlayCorrect();
     } else {
       dispatch({ type: ActionType.ANSWER_INCORRECTLY });
+      console.log(event.target.innerHTML, question.correct);
       toPlayIncorrect();
     }
   };

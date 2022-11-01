@@ -9,7 +9,7 @@ import { getQuestions } from "../services";
 
 const Quiz = () => {
   const [questions, setQuestions] = useState<Quiz[] | undefined>();
-  const { totalQuestions, readyToPlay } = useSelector(
+  const { totalQuestions, readyToPlay, livesLeft } = useSelector(
     (state: State) => state.quiz,
   );
 
@@ -41,7 +41,7 @@ const Quiz = () => {
     return <p>No questions have been loaded</p>;
   }
 
-  if (totalQuestions == questions.length) {
+  if (totalQuestions == questions.length || livesLeft == 0) {
     getMyQuestions();
     return <QuizEnd />;
   }
