@@ -4,6 +4,7 @@ import BBCSleighride from "./pages/BBCSleighride.page";
 import Map from "./pages/Map.page";
 import Quiz from "./pages/Quiz.page";
 import Error from "./pages/Error.page";
+import ReduxTest from "./pages/ReduxTest.page";
 import Header from "./components/Header";
 
 const App: React.FC = () => {
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <Route path="map/" element={<Map />} />
         <Route path="quiz/" element={<Quiz />} />
         <Route path="*" element={<Error />} />
+        <Route path="*" element={<ReduxTest />} />
       </Routes>
     </>
   );

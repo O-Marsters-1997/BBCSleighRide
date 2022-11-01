@@ -47,7 +47,7 @@
   "rules": {
     "semi": "warn",
     "@typescript-eslint/semi": "warn",
-    "no-console": "error",
+    "no-console": "warn",
     "no-debugger": "warn",
     "no-alert": "warn",
     "arrow-body-style": ["warn", "as-needed"],
@@ -57,6 +57,9 @@
     "implicit-arrow-linebreak": "off",
     "eqeqeq": "off",
     "react/require-default-props": "off",
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "jsx-a11y/no-static-element-interactions": "warn",
+    "@typescript-eslint/default-param-last": "off",
     "quotes": [
       "error",
       "double",
