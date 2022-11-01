@@ -5,7 +5,7 @@ const inititalState = {
   livesLost: 0,
 };
 
-const reducer = (state: any = inititalState, action: any) => {
+const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
   switch (action.type) {
     case ActionType.START_QUIZ:
       return inititalState;

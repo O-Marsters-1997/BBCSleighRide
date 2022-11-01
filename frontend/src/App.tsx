@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import ActionsProvider from "./contexts/StateActions.context";
+
 import BBCSleighride from "./pages/BBCSleighride.page";
 import Map from "./pages/Map.page";
 import Quiz from "./pages/Quiz.page";
@@ -15,7 +17,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <>
+    <ActionsProvider>
       <Header showSanta={showSanta} />
       <Routes>
         <Route path="/" element={<BBCSleighride />} />
@@ -24,7 +26,7 @@ const App: React.FC = () => {
         <Route path="*" element={<Error />} />
         <Route path="*" element={<ReduxTest />} />
       </Routes>
-    </>
+    </ActionsProvider>
   );
 };
 
