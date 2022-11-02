@@ -1,7 +1,9 @@
 import React, { useState, lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./utils/theme";
 import QuizActionsProvider from "./contexts/StateActions.context";
-
+import View from "./components/View";
 import Header from "./components/Header";
 
 const BBCSleighride = lazy(() => import("./pages/BBCSleighride.page"));
@@ -18,46 +20,48 @@ const App: React.FC = () => {
   };
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Header showSanta={showSanta} />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<>...</>}>
-              <BBCSleighride />
-            </Suspense>
-          }
-        />
-        <Route
-          path="map/"
-          element={
-            <Suspense fallback={<>...</>}>
-              <Map />
-            </Suspense>
-          }
-        />
-        <Route
-          path="joke/"
-          element={
-            <Suspense fallback={<>...</>}>
-              <Joke />
-            </Suspense>
-          }
-        />
-        <Route
-          path="quiz/"
-          element={
-            <Suspense fallback={<>...</>}>
-              <QuizActionsProvider>
-                <Quiz />
-              </QuizActionsProvider>
-            </Suspense>
-          }
-        />
-        <Route path="*" element={<Error />} />
-      </Routes>
-    </>
+      <View className="background" backgroundImg>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<>...</>}>
+                <BBCSleighride />
+              </Suspense>
+            }
+          />
+          <Route
+            path="map/"
+            element={
+              <Suspense fallback={<>...</>}>
+                <Map />
+              </Suspense>
+            }
+          />
+          <Route
+            path="joke/"
+            element={
+              <Suspense fallback={<>...</>}>
+                <Joke />
+              </Suspense>
+            }
+          />
+          <Route
+            path="quiz/"
+            element={
+              <Suspense fallback={<>...</>}>
+                <QuizActionsProvider>
+                  <Quiz />
+                </QuizActionsProvider>
+              </Suspense>
+            }
+          />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </View>
+    </ThemeProvider>
   );
 };
 
