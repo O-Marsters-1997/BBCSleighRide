@@ -4,7 +4,9 @@ import { Dispatch } from "redux";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../state/reducers";
 import { ActionType } from "../../state/actionTypes";
+import Image from "../Image";
 
+import candy_cane from "../../assets/images/candy_cane.svg";
 import present from "../../assets/images/present.svg";
 import correct from "../../assets/sounds/Correct-answer.mp3";
 import incorrect from "../../assets/sounds/Incorrect-answer.mp3";
@@ -14,30 +16,40 @@ type Props = {
 };
 
 const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
-  const { totalQuestions } = useSelector((state: State) => state.quiz);
+  const { totalQuestions, livesLeft } = useSelector(
+    (state: State) => state.quiz,
+  );
   const dispatch: Dispatch = useDispatch();
-  const [sound1] = useSound(correct);
-  const [sound2] = useSound(incorrect);
+  const [soundCorrect] = useSound(correct);
+  const [soundIncorrect] = useSound(incorrect);
 
-  const handleClick = async (event: any): Promise<void> => {
-    const toPlayCorrect = sound1;
-    const toPlayIncorrect = sound2;
-    if (event.target.innerHTML == question.correct) {
+  const handleClick = async (
+    e: React.MouseEvent<HTMLButtonElement>,
+  ): Promise<void> => {
+    e.preventDefault();
+    if ((e.target as Element).innerHTML == question.correct) {
       dispatch({ type: ActionType.ANSWER_CORRECTLY });
-      toPlayCorrect();
+      soundCorrect();
     } else {
       dispatch({ type: ActionType.ANSWER_INCORRECTLY });
-      console.log(event.target.innerHTML, question.correct);
-      toPlayIncorrect();
+      soundIncorrect();
     }
   };
 
   const presents = [...Array(totalQuestions)].map(() => (
-    <img src={present} alt="present to demonstrate correct answers in quiz" />
+    <Image src={present} alt="present to demonstrate correct answers in quiz" />
+  ));
+
+  const candyCanes = [...Array(livesLeft)].map(() => (
+    <Image
+      src={candy_cane}
+      alt={`${livesLeft} candy canes to show how many lives are left`}
+    />
   ));
 
   return (
     <div>
+      <div>{candyCanes}</div>
       <p>{question.question}</p>
       <ul>
         {question?.options?.map((option: string, index: number) => (
