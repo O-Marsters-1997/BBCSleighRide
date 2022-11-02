@@ -1,7 +1,7 @@
 import React, { useState, lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./utils/theme";
+import { theme, GlobalStyle } from "./utils/theme";
 import QuizActionsProvider from "./contexts/StateActions.context";
 import View from "./components/View";
 import Header from "./components/Header";
@@ -21,6 +21,7 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <Header showSanta={showSanta} />
       <View className="background" backgroundImg>
         <Routes>

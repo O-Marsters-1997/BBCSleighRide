@@ -65,6 +65,7 @@
     "react/jsx-no-useless-fragment": "warn",
     "@typescript-eslint/no-unused-expressions": "warn",
     "react/no-array-index-key": "warn",
+    "react/jsx-props-no-spreading": "warn",
     "quotes": [
       "error",
       "double",

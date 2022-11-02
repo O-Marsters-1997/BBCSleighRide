@@ -29,17 +29,29 @@ const StyledView = styled(Box)<Props>`
   background: ${(props) => props.background && props.background};
 `;
 
-const StyledBackground = styled(StyledView)`
+const StyledBackground = styled(StyledView)<Props>`
   && {
-    background-image: linear-gradient(rgba(4, 9, 30, 0), rgba(4, 9, 30, 0)),
-      url(${app_background});
-    filter: opacity(75%);
+    position: relative;
     object-fit: cover;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+    background-image: linear-gradient(rgba(4, 9, 30, 0), rgba(4, 9, 30, 0)),
+      url(${app_background});
     min-height: 120vh;
+    z-index: -10;
   }
+`;
+
+const StyledOverlay = styled(Box)<{ opacity?: number }>`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #a1bd93;
+  opacity: ${({ opacity }) => opacity ?? 1};
+  z-index: -5;
 `;
 
 const View: React.FC<Props> = ({
@@ -62,6 +74,7 @@ const View: React.FC<Props> = ({
         background={background}
         className={className}
       >
+        {backgroundImg && <StyledOverlay opacity={0.2} />}
         {children}
       </StyledBackground>
     );

@@ -1,6 +1,13 @@
 import styled from "styled-components";
-import Box from "@mui/material/Box";
+import View from "../View";
 
-export const RowContainer = styled(Box)`
+export const RowContainer = styled(View)`
   display: flex;
+`;
+
+export const CentralRowContainer = styled(View)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;

@@ -1,4 +1,4 @@
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme, createGlobalStyle } from "styled-components";
 
 export const theme: DefaultTheme = {
   borderRadius: "4px",
@@ -8,7 +8,7 @@ export const theme: DefaultTheme = {
       white: "#ffffff",
     },
     primary: {
-      main: "#726a95",
+      main: "rgb(157,10,13)",
       contrastText: "#ffffff",
     },
     secondary: {
@@ -17,3 +17,10 @@ export const theme: DefaultTheme = {
     },
   },
 };
+
+export const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }`;
