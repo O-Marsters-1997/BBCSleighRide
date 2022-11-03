@@ -11,6 +11,18 @@ import RalewayExtraBoldTTF from "../assets/fonts/RalewayExtraBold.ttf";
 import RalewayExtraBoldWOFF from "../assets/fonts/RalewayExtraBold.woff";
 import RalewayExtraBoldItalicTTF from "../assets/fonts/RalewayExtraBoldItalic.ttf";
 import RalewayExtraBoldItalicWOFF from "../assets/fonts/RalewayExtraBoldItalic.woff";
+import RobotoRegular1 from "../assets/fonts/RobotoLatinRegular.woff";
+import RobotoRegular2 from "../assets/fonts/RobotoLatinRegular.woff2";
+import RobotoRegularItalic1 from "../assets/fonts/roboto-v30-latin-italic.woff";
+import RobotoRegularItalic2 from "../assets/fonts/roboto-v30-latin-italic.woff2";
+import Roboto7001 from "../assets/fonts/roboto-v30-latin-700.woff";
+import Roboto7002 from "../assets/fonts/roboto-v30-latin-700.woff2";
+import Roboto700Italic1 from "../assets/fonts/roboto-v30-latin-700italic.woff";
+import Roboto700Italic2 from "../assets/fonts/roboto-v30-latin-700italic.woff2";
+import Roboto5001 from "../assets/fonts/roboto-v30-latin-500.woff";
+import Roboto5002 from "../assets/fonts/roboto-v30-latin-500.woff2";
+import Roboto500Italic1 from "../assets/fonts/roboto-v30-latin-500italic.woff";
+import Roboto500Italic2 from "../assets/fonts/roboto-v30-latin-500italic.woff2";
 
 export const theme: DefaultTheme = {
   borderRadius: "4px",
@@ -101,6 +113,54 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: bold;
     src:  url(${RalewayExtraBoldItalicTTF}) format('woff'),
            url(${RalewayExtraBoldItalicWOFF}) format('ttf');
+    }
+
+    
+    @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: normal;
+      src:  url(${RobotoRegular1}) format('woff'),
+      url(${RobotoRegular2}) format('woff2');
+    }
+    
+    @font-face {
+      font-family: 'Roboto Italic';
+      font-style: italic;
+      font-weight: normal;
+      src:  url(${RobotoRegularItalic1}) format('woff'),
+      url(${RobotoRegularItalic2}) format('woff2');
+    }
+    
+    @font-face {
+    font-family: 'Roboto Bold';
+    font-style: normal;
+    font-weight: lighter;
+    src:  url(${Roboto5001}) format('woff'),
+           url(${Roboto5002}) format('woff2');
+    }
+
+     @font-face {
+    font-family: 'Roboto Bold Italic';
+    font-style: italic;
+    font-weight: lighter;
+    src:  url(${Roboto500Italic1}) format('woff'),
+           url(${Roboto500Italic2}) format('woff2');
+    }
+     @font-face {
+    font-family: 'Roboto Extra Bold';
+    font-style: normal;
+    font-weight: normal;
+    src:  url(${Roboto7001}) format('woff'),
+           url(${Roboto7002}) format('woff2');
+    }
+
+     @font-face {
+    font-family: 'Roboto Extra Bold Italic';
+    font-style: italic;
+    font-weight: normal;
+    src:  url(${Roboto700Italic1}) format('woff'),
+           url(${Roboto700Italic2}) format('woff2');
     }
         
 * {
