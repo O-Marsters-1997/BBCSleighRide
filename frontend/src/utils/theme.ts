@@ -1,16 +1,16 @@
 import { DefaultTheme, createGlobalStyle } from "styled-components";
 import RalewayRegularTTF from "../assets/fonts/RalewayRegularTTF.ttf";
 import RalewayRegularWOFF from "../assets/fonts/RalewayRegularWOFF.woff";
-// import RalewayItalicTTF from "../assets/fonts/RalewayItalic.ttf";
-// import RalewayItalicWOFF from "../assets/fonts/RalewayItalic.woff";
-// import * as RalewayBoldTTF from "../assets/fonts/RalewayBold.ttf";
-// import * as RalewayBoldWOFF from "../assets/fonts/RalewayBold.woff";
-// import * as RalewayBoldItalicTTF from "../assets/fonts/RalewayBoldItalic.ttf";
-// import * as RalewayBoldItalicWOFF from "../assets/fonts/RalewayBoldItalic.woff";
-// import * as RalewayExtraBoldTTF from "../assets/fonts/RalewayExtraBold.ttf";
-// import * as RalewayExtraBoldWOFF from "../assets/fonts/RalewayExtraBold.woff";
-// import * as RalewayExtraBoldItalicTTF from "../assets/fonts/RalewayExtraBoldItalic.ttf";
-// import * as RalewayExtraBoldItalicWOFF from "../assets/fonts/RalewayExtraBoldItalic.woff";
+import RalewayItalicTTF from "../assets/fonts/RalewayItalic.ttf";
+import RalewayItalicWOFF from "../assets/fonts/RalewayItalic.woff";
+import RalewayBoldTTF from "../assets/fonts/RalewayBold.ttf";
+import RalewayBoldWOFF from "../assets/fonts/RalewayBold.woff";
+import RalewayBoldItalicTTF from "../assets/fonts/RalewayBoldItalic.ttf";
+import RalewayBoldItalicWOFF from "../assets/fonts/RalewayBoldItalic.woff";
+import RalewayExtraBoldTTF from "../assets/fonts/RalewayExtraBold.ttf";
+import RalewayExtraBoldWOFF from "../assets/fonts/RalewayExtraBold.woff";
+import RalewayExtraBoldItalicTTF from "../assets/fonts/RalewayExtraBoldItalic.ttf";
+import RalewayExtraBoldItalicWOFF from "../assets/fonts/RalewayExtraBoldItalic.woff";
 
 export const theme: DefaultTheme = {
   borderRadius: "4px",
@@ -56,11 +56,51 @@ export const GlobalStyle = createGlobalStyle`
 
   
   @font-face {
-    font-family: 'Ralewayddd';
+    font-family: 'Raleway';
     font-style: normal;
     font-weight: normal;
-    src: url(${RalewayRegularTTF}) format('ttf'),
-         url(${RalewayRegularWOFF}) format('woff');
+    src:  url(${RalewayRegularWOFF}) format('woff'),
+           url(${RalewayRegularTTF}) format('ttf');
+    }
+
+    @font-face {
+    font-family: 'Raleway Italic';
+    font-style: italic;
+    font-weight: normal;
+    src:  url(${RalewayItalicWOFF}) format('woff'),
+           url(${RalewayItalicTTF}) format('ttf');
+    }
+
+    @font-face {
+    font-family: 'Raleway Bold';
+    font-style: normal;
+    font-weight: bold;
+    src:  url(${RalewayBoldWOFF}) format('woff'),
+           url(${RalewayBoldTTF}) format('ttf');
+    }
+
+    @font-face {
+    font-family: 'Raleway Bold Italic';
+    font-style: italic;
+    font-weight: bold;
+    src:  url(${RalewayBoldItalicWOFF}) format('woff'),
+           url(${RalewayBoldItalicTTF}) format('ttf');
+    }
+
+      @font-face {
+    font-family: 'Raleway Extra Bold';
+    font-style: italic;
+    font-weight: bold;
+    src:  url(${RalewayExtraBoldTTF}) format('woff'),
+           url(${RalewayExtraBoldWOFF}) format('ttf');
+    }
+
+      @font-face {
+    font-family: 'Raleway Extra Bold Italic';
+    font-style: italic;
+    font-weight: bold;
+    src:  url(${RalewayExtraBoldItalicTTF}) format('woff'),
+           url(${RalewayExtraBoldItalicWOFF}) format('ttf');
     }
         
 * {

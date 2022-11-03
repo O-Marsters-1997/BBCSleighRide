@@ -59,7 +59,7 @@ const Countdown = () => {
       <Typography
         variant="h1"
         className="timer-clock"
-        style={{ fontFamily: "Ralewayddd" }}
+        style={{ fontFamily: "Raleway Extra Bold" }}
       >
         {timerDays}
         <View display="inline" className="timer-colon-span">
