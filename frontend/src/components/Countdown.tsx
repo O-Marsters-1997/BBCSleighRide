@@ -1,12 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import Typography from "@mui/material/Typography";
+import View from "./View";
+import Loading from "./Loading";
+
+const StyledView = styled(View)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
 
 const Countdown = () => {
-  const [timerDays, setTimerDays] = useState<string | number>("00");
-  const [timerHours, setTimerHours] = useState<string | number>("00");
-  const [timerMinutes, setTimerMinutes] = useState<string | number>("00");
-  const [timerSeconds, setTimerSeconds] = useState<string | number>("00");
+  const [timerDays, setTimerDays] = useState<string | number | undefined>();
+  const [timerHours, setTimerHours] = useState<string | number | undefined>();
+  const [timerMinutes, setTimerMinutes] = useState<
+    string | number | undefined
+  >();
+  const [timerSeconds, setTimerSeconds] = useState<
+    string | number | undefined
+  >();
 
-  useEffect(() => {
+  const createTimer = async () => {
     const target = new Date("December 25 2022 00:00:00");
 
     const interval = setInterval(() => {
@@ -29,18 +44,38 @@ const Countdown = () => {
     }, 1000);
 
     return () => clearInterval(interval);
+  };
+
+  useEffect(() => {
+    createTimer();
   }, []);
 
+  if (!timerSeconds) {
+    return <Loading title="fetching countdown" size="medium" />;
+  }
+
   return (
-    <p className="timer-clock">
-      {timerDays}
-      <span className="timer-colon-span">:</span>
-      {timerHours}
-      <span className="timer-colon-span">:</span>
-      {timerMinutes}
-      <span className="timer-colon-span">:</span>
-      {timerSeconds}
-    </p>
+    <StyledView>
+      <Typography
+        variant="h1"
+        className="timer-clock"
+        style={{ fontFamily: "Ralewayddd" }}
+      >
+        {timerDays}
+        <View display="inline" className="timer-colon-span">
+          :
+        </View>
+        {timerHours}
+        <View display="inline" className="timer-colon-span">
+          :
+        </View>
+        {timerMinutes}
+        <View display="inline" className="timer-colon-span">
+          :
+        </View>
+        {timerSeconds}
+      </Typography>
+    </StyledView>
   );
 };
 

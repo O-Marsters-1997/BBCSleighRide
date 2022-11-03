@@ -66,6 +66,8 @@
     "@typescript-eslint/no-unused-expressions": "warn",
     "react/no-array-index-key": "warn",
     "react/jsx-props-no-spreading": "warn",
+    "react/no-unused-prop-types": "warn",
+    "@typescript-eslint/no-shadow": "warn",
     "quotes": [
       "error",
       "double",

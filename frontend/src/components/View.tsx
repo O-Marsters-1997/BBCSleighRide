@@ -6,27 +6,30 @@ import app_background from "../assets/images/app_background.jpg";
 type StyleProps = {
   width?: number;
   height?: number;
-  widthMeasurement?: string;
-  heightMeasurement?: string;
+  widthmeasurement?: string;
+  heightmeasurement?: string;
   background?: string;
 };
 
 type Props = {
   className?: string;
+  display?: string;
   backgroundImg?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
+  style?: React.CSSProperties;
 } & StyleProps;
 
 const StyledView = styled(Box)<Props>`
   width: ${(props) =>
     props.width &&
-    props.widthMeasurement &&
-    `${props.width} ${props.widthMeasurement}`};
+    props.widthmeasurement &&
+    `${props.width} ${props.widthmeasurement}`};
   height: ${(props) =>
     props.height &&
-    props.heightMeasurement &&
-    `${props.height} ${props.heightMeasurement}`};
+    props.heightmeasurement &&
+    `${props.height} ${props.heightmeasurement}`};
   background: ${(props) => props.background && props.background};
+  display: ${(props) => (props.display == "inline" ? "inline-block" : "block")};
 `;
 
 const StyledBackground = styled(StyledView)<Props>`
@@ -57,22 +60,26 @@ const StyledOverlay = styled(Box)<{ opacity?: number }>`
 const View: React.FC<Props> = ({
   width,
   height,
-  widthMeasurement,
-  heightMeasurement,
+  widthmeasurement,
+  heightmeasurement,
   background,
   className,
   backgroundImg,
   children,
+  display,
+  style,
 }) => {
   if (backgroundImg) {
     return (
       <StyledBackground
         width={width}
         height={height}
-        widthMeasurement={widthMeasurement}
-        heightMeasurement={heightMeasurement}
+        widthmeasurement={widthmeasurement}
+        heightmeasurement={heightmeasurement}
         background={background}
         className={className}
+        display={display}
+        style={style}
       >
         {backgroundImg && <StyledOverlay opacity={0.2} />}
         {children}
@@ -83,10 +90,12 @@ const View: React.FC<Props> = ({
     <StyledView
       width={width}
       height={height}
-      widthMeasurement={widthMeasurement}
-      heightMeasurement={heightMeasurement}
+      widthmeasurement={widthmeasurement}
+      heightmeasurement={heightmeasurement}
       background={background}
       className={className}
+      display={display}
+      style={style}
     >
       {children}
     </StyledView>

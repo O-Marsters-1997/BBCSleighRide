@@ -11,3 +11,12 @@ export const CentralRowContainer = styled(View)`
   align-items: center;
   width: 100%;
 `;
+
+export const CentralColumnContainer = styled(View)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;

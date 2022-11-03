@@ -1,5 +1,5 @@
 import React from "react";
-// import styled from "styled-components";
+
 import Grid from "@mui/material/Grid";
 import { CentralRowContainer } from "../components/Lib";
 import { CountdownImage } from "../components/Lib/Image";

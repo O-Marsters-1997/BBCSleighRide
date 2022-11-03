@@ -70,4 +70,40 @@ declare global {
       answerIncorrectly: () => void;
     };
   }
+
+  declare namespace Utils {
+    interface FontWeight {
+      light: number;
+      regular: number;
+      bold: number;
+      extraBold: number;
+    }
+
+    interface FontFamilies {
+      body: string;
+      headings: string;
+    }
+
+    type TextVariant =
+      | "h1"
+      | "h2"
+      | "h3"
+      | "h4"
+      | "h5"
+      | "h6"
+      | "body"
+      | "bodyBold"
+      | "button";
+
+    type FontType = "heading" | "body";
+
+    interface Palette {
+      main: string;
+      contrastText: string;
+    }
+
+    type FontColor = string;
+
+    type LoadingSize = "small" | "medium" | "large";
+  }
 }
