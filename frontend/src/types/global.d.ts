@@ -72,6 +72,7 @@ declare global {
   }
 
   declare namespace Utils {
+    // Typography
     interface FontWeight {
       light: number;
       regular: number;
@@ -95,7 +96,21 @@ declare global {
       | "bodyBold"
       | "button";
 
+    type TextVariantMap = { [variant in TextVariant]: string };
+
     type FontType = "heading" | "body";
+
+    // Palette
+
+    type ColorVariant =
+      | "primary"
+      | "primaryAlt"
+      | "secondary"
+      | "secondaryAlt"
+      | "grey"
+      | "greyAlt";
+
+    type ColorVariantMap = { [color in ColorVariant]: string };
 
     interface Palette {
       main: string;
@@ -104,6 +119,10 @@ declare global {
 
     type FontColor = string;
 
+    // Loading
+
     type LoadingSize = "small" | "medium" | "large";
+
+    type LoadingSizeMap = { [size in LoadingSize]: string };
   }
 }
