@@ -4,9 +4,9 @@ import { theme } from "./theme";
 export const getTextColor = (color: string) => {
   const { palette } = theme;
   switch (color) {
-    case colorVariants.PRIMARY:
+    case colorVariants.primary:
       return palette.primaryText.main;
-    case colorVariants.PRIMARY_ALT:
+    case colorVariants.primaryAlt:
       return palette.primaryText.contrastText;
     default:
       return palette.primaryText.main;

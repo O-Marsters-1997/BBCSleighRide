@@ -19,11 +19,11 @@ type Props = {
 
 const getLoadingSize = (size?: string): number | null => {
   switch (size) {
-    case LoadingSizes.SMALL:
+    case LoadingSizes.small:
       return Size.small;
-    case LoadingSizes.MEDIUM:
+    case LoadingSizes.medium:
       return Size.medium;
-    case LoadingSizes.LARGE:
+    case LoadingSizes.large:
       return Size.large;
     default:
       return 15;

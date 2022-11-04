@@ -1,14 +1,14 @@
 export const LoadingSizes = {
-  SMALL: "small",
-  MEDIUM: "medium",
-  LARGE: "large",
+  small: "small",
+  medium: "medium",
+  large: "large",
 };
 
 export const colorVariants = {
-  PRIMARY: "primary",
-  PRIMARY_ALT: "primaryAlt",
-  SECONDARY: "secondary",
-  SECONDARY_ALT: "secondaryAlt",
-  GREY: "grey",
-  GREY_ALT: "greyAlt",
+  primary: "primary",
+  primaryAlt: "primaryAlt",
+  secondary: "secondary",
+  secondaryAlt: "secondaryAlt",
+  grey: "grey",
+  greyAlt: "greyAlt",
 };

@@ -180,16 +180,4 @@ export const GlobalStyle = createGlobalStyle`
   margin: 0;
   padding: 0;
 };
-
-h1 {
-  font-size: ${({ theme }) => theme.typography?.fontSize?.extraLarge}px;
-  color: ${({ theme }) => theme.palette.primaryText.main};
-}
-
-p {
-  font-family: ${({ theme }) => theme.typography.fontFamily.body};
-  font-size: ${({ theme }) => theme.typography?.fontSize?.medium}px;
-  font-weight: ${({ theme }) => theme.typography?.fontWeight?.regular};
-}
-
 `;
