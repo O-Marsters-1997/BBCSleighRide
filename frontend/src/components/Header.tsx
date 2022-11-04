@@ -6,7 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 
 import Image from "./Image";
 // import { RowContainer } from "./Lib";
-
+import Map from "../pages/Map.page";
 import logo from "../assets/images/logo_star.svg";
 import santa from "../assets/images/santa_happy.svg";
 
@@ -34,6 +34,7 @@ const Header: React.FC<Props> = ({ showSanta }) => {
   const navigate = useNavigate();
 
   const navigateBack = (): void => {
+    console.log("hello");
     navigate("/");
   };
 
@@ -58,6 +59,7 @@ const Header: React.FC<Props> = ({ showSanta }) => {
           className="chat-bot"
           onClick={handleSantaToggle}
         />
+        <Map />
       </StyledToolbar>
     </AppBar>
   );

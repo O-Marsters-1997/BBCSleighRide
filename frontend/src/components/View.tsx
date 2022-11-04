@@ -41,19 +41,19 @@ const StyledBackground = styled(StyledView)<Props>`
     background-position: center center;
     background-image: linear-gradient(rgba(4, 9, 30, 0), rgba(4, 9, 30, 0)),
       url(${app_background});
+
     min-height: 120vh;
-    z-index: -10;
+    z-index: 10;
   }
 `;
 
-const StyledOverlay = styled(Box)<{ opacity?: number }>`
+const StyledOverlay = styled(Box)`
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background: #a1bd93;
-  opacity: ${({ opacity }) => opacity ?? 1};
+  background-color: rgba(83, 153, 80, 0.2);
   z-index: -5;
 `;
 
@@ -81,7 +81,7 @@ const View: React.FC<Props> = ({
         display={display}
         style={style}
       >
-        {backgroundImg && <StyledOverlay opacity={0.2} />}
+        {backgroundImg && <StyledOverlay />}
         {children}
       </StyledBackground>
     );

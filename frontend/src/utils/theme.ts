@@ -71,6 +71,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Raleway';
     font-style: normal;
     font-weight: normal;
+    font-display: swap;
     src:  url(${RalewayRegularWOFF}) format('woff'),
            url(${RalewayRegularTTF}) format('ttf');
     }
@@ -79,6 +80,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Raleway Italic';
     font-style: italic;
     font-weight: normal;
+    font-display: swap;
     src:  url(${RalewayItalicWOFF}) format('woff'),
            url(${RalewayItalicTTF}) format('ttf');
     }
@@ -87,6 +89,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Raleway Bold';
     font-style: normal;
     font-weight: bold;
+    font-display: swap;
     src:  url(${RalewayBoldWOFF}) format('woff'),
            url(${RalewayBoldTTF}) format('ttf');
     }
@@ -95,6 +98,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Raleway Bold Italic';
     font-style: italic;
     font-weight: bold;
+    font-display: swap;
     src:  url(${RalewayBoldItalicWOFF}) format('woff'),
            url(${RalewayBoldItalicTTF}) format('ttf');
     }
@@ -103,6 +107,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Raleway Extra Bold';
     font-style: italic;
     font-weight: bold;
+    font-display: swap;
     src:  url(${RalewayExtraBoldTTF}) format('woff'),
            url(${RalewayExtraBoldWOFF}) format('ttf');
     }
@@ -111,6 +116,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Raleway Extra Bold Italic';
     font-style: italic;
     font-weight: bold;
+    font-display: swap;
     src:  url(${RalewayExtraBoldItalicTTF}) format('woff'),
            url(${RalewayExtraBoldItalicWOFF}) format('ttf');
     }
@@ -120,6 +126,7 @@ export const GlobalStyle = createGlobalStyle`
       font-family: 'Roboto';
       font-style: normal;
       font-weight: normal;
+      font-display: swap;
       src:  url(${RobotoRegular1}) format('woff'),
       url(${RobotoRegular2}) format('woff2');
     }
@@ -128,6 +135,7 @@ export const GlobalStyle = createGlobalStyle`
       font-family: 'Roboto Italic';
       font-style: italic;
       font-weight: normal;
+      font-display: swap;
       src:  url(${RobotoRegularItalic1}) format('woff'),
       url(${RobotoRegularItalic2}) format('woff2');
     }
@@ -136,6 +144,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto Bold';
     font-style: normal;
     font-weight: lighter;
+    font-display: swap;
     src:  url(${Roboto5001}) format('woff'),
            url(${Roboto5002}) format('woff2');
     }
@@ -144,6 +153,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto Bold Italic';
     font-style: italic;
     font-weight: lighter;
+    font-display: swap;
     src:  url(${Roboto500Italic1}) format('woff'),
            url(${Roboto500Italic2}) format('woff2');
     }
@@ -151,6 +161,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto Extra Bold';
     font-style: normal;
     font-weight: normal;
+    font-display: swap;
     src:  url(${Roboto7001}) format('woff'),
            url(${Roboto7002}) format('woff2');
     }
@@ -159,6 +170,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto Extra Bold Italic';
     font-style: italic;
     font-weight: normal;
+    font-display: swap;
     src:  url(${Roboto700Italic1}) format('woff'),
            url(${Roboto700Italic2}) format('woff2');
     }
