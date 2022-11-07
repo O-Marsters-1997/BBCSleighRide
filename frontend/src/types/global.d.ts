@@ -124,5 +124,7 @@ declare global {
     type LoadingSize = "small" | "medium" | "large";
 
     type LoadingSizeMap = { [size in LoadingSize]: string };
+
+    type PageSide = "left" | "right";
   }
 }
