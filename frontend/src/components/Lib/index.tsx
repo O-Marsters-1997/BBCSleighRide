@@ -1,8 +1,24 @@
 import styled from "styled-components";
 import View from "../View";
 
+export const CentralOverlayContainer = styled(View)`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CardWrapper = styled(View)<{ padding?: number }>`
+  padding: ${({ padding }) => padding && padding}px;
+`;
+
 export const RowContainer = styled(View)`
   display: flex;
+`;
+
+export const DetailsContainer = styled(View)`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const CentralRowContainer = styled(View)`

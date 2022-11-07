@@ -45,21 +45,20 @@ export const theme: DefaultTheme = {
     },
   },
   typography: {
-    fontWeight: {
-      light: 300,
-      regular: 500,
-      bold: 700,
-      extraBold: 800,
+    h1: {
+      fontWeight: 800,
+      fontFamily: "Roboto",
+      fontSize: 80,
     },
-    fontFamily: {
-      body: "Roboto",
-      headings: "Raleway",
+    h2: {
+      fontWeight: 700,
+      fontFamily: "Raleway, sans-serif",
+      fontSize: 80,
     },
-    fontSize: {
-      small: 12,
-      medium: 14,
-      mediumLarge: 16,
-      extraLarge: 80,
+    body1: {
+      fontWeight: 500,
+      fontFamily: "Roboto",
+      fontSize: 16,
     },
   },
 };
@@ -70,52 +69,52 @@ export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Raleway';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 500;
     font-display: swap;
     src:  url(${RalewayRegularWOFF}) format('woff'),
            url(${RalewayRegularTTF}) format('ttf');
     }
 
     @font-face {
-    font-family: 'Raleway Italic';
+    font-family: 'Raleway';
     font-style: italic;
-    font-weight: normal;
+    font-weight: 500;
     font-display: swap;
     src:  url(${RalewayItalicWOFF}) format('woff'),
            url(${RalewayItalicTTF}) format('ttf');
     }
 
     @font-face {
-    font-family: 'Raleway Bold';
+    font-family: 'Raleway';
     font-style: normal;
-    font-weight: bold;
+    font-weight: 700;
     font-display: swap;
     src:  url(${RalewayBoldWOFF}) format('woff'),
            url(${RalewayBoldTTF}) format('ttf');
     }
 
     @font-face {
-    font-family: 'Raleway Bold Italic';
+    font-family: 'Raleway';
     font-style: italic;
-    font-weight: bold;
+    font-weight: 700;
     font-display: swap;
     src:  url(${RalewayBoldItalicWOFF}) format('woff'),
            url(${RalewayBoldItalicTTF}) format('ttf');
     }
 
       @font-face {
-    font-family: 'Raleway Extra Bold';
-    font-style: italic;
-    font-weight: bold;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 800;
     font-display: swap;
     src:  url(${RalewayExtraBoldTTF}) format('woff'),
            url(${RalewayExtraBoldWOFF}) format('ttf');
     }
 
       @font-face {
-    font-family: 'Raleway Extra Bold Italic';
-    font-style: italic;
-    font-weight: bold;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: italic;
     font-display: swap;
     src:  url(${RalewayExtraBoldItalicTTF}) format('woff'),
            url(${RalewayExtraBoldItalicWOFF}) format('ttf');

@@ -45,6 +45,10 @@ declare global {
       };
     }
 
+    interface Reset {
+      type: ActionType.RESET_QUIZ;
+    }
+
     interface Start {
       type: ActionType.START_QUIZ;
     }
@@ -61,9 +65,10 @@ declare global {
       type: ActionType.ANSWER_INCORRECTLY;
     }
 
-    type Action = Start | End | AnswerCorrectly | AnswerIncorrectly;
+    type Action = Reset | Start | End | AnswerCorrectly | AnswerIncorrectly;
 
     type Context = {
+      resetQuiz: () => void;
       startQuiz: () => void;
       endQuiz: () => void;
       answerCorrectly: () => void;
@@ -85,6 +90,12 @@ declare global {
       headings: string;
     }
 
+    interface FontVariant {
+      fontFamily: string | null;
+      fontSize: number | null;
+      fontWeight: number | null;
+    }
+
     type TextVariant =
       | "h1"
       | "h2"
@@ -92,9 +103,15 @@ declare global {
       | "h4"
       | "h5"
       | "h6"
-      | "body"
-      | "bodyBold"
-      | "button";
+      | "subtitle1"
+      | "subtitle2"
+      | "body1"
+      | "body2"
+      | "caption"
+      | "button"
+      | "overline"
+      | "inherit"
+      | undefined;
 
     type TextVariantMap = { [variant in TextVariant]: string };
 
@@ -126,5 +143,7 @@ declare global {
     type LoadingSizeMap = { [size in LoadingSize]: string };
 
     type PageSide = "left" | "right";
+
+    type SizeUnits = "px" | "vw" | "vh" | "em" | "rem" | "%";
   }
 }

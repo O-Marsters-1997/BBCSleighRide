@@ -11,9 +11,19 @@ declare module "styled-components" {
       grey: Utils.Palette;
     };
     typography: {
-      fontWeight?: Utils.FontWeight;
-      fontFamily: Utils.FontFamily;
-      fontSize: Utils.FontSize;
+      h1: Utils.FontVariant;
+      h2: Utils.FontVariant;
+      h3?: Utils.FontVariant;
+      h4?: Utils.FontVariant;
+      h5?: Utils.FontVariant;
+      h6?: Utils.FontVariant;
+      subtitle1?: Utils.FontVariant;
+      subtitle2?: Utils.FontVariant;
+      body1: Utils.FontVariant;
+      body2?: Utils.FontVariant;
+      caption?: Utils.FontVariant;
+      overline?: Utils.FontVariant;
+      inherit?: Utils.FontVariant;
     };
   }
 }

@@ -6,12 +6,19 @@ type Props = {
   alt: string;
   height?: number;
   width?: number;
+  heightSizeUnits?: Utils.SizeUnits;
+  widthSizeUnits?: Utils.SizeUnits;
   className?: string;
   logo?: boolean;
   onClick?: () => void;
 };
 
-const StyledImage = styled.img<Props>``;
+const StyledImage = styled.img<Props>`
+  width: ${({ width, widthSizeUnits }) =>
+    width ? `${width}${widthSizeUnits}` : `400${widthSizeUnits}`};
+  height: ${({ height, heightSizeUnits }) =>
+    height ? `${height}${heightSizeUnits}` : `400${heightSizeUnits}`};
+`;
 
 const LogoImage = styled(StyledImage)`
   width: 20vw;
@@ -28,6 +35,8 @@ const Image: React.FC<Props> = ({
   width,
   className,
   logo,
+  heightSizeUnits,
+  widthSizeUnits,
   onClick,
 }) => {
   if (logo) {
@@ -37,6 +46,8 @@ const Image: React.FC<Props> = ({
         alt={alt}
         height={height}
         width={width}
+        heightSizeUnits={heightSizeUnits}
+        widthSizeUnits={widthSizeUnits}
         className={className}
         onClick={onClick}
       />
@@ -48,6 +59,8 @@ const Image: React.FC<Props> = ({
       alt={alt}
       height={height}
       width={width}
+      heightSizeUnits="px"
+      widthSizeUnits="px"
       className={className}
       onClick={onClick}
     />

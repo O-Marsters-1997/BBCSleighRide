@@ -3,9 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-
 import Image from "./Image";
-
 import logo from "../assets/images/logo_star.svg";
 import santa from "../assets/images/santa_happy.svg";
 

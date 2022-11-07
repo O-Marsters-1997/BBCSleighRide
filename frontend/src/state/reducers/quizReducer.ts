@@ -12,6 +12,8 @@ const inititalState: Quiz.QuizGame = {
 
 const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
   switch (action.type) {
+    case ActionType.RESET_QUIZ:
+      return inititalState;
     case ActionType.START_QUIZ:
       return { ...inititalState, readyToPlay: true };
     case ActionType.ANSWER_CORRECTLY:
