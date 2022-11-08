@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { Cracker } from "../Lib";
 
 const StyledCracker = styled(Cracker)`
-  height: 20vh;
-  width: 20vw;
+  height: 7.2em;
+  width: 14em;
 `;
 
 const SvgComponent = (props: any) => (

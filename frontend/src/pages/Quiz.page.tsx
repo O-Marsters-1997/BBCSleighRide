@@ -6,6 +6,7 @@ import { ActionType } from "../state/actionTypes";
 import QuizWelcome from "../components/Quiz/QuizWelcome";
 import QuizQuestion from "../components/Quiz/QuizQuestion";
 import QuizEnd from "../components/Quiz/QuizEnd";
+import Loading from "../components/Loading";
 import { CentralOverlayContainer } from "../components/Lib";
 import { getQuestions } from "../services";
 
@@ -43,7 +44,7 @@ const Quiz = () => {
   }, []);
 
   if (!questions) {
-    return <p>No questions have been loaded</p>;
+    return <Loading title="loading questions" />;
   }
 
   if (totalQuestions == questions.length || livesLeft == 0) {

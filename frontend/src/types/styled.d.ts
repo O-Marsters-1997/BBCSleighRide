@@ -14,8 +14,8 @@ declare module "styled-components" {
       h1: Utils.FontVariant;
       h2: Utils.FontVariant;
       h3: Utils.FontVariant;
-      h4?: Utils.FontVariant;
-      h5?: Utils.FontVariant;
+      h4: Utils.FontVariant;
+      h5: Utils.FontVariant;
       h6?: Utils.FontVariant;
       subtitle1?: Utils.FontVariant;
       subtitle2?: Utils.FontVariant;
@@ -26,5 +26,6 @@ declare module "styled-components" {
       inherit?: Utils.FontVariant;
     };
     viewports: Utils.Devices;
+    modifiers: Utils.Modifiers;
   }
 }

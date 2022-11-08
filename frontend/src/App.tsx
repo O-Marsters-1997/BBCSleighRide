@@ -15,7 +15,6 @@ const Error = lazy(() => import("./pages/Error.page"));
 
 const App: React.FC = () => {
   const [santaToggle, setSantaToggle] = useState<boolean>(false);
-
   const showSanta = (): void => {
     setSantaToggle(!santaToggle);
   };

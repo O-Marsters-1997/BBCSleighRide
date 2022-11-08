@@ -14,8 +14,10 @@ export const CardWrapper = styled(View)<{ padding?: number }>`
   padding: ${({ padding }) => padding && padding}px;
 `;
 
-export const RowContainer = styled(View)`
+// prettier-ignore
+export const RowContainer = styled(View)<{ justifyContent?: CSS.JustifyContent }>`
   display: flex;
+  justify-content: ${({ justifyContent }) => justifyContent && justifyContent};
 `;
 
 export const DetailsContainer = styled(View)`
@@ -51,11 +53,20 @@ export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
   }
 `;
 
-export const TextWrapper = styled(View)<{ lineHeight?: number }>`
+// prettier-ignore
+export const TextWrapper = styled(View)<{lineHeight?: number;indent?: boolean;}>`
   display: flex;
   flex-direction: column;
+  padding-bottom: 1em;
+  padding-left: ${({ indent }) => (indent ? "5px" : 0)};
   .MuiTypography-body1 {
     line-height: ${({ lineHeight }) => lineHeight && lineHeight};
     padding-bottom: 1em;
   }
+`;
+
+// Overlay
+export const CardOverlayWrapper = styled(View)`
+  padding: 80px 0;
+  width: clamp(40%, 60vw, 85%);
 `;

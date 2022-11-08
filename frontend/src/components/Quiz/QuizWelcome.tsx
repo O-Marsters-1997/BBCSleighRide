@@ -11,21 +11,17 @@ import {
   CentralColumnContainer,
   CardWrapper,
   TextWrapper,
+  CardOverlayWrapper,
 } from "../Lib";
 import QuizCracker from "../Svg/QuizStartCracker";
 import quizElf from "../../assets/images/elf_happy.svg";
 import { useViewport } from "../../hooks/useViewport";
 import { device } from "../../types/constants";
 
-const StyledView = styled(CentralRowContainer)`
-  padding: 80px 0;
-  width: clamp(40%, 60vw, 85%);
-`;
-
 const ImageWrapper = styled(View)`
   padding: 2em 0;
   @media ${device.laptopM} {
-    padding: 2em 0 2em 2em;
+    padding: 2em 0 0 2em;
   } ;
 `;
 
@@ -35,7 +31,7 @@ const QuizWelcome = () => {
   const viewport = useViewport();
   const welcomeContent = (): ReactNode => (
     <>
-      <TextWrapper lineHeight={1.75}>
+      <TextWrapper lineHeight={1.75} indent>
         <Text variant="body1">
           Buddy the elf loves candy canes, get answers right to help him keep
           his candy.
@@ -58,10 +54,10 @@ const QuizWelcome = () => {
   );
 
   return (
-    <StyledView>
+    <CardOverlayWrapper>
       <Card>
         <CardWrapper padding={60}>
-          <RowContainer style={{ padding: ".1em 0 0 " }}>
+          <RowContainer style={{ padding: ".1em 0 .2rem 0 " }}>
             <Text variant="h3">Welcome to the Christmas quiz</Text>
           </RowContainer>
           {viewport("mediumLarge") ? (
@@ -79,7 +75,7 @@ const QuizWelcome = () => {
           </RowContainer>
         </CardWrapper>
       </Card>
-    </StyledView>
+    </CardOverlayWrapper>
   );
 };
 

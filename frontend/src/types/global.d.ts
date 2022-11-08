@@ -91,9 +91,9 @@ declare global {
     }
 
     interface FontVariant {
-      fontFamily: string | null;
-      fontSize: string | null;
-      fontWeight: number | null;
+      fontFamily: string;
+      fontSize: number;
+      fontWeight: number;
     }
 
     type TextVariant =
@@ -118,7 +118,6 @@ declare global {
     type FontType = "heading" | "body";
 
     // Palette
-
     type ColorVariant =
       | "primary"
       | "primaryAlt"
@@ -151,6 +150,7 @@ declare global {
     type Breakpoints =
       | "xSmall"
       | "small"
+      | "smallMedium"
       | "medium"
       | "mediumPlus"
       | "mediumLarge"
@@ -163,11 +163,33 @@ declare global {
     type Devices = {
       mobileS: number;
       mobileL: number;
+      tabletS: number;
       tablet: number;
       laptop: number;
       laptopM: number;
       laptopL: number;
       desktop: number;
     };
+
+    type Modifiers = {
+      x1: number;
+      x2: number;
+      x3: number;
+      x4: number;
+      x5: number;
+      x6: number;
+      x7: number;
+    };
+  }
+
+  declare namespace CSS {
+    type JustifyContent =
+      | "flex-start"
+      | "flex-end"
+      | "space-between"
+      | "space-around"
+      | "center"
+      | "initial"
+      | "inherit";
   }
 }

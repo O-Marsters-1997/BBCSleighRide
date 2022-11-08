@@ -17,6 +17,7 @@ type Props = {
   backgroundImg?: boolean;
   children?: ReactNode;
   style?: React.CSSProperties;
+  onClick?: (e?: any) => void;
 } & StyleProps;
 
 const StyledView = styled(Box)<Props>`
@@ -68,6 +69,7 @@ const View: React.FC<Props> = ({
   children,
   display,
   style,
+  onClick,
 }) => {
   if (backgroundImg) {
     return (
@@ -80,6 +82,7 @@ const View: React.FC<Props> = ({
         className={className}
         display={display}
         style={style}
+        onClick={onClick}
       >
         {backgroundImg && <StyledOverlay />}
         {children}
@@ -96,6 +99,7 @@ const View: React.FC<Props> = ({
       className={className}
       display={display}
       style={style}
+      onClick={onClick}
     >
       {children}
     </StyledView>

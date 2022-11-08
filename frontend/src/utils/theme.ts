@@ -48,32 +48,52 @@ export const theme: DefaultTheme = {
     h1: {
       fontWeight: 800,
       fontFamily: "Roboto",
-      fontSize: "80px",
+      fontSize: 3,
     },
     h2: {
       fontWeight: 700,
       fontFamily: "Raleway, sans-serif",
-      fontSize: "2.5rem",
+      fontSize: 2.5,
     },
     h3: {
       fontWeight: 700,
       fontFamily: "Raleway, sans-serif",
-      fontSize: "2rem",
+      fontSize: 1.8,
+    },
+    h4: {
+      fontWeight: 700,
+      fontFamily: "Raleway, sans-serif",
+      fontSize: 1.4,
+    },
+    h5: {
+      fontWeight: 700,
+      fontFamily: "Raleway, sans-serif",
+      fontSize: 1.2,
     },
     body1: {
       fontWeight: 500,
       fontFamily: "Roboto",
-      fontSize: "1.1rem",
+      fontSize: 1.1,
     },
   },
   viewports: {
     mobileS: 320,
     mobileL: 425,
+    tabletS: 600,
     tablet: 768,
     laptop: 1024,
     laptopM: 1225,
     laptopL: 1448,
     desktop: 2560,
+  },
+  modifiers: {
+    x1: 0.7,
+    x2: 0.8,
+    x3: 0.9,
+    x4: 1,
+    x5: 1.1,
+    x6: 1.2,
+    x7: 1.3,
   },
 };
 

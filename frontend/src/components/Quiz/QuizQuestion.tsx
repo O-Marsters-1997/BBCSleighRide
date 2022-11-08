@@ -4,7 +4,13 @@ import { Dispatch } from "redux";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../state/reducers";
 import { ActionType } from "../../state/actionTypes";
+import QuizQuestionItem from "./QuizQuestionItem";
 import Image from "../Image";
+import Card from "../Card";
+import View from "../View";
+import Text from "../Text";
+import { CardOverlayWrapper, RowContainer } from "../Lib";
+import { useViewport } from "../../hooks/useViewport";
 
 import candy_cane from "../../assets/images/candy_cane.svg";
 import present from "../../assets/images/present.svg";
@@ -20,12 +26,11 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
     (state: State) => state.quiz,
   );
   const dispatch: Dispatch = useDispatch();
+  const viewport = useViewport();
   const [soundCorrect] = useSound(correct);
   const [soundIncorrect] = useSound(incorrect);
 
-  const handleClick = async (
-    e: React.MouseEvent<HTMLButtonElement>,
-  ): Promise<void> => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     if ((e.target as Element).innerHTML == question.correct) {
       dispatch({ type: ActionType.ANSWER_CORRECTLY });
@@ -36,31 +41,52 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
     }
   };
 
-  const presents = [...Array(totalQuestions)].map(() => (
-    <Image src={present} alt="present to demonstrate correct answers in quiz" />
+  const presents = [...Array(totalQuestions)].map((index) => (
+    <Image
+      src={present}
+      alt="present to demonstrate correct answers in quiz"
+      key={index}
+    />
   ));
 
-  const candyCanes = [...Array(livesLeft)].map(() => (
+  const candyCanes = [...Array(livesLeft)].map((index) => (
     <Image
       src={candy_cane}
       alt={`${livesLeft} candy canes to show how many lives are left`}
+      key={index}
+      height={3.5}
+      width={3.5}
+      heightSizeUnits="em"
+      widthSizeUnits="em"
     />
   ));
 
   return (
-    <div>
-      <div>{candyCanes}</div>
-      <p>{question.question}</p>
-      <ul>
-        {question?.options?.map((option: string, index: number) => (
-          <button type="button" onClick={handleClick} key={index}>
-            {option}
-          </button>
-        ))}
-      </ul>
-      <p>{question.correct}</p>
-      <div className="presents">{presents}</div>
-    </div>
+    <CardOverlayWrapper>
+      <Card>
+        <RowContainer justifyContent="flex-end">
+          <View style={{ padding: "2em 1.5em 0 0" }}>
+            {viewport("smallMedium") ? (
+              candyCanes
+            ) : (
+              <Text variant="body1">Total lives {livesLeft}</Text>
+            )}
+          </View>
+        </RowContainer>
+        <Text variant="h5">{question.question}</Text>
+        <ul>
+          {question?.options?.map((option: string, index: number) => (
+            <QuizQuestionItem
+              option={option}
+              onSelect={handleClick}
+              key={index}
+            />
+          ))}
+        </ul>
+        <p>{question.correct}</p>
+        <div className="presents">{presents}</div>
+      </Card>
+    </CardOverlayWrapper>
   );
 };
 

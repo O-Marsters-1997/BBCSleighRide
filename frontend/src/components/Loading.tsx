@@ -52,7 +52,9 @@ const Loading: React.FC<Props> = ({ size, title, subtitle }) => (
   <CentralColumnContainer>
     <Spinner size={size} title={title} subtitle={subtitle} />
     <View style={{ paddingTop: "1em" }}>
-      <Text colorvariant="primary">{title}</Text>
+      <Text variant="subtitle1" colorvariant="primary">
+        {title}
+      </Text>
       {subtitle && <h6>{subtitle}</h6>}
     </View>
   </CentralColumnContainer>

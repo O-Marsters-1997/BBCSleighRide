@@ -42,6 +42,7 @@ export const textVariants: Utils.TextVariantMap = {
 export const breakpoints: Utils.BreakpointsMap = {
   xSmall: "xSmall",
   small: "small",
+  smallMedium: "smallMedium",
   medium: "medium",
   mediumPlus: "mediumPlus",
   mediumLarge: "mediumLarge",

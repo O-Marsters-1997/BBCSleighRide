@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import Typography, { TypographyProps } from "@mui/material/Typography";
-import { getTextColor, getFontVariant } from "../utils/styleHelpers";
+import {
+  getTextColor,
+  getFontVariant,
+  getModifier,
+} from "../utils/styleHelpers";
 
 type StyleProps = {
   colorvariant?: Utils.FontColor;
@@ -11,6 +15,7 @@ type StyleProps = {
 
 interface TextProps extends TypographyProps {
   className?: string;
+  variant: Utils.TextVariant;
 }
 
 type Props = TextProps & StyleProps;
@@ -18,7 +23,8 @@ const StyledText = styled(Typography)<Props>`
   color: ${({ colorvariant }) => colorvariant && getTextColor(colorvariant)};
   font-family: ${({ variant }) =>
     variant && getFontVariant(variant).fontFamily};
-  font-size: ${({ variant }) => variant && getFontVariant(variant).fontSize};
+  font-size: ${({ variant }) =>
+    variant && getFontVariant(variant).fontSize * getModifier(variant)}rem;
   font-weight: ${({ variant }) =>
     variant && getFontVariant(variant).fontWeight};
   font-style: ${(props) => (props.fontStyle == "italic" ? "italic" : "normal")};
@@ -41,3 +47,5 @@ const Text: React.FC<Props> = ({
 );
 
 export default Text;
+
+// getFontVariant(variant).fontSize
