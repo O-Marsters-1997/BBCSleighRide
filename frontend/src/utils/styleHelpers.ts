@@ -1,7 +1,9 @@
-import { colorVariants } from "../types/constants";
+import { colorVariants, textVariants, breakpoints } from "../types/constants";
 import { theme } from "./theme";
 
-export const getTextColor = (color: string) => {
+// Font variants
+
+export const getTextColor = (color: string): string => {
   const { palette } = theme;
   switch (color) {
     case colorVariants.primary:
@@ -13,20 +15,29 @@ export const getTextColor = (color: string) => {
   }
 };
 
-export const getFontVariant = (variant: string) => {
+export const getFontVariant = (variant: string): Utils.FontVariant => {
   const { typography } = theme;
   const fontVariant: Utils.FontVariant = {
     fontWeight: null,
     fontFamily: null,
     fontSize: null,
   };
-  console.log(variant);
 
   switch (variant) {
-    case "h2":
+    case textVariants.h2:
       fontVariant.fontWeight = typography.h2.fontWeight;
       fontVariant.fontFamily = typography.h2.fontFamily;
       fontVariant.fontSize = typography.h2.fontSize;
+      break;
+    case textVariants.h3:
+      fontVariant.fontWeight = typography.h3.fontWeight;
+      fontVariant.fontFamily = typography.h3.fontFamily;
+      fontVariant.fontSize = typography.h3.fontSize;
+      break;
+    case textVariants.body1:
+      fontVariant.fontWeight = typography.body1.fontWeight;
+      fontVariant.fontFamily = typography.body1.fontFamily;
+      fontVariant.fontSize = typography.body1.fontSize;
       break;
     default:
       fontVariant.fontWeight = typography.body1.fontWeight;
@@ -34,4 +45,35 @@ export const getFontVariant = (variant: string) => {
       fontVariant.fontSize = typography.body1.fontSize;
   }
   return fontVariant;
+};
+
+// Responsiveness
+
+export const getBreakpointMatches = (breakpoint?: string): number | null => {
+  const { viewports } = theme;
+  switch (breakpoint) {
+    case breakpoints.xSmall:
+      return viewports.mobileS;
+
+    case breakpoints.small:
+      return viewports.mobileL;
+
+    case breakpoints.medium:
+      return viewports.tablet;
+
+    case breakpoints.mediumPlus:
+      return viewports.laptop;
+
+    case breakpoints.mediumLarge:
+      return viewports.laptopM;
+
+    case breakpoints.large:
+      return viewports.laptopL;
+
+    case breakpoints.xLarge:
+      return viewports.desktop;
+
+    default:
+      return null;
+  }
 };

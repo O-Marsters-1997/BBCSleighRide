@@ -13,7 +13,7 @@ declare module "styled-components" {
     typography: {
       h1: Utils.FontVariant;
       h2: Utils.FontVariant;
-      h3?: Utils.FontVariant;
+      h3: Utils.FontVariant;
       h4?: Utils.FontVariant;
       h5?: Utils.FontVariant;
       h6?: Utils.FontVariant;
@@ -25,5 +25,6 @@ declare module "styled-components" {
       overline?: Utils.FontVariant;
       inherit?: Utils.FontVariant;
     };
+    viewports: Utils.Devices;
   }
 }

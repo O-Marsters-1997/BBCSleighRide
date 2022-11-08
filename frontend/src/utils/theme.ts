@@ -48,18 +48,32 @@ export const theme: DefaultTheme = {
     h1: {
       fontWeight: 800,
       fontFamily: "Roboto",
-      fontSize: 80,
+      fontSize: "80px",
     },
     h2: {
       fontWeight: 700,
       fontFamily: "Raleway, sans-serif",
-      fontSize: 80,
+      fontSize: "2.5rem",
+    },
+    h3: {
+      fontWeight: 700,
+      fontFamily: "Raleway, sans-serif",
+      fontSize: "2rem",
     },
     body1: {
       fontWeight: 500,
       fontFamily: "Roboto",
-      fontSize: 16,
+      fontSize: "1.1rem",
     },
+  },
+  viewports: {
+    mobileS: 320,
+    mobileL: 425,
+    tablet: 768,
+    laptop: 1024,
+    laptopM: 1225,
+    laptopL: 1448,
+    desktop: 2560,
   },
 };
 
@@ -178,5 +192,6 @@ export const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-size: 18px;
 };
 `;

@@ -4,8 +4,10 @@ import View from "../View";
 export const CentralOverlayContainer = styled(View)`
   display: flex;
   width: 100%;
+
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
 export const CardWrapper = styled(View)<{ padding?: number }>`
@@ -28,9 +30,9 @@ export const CentralRowContainer = styled(View)`
   width: 100%;
 `;
 
-export const CentralColumnContainer = styled(View)`
+export const CentralColumnContainer = styled(View)<{ reverse?: boolean }>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ reverse }) => (reverse ? "column-reverse" : "column")};
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -46,5 +48,14 @@ export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
   &:hover {
     transform: rotate(${(props) => (props.pageSide == "right" ? -5 : 5)}deg);
     transform: scale(1.25);
+  }
+`;
+
+export const TextWrapper = styled(View)<{ lineHeight?: number }>`
+  display: flex;
+  flex-direction: column;
+  .MuiTypography-body1 {
+    line-height: ${({ lineHeight }) => lineHeight && lineHeight};
+    padding-bottom: 1em;
   }
 `;

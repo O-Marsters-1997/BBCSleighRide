@@ -59,8 +59,8 @@ const Image: React.FC<Props> = ({
       alt={alt}
       height={height}
       width={width}
-      heightSizeUnits="px"
-      widthSizeUnits="px"
+      heightSizeUnits={heightSizeUnits ?? "px"}
+      widthSizeUnits={widthSizeUnits ?? "px"}
       className={className}
       onClick={onClick}
     />

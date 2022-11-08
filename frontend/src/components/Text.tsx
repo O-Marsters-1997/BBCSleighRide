@@ -6,6 +6,7 @@ import { getTextColor, getFontVariant } from "../utils/styleHelpers";
 type StyleProps = {
   colorvariant?: Utils.FontColor;
   fontFamily?: Utils.FontType;
+  lineHeight?: number;
 };
 
 interface TextProps extends TypographyProps {
@@ -21,10 +22,20 @@ const StyledText = styled(Typography)<Props>`
   font-weight: ${({ variant }) =>
     variant && getFontVariant(variant).fontWeight};
   font-style: ${(props) => (props.fontStyle == "italic" ? "italic" : "normal")};
+  line-height: ${(props) => props.lineHeight && props.lineHeight};
 `;
 
-const Text: React.FC<Props> = ({ variant, children, colorvariant }) => (
-  <StyledText variant={variant} colorvariant={colorvariant}>
+const Text: React.FC<Props> = ({
+  variant,
+  children,
+  colorvariant,
+  lineHeight,
+}) => (
+  <StyledText
+    variant={variant}
+    colorvariant={colorvariant}
+    lineHeight={lineHeight}
+  >
     {children}
   </StyledText>
 );

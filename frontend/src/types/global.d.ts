@@ -92,7 +92,7 @@ declare global {
 
     interface FontVariant {
       fontFamily: string | null;
-      fontSize: number | null;
+      fontSize: string | null;
       fontWeight: number | null;
     }
 
@@ -145,5 +145,29 @@ declare global {
     type PageSide = "left" | "right";
 
     type SizeUnits = "px" | "vw" | "vh" | "em" | "rem" | "%";
+
+    // Breakpoints
+
+    type Breakpoints =
+      | "xSmall"
+      | "small"
+      | "medium"
+      | "mediumPlus"
+      | "mediumLarge"
+      | "large"
+      | "xLarge"
+      | undefined;
+
+    type BreakpointsMap = { [breakpoint in Breakpoints]: string };
+
+    type Devices = {
+      mobileS: number;
+      mobileL: number;
+      tablet: number;
+      laptop: number;
+      laptopM: number;
+      laptopL: number;
+      desktop: number;
+    };
   }
 }

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Paper, { PaperProps } from "@mui/material/Paper";
 
 const StyledCard = styled(Paper)`
-  border-radius: 10px;
+  border-radius: 20px;
 `;
 
 interface Props extends PaperProps {}
