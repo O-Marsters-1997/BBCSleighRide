@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import useSound from "use-sound";
 import { Dispatch } from "redux";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,24 +22,29 @@ type Props = {
 };
 
 const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
-  const { totalQuestions, livesLeft } = useSelector(
+  const { totalQuestions, livesLeft, currentAnswer } = useSelector(
     (state: State) => state.quiz,
   );
   const dispatch: Dispatch = useDispatch();
   const viewport = useViewport();
+  const [selected, setSelected] = useState<number>(-1);
   const [soundCorrect] = useSound(correct);
   const [soundIncorrect] = useSound(incorrect);
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    e.preventDefault();
-    if ((e.target as Element).innerHTML == question.correct) {
-      dispatch({ type: ActionType.ANSWER_CORRECTLY });
-      soundCorrect();
-    } else {
-      dispatch({ type: ActionType.ANSWER_INCORRECTLY });
-      soundIncorrect();
-    }
-  };
+  const handleClick = useCallback(
+    (index: number) => async (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      if ((e.target as Element).innerHTML == question.correct) {
+        dispatch({ type: ActionType.ANSWER_CORRECTLY });
+        soundCorrect();
+      } else {
+        dispatch({ type: ActionType.ANSWER_INCORRECTLY });
+        soundIncorrect();
+      }
+      setSelected(index);
+    },
+    [question],
+  );
 
   const presents = [...Array(totalQuestions)].map((index) => (
     <Image
@@ -74,15 +79,18 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
           </View>
         </RowContainer>
         <Text variant="h5">{question.question}</Text>
-        <ul>
-          {question?.options?.map((option: string, index: number) => (
-            <QuizQuestionItem
-              option={option}
-              onSelect={handleClick}
-              key={index}
-            />
-          ))}
-        </ul>
+
+        {question?.options?.map((option: string, index: number) => (
+          <QuizQuestionItem
+            option={option}
+            onSelect={handleClick(index)}
+            key={index}
+            index={index}
+            answer={currentAnswer}
+            selected={selected}
+          />
+        ))}
+
         <p>{question.correct}</p>
         <div className="presents">{presents}</div>
       </Card>

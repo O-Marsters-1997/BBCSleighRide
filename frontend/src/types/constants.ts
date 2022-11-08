@@ -2,6 +2,12 @@ import { theme } from "../utils/theme";
 
 const { viewports } = theme;
 
+// Quiz
+export const currentAnswerQuiz = {
+  incorrect: "incorrect",
+  correct: "correct", //
+};
+
 // Loading Component
 export const LoadingSizes: Utils.LoadingSizeMap = {
   small: "small",

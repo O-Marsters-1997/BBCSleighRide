@@ -2,18 +2,41 @@ import React from "react";
 import styled from "styled-components";
 import View from "../View";
 import Text from "../Text";
+import { getTextBackgroundColor } from "../../utils/styleHelpers";
+
+type QuestionProps = {
+  selected: number;
+  index: number;
+  answer: Quiz.CurrentAnswer;
+};
 
 type Props = {
   option: string;
   onSelect: (e: React.MouseEvent<HTMLButtonElement>) => void;
-};
+} & QuestionProps;
 
-const StyledView = styled(View)``;
+const StyledView = styled(View)<QuestionProps>`
+  background-color: ${(props) =>
+    getTextBackgroundColor(props.selected, props.index, props.answer)};
+`;
 
-const QuizQuestionItem: React.FC<Props> = ({ option, onSelect }) => (
-  <StyledView onClick={onSelect}>
+const QuizQuestionItem: React.FC<Props> = ({
+  option,
+  selected,
+  index,
+  answer,
+  onSelect,
+}) => (
+  <StyledView
+    onClick={onSelect}
+    selected={selected}
+    index={index}
+    answer={answer}
+  >
     <Text variant="body2">{option}</Text>
   </StyledView>
 );
 
 export default QuizQuestionItem;
+
+// ${({ selected }) => getBackgroundColor(selected)}

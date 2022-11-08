@@ -26,6 +26,7 @@ declare global {
   declare namespace Quiz {
     interface QuizGame {
       questions: Quiz[];
+      currentAnswer: "corrent" | "incorrect" | undefined;
       readyToPlay: boolean;
       correctQuestions: number;
       incorrectQuestions: number;
@@ -74,6 +75,8 @@ declare global {
       answerCorrectly: () => void;
       answerIncorrectly: () => void;
     };
+
+    type CurrentAnswer = "correct" | "incorrect" | undefined;
   }
 
   declare namespace Utils {
@@ -131,6 +134,7 @@ declare global {
     interface Palette {
       main: string;
       contrastText: string;
+      additional?: string;
     }
 
     type FontColor = string;

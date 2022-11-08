@@ -1,4 +1,9 @@
-import { colorVariants, textVariants, breakpoints } from "../types/constants";
+import {
+  colorVariants,
+  textVariants,
+  currentAnswerQuiz,
+  breakpoints,
+} from "../types/constants";
 import { theme } from "./theme";
 
 // Font variants
@@ -53,6 +58,20 @@ export const getFontVariant = (variant: string): Utils.FontVariant => {
       break;
   }
   return fontVariant;
+};
+
+export const getTextBackgroundColor = (
+  selected: number,
+  index: number,
+  answer: Quiz.CurrentAnswer,
+): string | undefined => {
+  const { palette } = theme;
+  if (selected != index) {
+    return palette.primary.additional;
+  }
+  return answer == currentAnswerQuiz.correct
+    ? palette.secondary.main
+    : palette.primary.main;
 };
 
 // Responsiveness

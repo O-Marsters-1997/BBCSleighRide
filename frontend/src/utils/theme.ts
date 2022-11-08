@@ -30,6 +30,7 @@ export const theme: DefaultTheme = {
     primary: {
       main: "rgb(157,10,14)",
       contrastText: "#c7080f",
+      additional: "transparent",
     },
     secondary: {
       main: "rgb(37,119,35)",
