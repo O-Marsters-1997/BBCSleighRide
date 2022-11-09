@@ -2,32 +2,13 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import View from "./View";
 import Text from "./Text";
-import { LoadingSizes } from "../types/constants";
 import { CentralColumnContainer } from "./Lib";
-
-export enum Size {
-  small = 50,
-  medium = 75,
-  large = 100,
-}
+import { getLoadingSize } from "../utils/styleHelpers";
 
 type Props = {
   size?: Utils.LoadingSize;
   title: string;
   subtitle?: string;
-};
-
-const getLoadingSize = (size?: string): number | null => {
-  switch (size) {
-    case LoadingSizes.small:
-      return Size.small;
-    case LoadingSizes.medium:
-      return Size.medium;
-    case LoadingSizes.large:
-      return Size.large;
-    default:
-      return 15;
-  }
 };
 
 const spinAnimation = keyframes`

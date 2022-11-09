@@ -4,6 +4,7 @@ import { currentAnswerQuiz } from "../../types/constants";
 const inititalState: Quiz.QuizGame = {
   questions: [],
   currentAnswer: undefined,
+  answeredCorrectly: false,
   readyToPlay: false,
   correctQuestions: 0,
   incorrectQuestions: 0,
@@ -23,8 +24,8 @@ const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
         ...state,
         questionsRemaining: state.questionsRemaining - 1,
         correctQuestions: state.correctQuestions + 1,
-        totalQuestions: state.totalQuestions + 1,
         currentAnswer: currentAnswerQuiz.correct,
+        answeredCorrectly: true,
       };
     case ActionType.ANSWER_INCORRECTLY:
       return {
@@ -33,6 +34,12 @@ const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
         incorrectQuestions: state.incorrectQuestions + 1,
         livesLeft: state.livesLeft - 1,
         currentAnswer: currentAnswerQuiz.incorrect,
+      };
+    case ActionType.NEXT_QUESTION:
+      return {
+        ...state,
+        totalQuestions: state.totalQuestions + 1,
+        answeredCorrectly: false,
       };
     case ActionType.END_QUIZ:
       return inititalState;

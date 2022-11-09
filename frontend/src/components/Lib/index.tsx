@@ -1,10 +1,19 @@
 import styled from "styled-components";
 import View from "../View";
+import { device } from "../../types/constants";
 
 export const CentralOverlayContainer = styled(View)`
   display: flex;
   width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
 
+export const LoadingWrapper = styled(View)`
+  display: flex;
+  width: 100%;
+  height: 80vh;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -15,9 +24,10 @@ export const CardWrapper = styled(View)<{ padding?: number }>`
 `;
 
 // prettier-ignore
-export const RowContainer = styled(View)<{ justifyContent?: CSS.JustifyContent }>`
+export const RowContainer = styled(View)<{ justifyContent?: CSS.JustifyContent, gap?: string }>`
   display: flex;
   justify-content: ${({ justifyContent }) => justifyContent && justifyContent};
+  gap: ${({gap}) => gap && gap};
 `;
 
 export const DetailsContainer = styled(View)`
@@ -43,14 +53,24 @@ export const CentralColumnContainer = styled(View)<{ reverse?: boolean }>`
 
 export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
   cursor: pointer;
-  transform: rotate(${(props) => (props.pageSide == "right" ? 5 : -5)}deg);
-  transition-property: all;
-  transition: 0.4s ease-in;
-
-  &:hover {
-    transform: rotate(${(props) => (props.pageSide == "right" ? -5 : 5)}deg);
-    transform: scale(1.25);
+  @media ${device.laptop} {
+    transform: rotate(${(props) => (props.pageSide == "right" ? 5 : -5)}deg);
+    transition-property: all;
+    transition: 0.4s ease-in;
+    &:hover {
+      transform: rotate(${(props) => (props.pageSide == "right" ? -5 : 5)}deg);
+      transform: scale(1.25);
+    }
   }
+`;
+
+export const QuizGameCracker = styled(Cracker)`
+  height: 5em;
+  width: 10em;
+  @media ${device.laptop} {
+    height: 7em;
+    width: 14em;
+  } ;
 `;
 
 // prettier-ignore
@@ -68,5 +88,5 @@ export const TextWrapper = styled(View)<{lineHeight?: number;indent?: boolean;}>
 // Overlay
 export const CardOverlayWrapper = styled(View)`
   padding: 80px 0;
-  width: clamp(40%, 60vw, 85%);
+  width: clamp(300px, 60vw, 1100px);
 `;

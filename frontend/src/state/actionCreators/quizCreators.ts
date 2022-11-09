@@ -30,3 +30,9 @@ export const answerIncorrectly = () => (dispatch: Dispatch<Quiz.Action>) => {
     type: ActionType.ANSWER_INCORRECTLY,
   });
 };
+
+export const nextQuestion = () => (dispatch: Dispatch<Quiz.Action>) => {
+  dispatch({
+    type: ActionType.NEXT_QUESTION,
+  });
+};

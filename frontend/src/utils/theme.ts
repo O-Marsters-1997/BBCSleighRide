@@ -71,8 +71,18 @@ export const theme: DefaultTheme = {
       fontFamily: "Raleway, sans-serif",
       fontSize: 1.2,
     },
+    h6: {
+      fontWeight: 500,
+      fontFamily: "Raleway, sans-serif",
+      fontSize: 1.2,
+    },
     body1: {
       fontWeight: 500,
+      fontFamily: "Roboto",
+      fontSize: 1.1,
+    },
+    body2: {
+      fontWeight: 700,
       fontFamily: "Roboto",
       fontSize: 1.1,
     },

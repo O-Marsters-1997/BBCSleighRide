@@ -16,7 +16,7 @@ declare module "styled-components" {
       h3: Utils.FontVariant;
       h4: Utils.FontVariant;
       h5: Utils.FontVariant;
-      h6?: Utils.FontVariant;
+      h6: Utils.FontVariant;
       subtitle1?: Utils.FontVariant;
       subtitle2?: Utils.FontVariant;
       body1: Utils.FontVariant;

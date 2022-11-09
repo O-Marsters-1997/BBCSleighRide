@@ -9,6 +9,7 @@ export const ActionsContext = createContext<Quiz.Context | null>(null);
 const QuizActionsProvider = ({ children }: { children: ReactNode }) => {
   const dispatch: Dispatch = useDispatch();
   const actions = bindActionCreators(actionCreators, dispatch);
+  console.log(actions);
 
   return (
     <ActionsContext.Provider value={actions}>

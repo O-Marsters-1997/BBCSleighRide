@@ -1,6 +1,8 @@
 import {
   colorVariants,
   textVariants,
+  LoadingSizes,
+  Size,
   currentAnswerQuiz,
   breakpoints,
 } from "../types/constants";
@@ -49,6 +51,11 @@ export const getFontVariant = (variant: string): Utils.FontVariant => {
       fontVariant.fontFamily = typography.h5.fontFamily;
       fontVariant.fontSize = typography.h5.fontSize;
       break;
+    case textVariants.h6:
+      fontVariant.fontWeight = typography.h6.fontWeight;
+      fontVariant.fontFamily = typography.h6.fontFamily;
+      fontVariant.fontSize = typography.h6.fontSize;
+      break;
     case textVariants.body1:
       fontVariant.fontWeight = typography.body1.fontWeight;
       fontVariant.fontFamily = typography.body1.fontFamily;
@@ -72,6 +79,21 @@ export const getTextBackgroundColor = (
   return answer == currentAnswerQuiz.correct
     ? palette.secondary.main
     : palette.primary.main;
+};
+
+// Loading
+
+export const getLoadingSize = (size?: string): number | null => {
+  switch (size) {
+    case LoadingSizes.small:
+      return Size.small;
+    case LoadingSizes.medium:
+      return Size.medium;
+    case LoadingSizes.large:
+      return Size.large;
+    default:
+      return 15;
+  }
 };
 
 // Responsiveness
@@ -129,10 +151,33 @@ const h3Modifier = () => {
   }
 };
 
+const h5Modifier = () => {
+  const width = window.innerWidth;
+  const { viewports, modifiers } = theme;
+  switch (true) {
+    case width > viewports.laptopL:
+      return modifiers.x4;
+    case width > viewports.laptopM:
+      return modifiers.x4;
+    case width > viewports.laptop:
+      return modifiers.x4;
+    case width > viewports.tablet:
+      return modifiers.x4;
+    case width > viewports.mobileL:
+      return modifiers.x3;
+    case width > viewports.mobileS:
+      return modifiers.x2;
+    default:
+      return modifiers.x1;
+  }
+};
+
 export const getModifier = (variant: Utils.TextVariant) => {
   switch (variant) {
     case textVariants.h3:
       return h3Modifier();
+    case textVariants.h5:
+      return h5Modifier();
     default:
       return 1;
   }

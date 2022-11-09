@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import useSound from "use-sound";
 import { Dispatch } from "redux";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +10,14 @@ import Image from "../Image";
 import Card from "../Card";
 import View from "../View";
 import Text from "../Text";
-import { CardOverlayWrapper, RowContainer } from "../Lib";
+import QuizNextCracker from "../Svg/QuizNextCracker";
+import QuizExitCracker from "../Svg/QuizExitCracker";
+import {
+  CardOverlayWrapper,
+  RowContainer,
+  DetailsContainer,
+  CentralColumnContainer,
+} from "../Lib";
 import { useViewport } from "../../hooks/useViewport";
 
 import candy_cane from "../../assets/images/candy_cane.svg";
@@ -22,17 +30,17 @@ type Props = {
 };
 
 const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
-  const { totalQuestions, livesLeft, currentAnswer } = useSelector(
-    (state: State) => state.quiz,
-  );
+  const { correctQuestions, livesLeft, currentAnswer, answeredCorrectly } =
+    useSelector((state: State) => state.quiz);
   const dispatch: Dispatch = useDispatch();
+  const navigate = useNavigate();
   const viewport = useViewport();
   const [selected, setSelected] = useState<number>(-1);
   const [soundCorrect] = useSound(correct);
   const [soundIncorrect] = useSound(incorrect);
 
   const handleClick = useCallback(
-    (index: number) => async (e: React.MouseEvent<HTMLButtonElement>) => {
+    (index: number) => (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
       if ((e.target as Element).innerHTML == question.correct) {
         dispatch({ type: ActionType.ANSWER_CORRECTLY });
@@ -46,11 +54,25 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
     [question],
   );
 
-  const presents = [...Array(totalQuestions)].map((index) => (
+  const handleQuizNext = () => {
+    dispatch({ type: ActionType.NEXT_QUESTION });
+    setSelected(-1);
+  };
+
+  const handleQuizExit = () => {
+    dispatch({ type: ActionType.RESET_QUIZ });
+    navigate("/");
+  };
+
+  const presents = [...Array(correctQuestions)].map((index) => (
     <Image
       src={present}
       alt="present to demonstrate correct answers in quiz"
       key={index}
+      height={7}
+      width={7}
+      heightSizeUnits="em"
+      widthSizeUnits="em"
     />
   ));
 
@@ -66,33 +88,83 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
     />
   ));
 
+  const quizNavigationCrackers = () => (
+    <>
+      <QuizNextCracker onClick={handleQuizNext} />
+      <QuizExitCracker pageSide="right" onClick={handleQuizExit} />
+    </>
+  );
+
   return (
     <CardOverlayWrapper>
       <Card>
         <RowContainer justifyContent="flex-end">
-          <View style={{ padding: "2em 1.5em 0 0" }}>
+          <View style={{ padding: "2em 1.5em 1em 0" }}>
             {viewport("smallMedium") ? (
               candyCanes
             ) : (
-              <Text variant="body1">Total lives {livesLeft}</Text>
+              <Text variant="body1">
+                Total lives
+                <View component="span" display="inline">
+                  {livesLeft}
+                </View>
+              </Text>
             )}
           </View>
         </RowContainer>
-        <Text variant="h5">{question.question}</Text>
-
-        {question?.options?.map((option: string, index: number) => (
-          <QuizQuestionItem
-            option={option}
-            onSelect={handleClick(index)}
-            key={index}
-            index={index}
-            answer={currentAnswer}
-            selected={selected}
-          />
-        ))}
-
-        <p>{question.correct}</p>
-        <div className="presents">{presents}</div>
+        <RowContainer>
+          <DetailsContainer style={{ padding: "0 2.5em 1.15em 2.5em" }}>
+            <View style={{ padding: "0 0 1em 0" }}>
+              <Text variant="h5">{question.question}</Text>
+            </View>
+            <View>
+              {question?.options?.map((option: string, index: number) => (
+                <>
+                  {!answeredCorrectly ? (
+                    <QuizQuestionItem
+                      option={option}
+                      onSelect={handleClick(index)}
+                      key={index}
+                      index={index}
+                      answer={currentAnswer}
+                      selected={selected}
+                    />
+                  ) : (
+                    <QuizQuestionItem
+                      option={option}
+                      key={index}
+                      index={index}
+                      answer={currentAnswer}
+                      selected={selected}
+                    />
+                  )}
+                </>
+              ))}
+            </View>
+          </DetailsContainer>
+        </RowContainer>
+        {viewport("mediumPlus") ? (
+          <RowContainer
+            style={{ padding: "0 4em" }}
+            justifyContent="center"
+            gap="4vw"
+          >
+            {quizNavigationCrackers()}
+          </RowContainer>
+        ) : (
+          <CentralColumnContainer>
+            {quizNavigationCrackers()}
+          </CentralColumnContainer>
+        )}
+        {viewport("mediumPlus") && (
+          <RowContainer
+            justifyContent="center"
+            style={{ paddingBottom: "1em" }}
+            gap="2.5rem"
+          >
+            {presents}
+          </RowContainer>
+        )}
       </Card>
     </CardOverlayWrapper>
   );

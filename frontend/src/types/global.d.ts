@@ -26,7 +26,8 @@ declare global {
   declare namespace Quiz {
     interface QuizGame {
       questions: Quiz[];
-      currentAnswer: "corrent" | "incorrect" | undefined;
+      currentAnswer: CurrentAnswer;
+      answeredCorrectly: boolean;
       readyToPlay: boolean;
       correctQuestions: number;
       incorrectQuestions: number;
@@ -66,7 +67,17 @@ declare global {
       type: ActionType.ANSWER_INCORRECTLY;
     }
 
-    type Action = Reset | Start | End | AnswerCorrectly | AnswerIncorrectly;
+    interface NextQuestion {
+      type: ActionType.NEXT_QUESTION;
+    }
+
+    type Action =
+      | Reset
+      | Start
+      | End
+      | AnswerCorrectly
+      | AnswerIncorrectly
+      | NextQuestion;
 
     type Context = {
       resetQuiz: () => void;
@@ -74,6 +85,7 @@ declare global {
       endQuiz: () => void;
       answerCorrectly: () => void;
       answerIncorrectly: () => void;
+      nextQuestion: () => void;
     };
 
     type CurrentAnswer = "correct" | "incorrect" | undefined;

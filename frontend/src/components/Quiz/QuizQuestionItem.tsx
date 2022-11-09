@@ -12,12 +12,18 @@ type QuestionProps = {
 
 type Props = {
   option: string;
-  onSelect: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onSelect?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 } & QuestionProps;
 
 const StyledView = styled(View)<QuestionProps>`
   background-color: ${(props) =>
     getTextBackgroundColor(props.selected, props.index, props.answer)};
+  border-radius: 10px;
+  padding: 1em;
+  color: ${(props) =>
+    props.selected == props.index
+      ? props.theme.palette.primaryText.main
+      : props.theme.palette.primaryText.contrastText};
 `;
 
 const QuizQuestionItem: React.FC<Props> = ({

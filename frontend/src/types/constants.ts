@@ -15,6 +15,12 @@ export const LoadingSizes: Utils.LoadingSizeMap = {
   large: "large",
 };
 
+export enum Size {
+  small = 50,
+  medium = 75,
+  large = 100,
+}
+
 // Text Component
 
 export const colorVariants: Utils.ColorVariantMap = {
