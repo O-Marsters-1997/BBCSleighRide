@@ -9,6 +9,7 @@ type StyleProps = {
   widthmeasurement?: string;
   heightmeasurement?: string;
   background?: string;
+  fontWeight?: string;
 };
 
 type Props = {
@@ -31,12 +32,15 @@ const StyledView = styled(Box)<Props>`
     props.heightmeasurement &&
     `${props.height} ${props.heightmeasurement}`};
   background: ${(props) => props.background && props.background};
+  font-weight: ${(props) =>
+    props.fontWeight
+      ? props.theme.typography.body2.fontWeight
+      : props.theme.typography.body1.fontWeight};
   ${(props) =>
     props.display == "inline" &&
     css`
       display: inline-block;
       padding-left: 0.3em;
-      font-weight: ${props.theme.typography.body2?.fontWeight};
     `};
 `;
 
@@ -70,6 +74,7 @@ const View: React.FC<Props> = ({
   widthmeasurement,
   heightmeasurement,
   background,
+  fontWeight,
   className,
   backgroundImg,
   children,
@@ -86,6 +91,7 @@ const View: React.FC<Props> = ({
         widthmeasurement={widthmeasurement}
         heightmeasurement={heightmeasurement}
         background={background}
+        fontWeight={fontWeight}
         className={className}
         display={display}
         component={component && "div"}
@@ -104,6 +110,7 @@ const View: React.FC<Props> = ({
       widthmeasurement={widthmeasurement}
       heightmeasurement={heightmeasurement}
       background={background}
+      fontWeight={fontWeight}
       className={className}
       display={display}
       style={style}

@@ -36,3 +36,9 @@ export const nextQuestion = () => (dispatch: Dispatch<Quiz.Action>) => {
     type: ActionType.NEXT_QUESTION,
   });
 };
+
+export const nextQuestionGiveUp = () => (dispatch: Dispatch<Quiz.Action>) => {
+  dispatch({
+    type: ActionType.NEXT_QUESTION_GIVE_UP,
+  });
+};

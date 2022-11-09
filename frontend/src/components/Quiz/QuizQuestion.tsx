@@ -61,7 +61,11 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
 
   const handleQuizNext = () => {
     setWarning(false);
-    dispatch({ type: ActionType.NEXT_QUESTION });
+    dispatch(
+      answeredCorrectly
+        ? { type: ActionType.NEXT_QUESTION }
+        : { type: ActionType.NEXT_QUESTION_GIVE_UP },
+    );
     setSelected(-1);
   };
 

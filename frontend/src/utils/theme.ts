@@ -88,7 +88,7 @@ export const theme: DefaultTheme = {
     body2: {
       fontWeight: 700,
       fontFamily: "Roboto",
-      fontSize: 1.1,
+      fontSize: 1,
     },
     subtitle1: {
       fontWeight: 400,

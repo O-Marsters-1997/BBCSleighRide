@@ -41,6 +41,13 @@ const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
         totalQuestions: state.totalQuestions + 1,
         answeredCorrectly: false,
       };
+    case ActionType.NEXT_QUESTION_GIVE_UP:
+      return {
+        ...state,
+        totalQuestions: state.totalQuestions + 1,
+        answeredCorrectly: false,
+        livesLeft: state.livesLeft - 1,
+      };
     case ActionType.END_QUIZ:
       return inititalState;
     default:

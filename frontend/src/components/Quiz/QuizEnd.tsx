@@ -4,6 +4,7 @@ import { Dispatch } from "redux";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../state/reducers";
 import { ActionType } from "../../state/actionTypes";
+import View from "../View";
 import Card from "../Card";
 import Text from "../Text";
 import Image from "../Image";
@@ -54,15 +55,19 @@ const QuizEnd = () => {
           )}
           <Text variant="body1">
             You got {correctQuestions - incorrectQuestions} correct out of
-            {totalQuestions}
+            <View component="span" display="inline">
+              {totalQuestions}
+            </View>
           </Text>
           <Text variant="body1">
             That is
-            {correctPercentage(
-              correctQuestions,
-              incorrectQuestions,
-              totalQuestions,
-            )}
+            <View component="span" display="inline">
+              {correctPercentage(
+                correctQuestions,
+                incorrectQuestions,
+                totalQuestions,
+              )}
+            </View>
           </Text>
         </TextWrapper>
       </DetailsContainer>

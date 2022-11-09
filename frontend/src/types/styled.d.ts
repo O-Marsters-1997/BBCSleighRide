@@ -21,7 +21,7 @@ declare module "styled-components" {
       subtitle1: Utils.FontVariant;
       subtitle2?: Utils.FontVariant;
       body1: Utils.FontVariant;
-      body2?: Utils.FontVariant;
+      body2: Utils.FontVariant;
       caption?: Utils.FontVariant;
       overline?: Utils.FontVariant;
       inherit?: Utils.FontVariant;

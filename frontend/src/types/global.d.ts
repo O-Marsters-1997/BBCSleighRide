@@ -71,13 +71,18 @@ declare global {
       type: ActionType.NEXT_QUESTION;
     }
 
+    interface NextQuestionGiveUp {
+      type: ActionType.NEXT_QUESTION_GIVE_UP;
+    }
+
     type Action =
       | Reset
       | Start
       | End
       | AnswerCorrectly
       | AnswerIncorrectly
-      | NextQuestion;
+      | NextQuestion
+      | NextQuestionGiveUp;
 
     type Context = {
       resetQuiz: () => void;
@@ -86,6 +91,7 @@ declare global {
       answerCorrectly: () => void;
       answerIncorrectly: () => void;
       nextQuestion: () => void;
+      nextQuestionGiveUp: () => void;
     };
 
     type CurrentAnswer = "correct" | "incorrect" | undefined;

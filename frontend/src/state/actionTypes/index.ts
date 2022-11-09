@@ -7,4 +7,5 @@ export enum ActionType {
   ANSWER_CORRECTLY = "answer correctly",
   ANSWER_INCORRECTLY = "answer incorrectly",
   NEXT_QUESTION = "next question",
+  NEXT_QUESTION_GIVE_UP = "next question give up",
 }
