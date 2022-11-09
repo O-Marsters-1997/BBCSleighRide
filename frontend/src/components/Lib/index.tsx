@@ -4,6 +4,24 @@ import { device } from "../../types/constants";
 
 // Layouts
 
+export const AppContainer = styled(View)`
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+`;
+
+export const CompleteOverlayContainer = styled(View)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+
+  z-index: 101;
+`;
+
 export const CentralOverlayContainer = styled(View)`
   display: flex;
   width: 100%;

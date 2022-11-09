@@ -23,6 +23,34 @@ declare global {
     options?: string[];
   }
 
+  type Context = {
+    resetQuiz: () => void;
+    startQuiz: () => void;
+    endQuiz: () => void;
+    answerCorrectly: () => void;
+    answerIncorrectly: () => void;
+    nextQuestion: () => void;
+    nextQuestionGiveUp: () => void;
+    showModal: () => void;
+    hideModal: () => void;
+  };
+
+  declare namespace Joke {
+    interface JokeState {
+      modalOpen: boolean;
+    }
+
+    interface ShowModal {
+      type: ActionType.SHOW_MODAL;
+    }
+
+    interface HideModal {
+      type: ActionType.HIDE_MODAL;
+    }
+
+    type Action = ShowModal | HideModal;
+  }
+
   declare namespace Quiz {
     interface QuizGame {
       questions: Quiz[];
@@ -83,16 +111,6 @@ declare global {
       | AnswerIncorrectly
       | NextQuestion
       | NextQuestionGiveUp;
-
-    type Context = {
-      resetQuiz: () => void;
-      startQuiz: () => void;
-      endQuiz: () => void;
-      answerCorrectly: () => void;
-      answerIncorrectly: () => void;
-      nextQuestion: () => void;
-      nextQuestionGiveUp: () => void;
-    };
 
     type CurrentAnswer = "correct" | "incorrect" | undefined;
   }

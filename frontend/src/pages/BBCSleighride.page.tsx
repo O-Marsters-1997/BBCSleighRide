@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import { CentralRowContainer } from "../components/Lib";
+
 import { CountdownImage } from "../components/Lib/Image";
 import Countdown from "../components/Countdown";
 // import Item from "@mui/material/Item";
 import View from "../components/View";
-
 import countdownTitle from "../assets/images/christmas_countdown.svg";
-// import jokeCracker from "../assets/images/christmas_cracker_joke.svg";
 import MapCracker from "../components/Svg/MapCracker";
 import QuizCracker from "../components/Svg/QuizCracker";
+import JokeCracker from "../components/Svg/JokeCracker";
+import { CentralRowContainer } from "../components/Lib";
+import { ActionsContext } from "../contexts/StateActions.context";
 // import QuizCracker from "../components/Svg/QuizCracker";
 
 const BBCSleighride = () => {
   const navigate = useNavigate();
+  const { showModal } = useContext(ActionsContext) ?? {};
   return (
     <View>
       <CentralRowContainer>
@@ -29,6 +31,9 @@ const BBCSleighride = () => {
         </Grid>
         <Grid item xs={4}>
           <QuizCracker pageSide="right" onClick={() => navigate("/quiz")} />
+        </Grid>
+        <Grid item xs={4}>
+          <JokeCracker pageSide="right" onClick={showModal} />
         </Grid>
       </Grid>
     </View>
