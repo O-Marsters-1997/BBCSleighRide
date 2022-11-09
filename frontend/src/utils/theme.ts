@@ -44,6 +44,10 @@ export const theme: DefaultTheme = {
       main: "rgba(242, 242, 242, 1)",
       contrastText: "rgba(0, 0, 0, 1)",
     },
+    secondaryText: {
+      main: "rgb(157,10,14)",
+      contrastText: "rgb(37,119,35)",
+    },
   },
   typography: {
     h1: {
@@ -64,7 +68,7 @@ export const theme: DefaultTheme = {
     h4: {
       fontWeight: 700,
       fontFamily: "Raleway, sans-serif",
-      fontSize: 1.4,
+      fontSize: 1.3,
     },
     h5: {
       fontWeight: 700,
@@ -77,14 +81,19 @@ export const theme: DefaultTheme = {
       fontSize: 1.2,
     },
     body1: {
-      fontWeight: 500,
+      fontWeight: 400,
       fontFamily: "Roboto",
-      fontSize: 1.1,
+      fontSize: 1,
     },
     body2: {
       fontWeight: 700,
       fontFamily: "Roboto",
       fontSize: 1.1,
+    },
+    subtitle1: {
+      fontWeight: 400,
+      fontFamily: "Roboto",
+      fontSize: 0.8,
     },
   },
   viewports: {
@@ -169,51 +178,51 @@ export const GlobalStyle = createGlobalStyle`
     @font-face {
       font-family: 'Roboto';
       font-style: normal;
-      font-weight: normal;
+      font-weight: 400;
       font-display: swap;
       src:  url(${RobotoRegular1}) format('woff'),
       url(${RobotoRegular2}) format('woff2');
     }
     
     @font-face {
-      font-family: 'Roboto Italic';
+      font-family: 'Roboto';
       font-style: italic;
-      font-weight: normal;
+      font-weight: 400;
       font-display: swap;
       src:  url(${RobotoRegularItalic1}) format('woff'),
       url(${RobotoRegularItalic2}) format('woff2');
     }
     
     @font-face {
-    font-family: 'Roboto Bold';
+    font-family: 'Roboto';
     font-style: normal;
-    font-weight: lighter;
+    font-weight: 500;
     font-display: swap;
     src:  url(${Roboto5001}) format('woff'),
            url(${Roboto5002}) format('woff2');
     }
 
      @font-face {
-    font-family: 'Roboto Bold Italic';
+    font-family: 'Roboto';
     font-style: italic;
-    font-weight: lighter;
+    font-weight: 500;
     font-display: swap;
     src:  url(${Roboto500Italic1}) format('woff'),
            url(${Roboto500Italic2}) format('woff2');
     }
      @font-face {
-    font-family: 'Roboto Extra Bold';
+    font-family: 'Roboto';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 700;
     font-display: swap;
     src:  url(${Roboto7001}) format('woff'),
            url(${Roboto7002}) format('woff2');
     }
 
      @font-face {
-    font-family: 'Roboto Extra Bold Italic';
+    font-family: 'Roboto';
     font-style: italic;
-    font-weight: normal;
+    font-weight: 700;
     font-display: swap;
     src:  url(${Roboto700Italic1}) format('woff'),
            url(${Roboto700Italic2}) format('woff2');

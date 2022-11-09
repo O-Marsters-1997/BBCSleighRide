@@ -8,9 +8,10 @@ import {
 } from "../utils/styleHelpers";
 
 type StyleProps = {
-  colorvariant?: Utils.FontColor;
+  colorvariant?: Utils.ColorVariant;
   fontFamily?: Utils.FontType;
   lineHeight?: number;
+  marginBottom?: string;
 };
 
 interface TextProps extends TypographyProps {
@@ -29,6 +30,7 @@ const StyledText = styled(Typography)<Props>`
     variant && getFontVariant(variant).fontWeight};
   font-style: ${(props) => (props.fontStyle == "italic" ? "italic" : "normal")};
   line-height: ${(props) => props.lineHeight && props.lineHeight};
+  margin-bottom: ${(props) => props.marginBottom && props.marginBottom};
 `;
 
 const Text: React.FC<Props> = ({
@@ -36,11 +38,13 @@ const Text: React.FC<Props> = ({
   children,
   colorvariant,
   lineHeight,
+  marginBottom,
 }) => (
   <StyledText
     variant={variant}
     colorvariant={colorvariant}
     lineHeight={lineHeight}
+    marginBottom={marginBottom}
   >
     {children}
   </StyledText>

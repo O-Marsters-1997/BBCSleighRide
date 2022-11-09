@@ -2,6 +2,8 @@ import styled from "styled-components";
 import View from "../View";
 import { device } from "../../types/constants";
 
+// Layouts
+
 export const CentralOverlayContainer = styled(View)`
   display: flex;
   width: 100%;
@@ -51,6 +53,15 @@ export const CentralColumnContainer = styled(View)<{ reverse?: boolean }>`
   height: 100%;
 `;
 
+// Images and image helpers
+
+export const ElfImageWrapper = styled(View)`
+  padding: 2em 0;
+  @media ${device.laptopM} {
+    padding: 2em 0 0 2em;
+  } ;
+`;
+
 export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
   cursor: pointer;
   @media ${device.laptop} {
@@ -74,14 +85,18 @@ export const QuizGameCracker = styled(Cracker)`
 `;
 
 // prettier-ignore
-export const TextWrapper = styled(View)<{lineHeight?: number;indent?: boolean;}>`
+export const TextWrapper = styled(View)<{
+  lineHeight?: number;
+  indent?: boolean;
+  childrenPadding?: string;
+}>`
   display: flex;
   flex-direction: column;
   padding-bottom: 1em;
   padding-left: ${({ indent }) => (indent ? "5px" : 0)};
   .MuiTypography-body1 {
     line-height: ${({ lineHeight }) => lineHeight && lineHeight};
-    padding-bottom: 1em;
+    padding-bottom: ${({ childrenPadding }) => childrenPadding ??  "1em"};
   }
 `;
 

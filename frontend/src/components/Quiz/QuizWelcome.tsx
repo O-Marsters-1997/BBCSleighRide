@@ -1,10 +1,8 @@
 import React, { useContext, ReactNode } from "react";
-import styled from "styled-components";
 import { ActionsContext } from "../../contexts/StateActions.context";
 import Image from "../Image";
 import Card from "../Card";
 import Text from "../Text";
-import View from "../View";
 import {
   RowContainer,
   CentralRowContainer,
@@ -12,18 +10,11 @@ import {
   CardWrapper,
   TextWrapper,
   CardOverlayWrapper,
+  ElfImageWrapper,
 } from "../Lib";
 import QuizCracker from "../Svg/QuizStartCracker";
 import quizElf from "../../assets/images/elf_happy.svg";
 import { useViewport } from "../../hooks/useViewport";
-import { device } from "../../types/constants";
-
-const ImageWrapper = styled(View)`
-  padding: 2em 0;
-  @media ${device.laptopM} {
-    padding: 2em 0 0 2em;
-  } ;
-`;
 
 const QuizWelcome = () => {
   const { startQuiz } = useContext(ActionsContext) ?? {};
@@ -40,7 +31,7 @@ const QuizWelcome = () => {
           Get presents for each question you get right!
         </Text>
       </TextWrapper>
-      <ImageWrapper>
+      <ElfImageWrapper>
         <Image
           src={quizElf}
           alt="Buddy elf"
@@ -49,7 +40,7 @@ const QuizWelcome = () => {
           heightSizeUnits="em"
           widthSizeUnits="em"
         />
-      </ImageWrapper>
+      </ElfImageWrapper>
     </>
   );
 

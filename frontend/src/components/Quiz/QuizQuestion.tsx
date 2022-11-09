@@ -36,6 +36,7 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
   const navigate = useNavigate();
   const viewport = useViewport();
   const [selected, setSelected] = useState<number>(-1);
+  const [warning, setWarning] = useState<boolean>(false);
   const [soundCorrect] = useSound(correct);
   const [soundIncorrect] = useSound(incorrect);
 
@@ -54,7 +55,12 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
     [question],
   );
 
+  const rejectClick = () => {
+    setWarning(true);
+  };
+
   const handleQuizNext = () => {
+    setWarning(false);
     dispatch({ type: ActionType.NEXT_QUESTION });
     setSelected(-1);
   };
@@ -69,8 +75,8 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
       src={present}
       alt="present to demonstrate correct answers in quiz"
       key={index}
-      height={7}
-      width={7}
+      height={viewport("large") ? 6 : 4}
+      width={viewport("large") ? 6 : 4}
       heightSizeUnits="em"
       widthSizeUnits="em"
     />
@@ -132,6 +138,7 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
                   ) : (
                     <QuizQuestionItem
                       option={option}
+                      onSelect={rejectClick}
                       key={index}
                       index={index}
                       answer={currentAnswer}
@@ -141,6 +148,14 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
                 </>
               ))}
             </View>
+            {warning && (
+              <View style={{ padding: ".75rem 0 0 5px" }}>
+                <Text variant="subtitle1" colorvariant="secondary">
+                  You have already selected the correct answer. Please click
+                  next.
+                </Text>
+              </View>
+            )}
           </DetailsContainer>
         </RowContainer>
         {viewport("mediumPlus") ? (

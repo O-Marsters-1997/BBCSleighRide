@@ -53,7 +53,11 @@ const Quiz = () => {
 
   if (totalQuestions == questions.length || livesLeft == 0) {
     getMyQuestions();
-    return <QuizEnd />;
+    return (
+      <CentralOverlayContainer>
+        <QuizEnd />
+      </CentralOverlayContainer>
+    );
   }
   return (
     <CentralOverlayContainer>

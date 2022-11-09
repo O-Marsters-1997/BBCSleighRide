@@ -17,6 +17,10 @@ export const getTextColor = (color: string): string => {
       return palette.primaryText.main;
     case colorVariants.primaryAlt:
       return palette.primaryText.contrastText;
+    case colorVariants.secondary:
+      return palette.secondaryText.main;
+    case colorVariants.secondaryAlt:
+      return palette.secondaryText.contrastText;
     default:
       return palette.primaryText.main;
   }
@@ -60,6 +64,11 @@ export const getFontVariant = (variant: string): Utils.FontVariant => {
       fontVariant.fontWeight = typography.body1.fontWeight;
       fontVariant.fontFamily = typography.body1.fontFamily;
       fontVariant.fontSize = typography.body1.fontSize;
+      break;
+    case textVariants.subtitle1:
+      fontVariant.fontWeight = typography.subtitle1.fontWeight;
+      fontVariant.fontFamily = typography.subtitle1.fontFamily;
+      fontVariant.fontSize = typography.subtitle1.fontSize;
       break;
     default:
       break;
