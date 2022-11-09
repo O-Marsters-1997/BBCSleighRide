@@ -51,7 +51,9 @@ const QuizEnd = () => {
               </Text>
             </>
           ) : (
-            <Text variant="body1">You have been unsuccessful, try again!</Text>
+            <Text variant="h4" marginBottom=".75em">
+              You have been unsuccessful, try again!
+            </Text>
           )}
           <Text variant="body1">
             You got {correctQuestions - incorrectQuestions} correct out of

@@ -18,7 +18,6 @@ export const CompleteOverlayContainer = styled(View)`
   position: fixed;
   height: 100vh;
   width: 100vw;
-
   z-index: 101;
 `;
 
@@ -102,6 +101,17 @@ export const QuizGameCracker = styled(Cracker)`
   } ;
 `;
 
+// Overlay
+export const CardOverlayWrapper = styled(View)`
+  padding: 80px 0;
+  width: clamp(300px, 60vw, 1100px);
+`;
+
+export const HomePageCardOverlayWrapper = styled(View)`
+  padding: 80px 0;
+  width: clamp(250px, 45vw, 850px);
+`;
+
 // prettier-ignore
 export const TextWrapper = styled(View)<{
   lineHeight?: number;
@@ -116,10 +126,4 @@ export const TextWrapper = styled(View)<{
     line-height: ${({ lineHeight }) => lineHeight && lineHeight};
     padding-bottom: ${({ childrenPadding }) => childrenPadding ??  "1em"};
   }
-`;
-
-// Overlay
-export const CardOverlayWrapper = styled(View)`
-  padding: 80px 0;
-  width: clamp(300px, 60vw, 1100px);
 `;

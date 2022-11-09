@@ -13,7 +13,8 @@ const reducer = (state: Joke.JokeState = initialState, action: Joke.Action) => {
       };
     case ActionType.HIDE_MODAL:
       return {
-        initialState,
+        ...state,
+        modalOpen: false,
       };
     default:
       return state;
