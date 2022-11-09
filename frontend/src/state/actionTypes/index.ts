@@ -10,4 +10,5 @@ export enum ActionType {
   NEXT_QUESTION_GIVE_UP = "next question give up",
   SHOW_MODAL = "show modal",
   HIDE_MODAL = "hide modal",
+  SELECT_JOKE = "select joke",
 }

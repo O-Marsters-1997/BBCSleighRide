@@ -4,9 +4,9 @@ import Paper, { PaperProps } from "@mui/material/Paper";
 import { getBorderColor } from "../utils/styleHelpers";
 
 type StyleProps = {
-  borderRadius?: number;
-  borderColor?: Utils.ColorVariant;
-  borderThickness?: number;
+  borderradius?: number;
+  bordercolor?: Utils.ColorVariant;
+  borderthickness?: number;
   elavation?: number;
 };
 
@@ -15,26 +15,26 @@ interface Props extends PaperProps {}
 type CardProps = Props & StyleProps;
 
 const StyledCard = styled(Paper)<StyleProps>`
-  border-radius: ${(props) => (props.borderRadius ? props.borderRadius : 20)}px;
+  border-radius: ${(props) => (props.borderradius ? props.borderradius : 20)}px;
   border-color: ${(props) =>
-    props.borderColor && getBorderColor(props.borderColor)};
+    props.bordercolor && getBorderColor(props.bordercolor)};
   border-width: ${(props) =>
-    props.borderThickness ? props.borderThickness : 0}px;
+    props.borderthickness ? props.borderthickness : 0}px;
   border-style: solid;
 `;
 
 const Card: React.FC<CardProps> = ({
   children,
-  borderRadius,
-  borderColor,
-  borderThickness,
+  borderradius,
+  bordercolor,
+  borderthickness,
   elavation,
 }) => (
   <StyledCard
     elevation={elavation ?? 5}
-    borderRadius={borderRadius}
-    borderColor={borderColor}
-    borderThickness={borderThickness}
+    borderradius={borderradius}
+    bordercolor={bordercolor}
+    borderthickness={borderthickness}
   >
     {children}
   </StyledCard>

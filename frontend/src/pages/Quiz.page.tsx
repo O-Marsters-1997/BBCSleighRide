@@ -8,6 +8,7 @@ import QuizQuestion from "../components/Quiz/QuizQuestion";
 import QuizEnd from "../components/Quiz/QuizEnd";
 import Loading from "../components/Loading";
 import { CentralOverlayContainer, LoadingWrapper } from "../components/Lib";
+import { shuffleArray } from "../utils/sharedHelpers";
 import { getQuestions } from "../services";
 
 const Quiz = () => {
@@ -17,21 +18,6 @@ const Quiz = () => {
   );
 
   const dispatch: Dispatch = useDispatch();
-
-  const shuffleArray = (array: Quiz[]) => {
-    let currentIndex: number = array.length;
-    let randomIndex;
-
-    while (currentIndex != 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-    return array;
-  };
 
   const getMyQuestions = async () => {
     const data = await getQuestions();

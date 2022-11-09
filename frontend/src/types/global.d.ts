@@ -33,11 +33,13 @@ declare global {
     nextQuestionGiveUp: () => void;
     showModal: () => void;
     hideModal: () => void;
+    selectJoke: (joke: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
   };
 
   declare namespace Joke {
     interface JokeState {
       modalOpen: boolean;
+      selectedJoke: Joke | null;
     }
 
     interface ShowModal {
@@ -48,7 +50,12 @@ declare global {
       type: ActionType.HIDE_MODAL;
     }
 
-    type Action = ShowModal | HideModal;
+    interface SelectJoke {
+      type: ActionType.SELECT_JOKE;
+      payload: Joke;
+    }
+
+    type Action = ShowModal | HideModal | SelectJoke;
   }
 
   declare namespace Quiz {
@@ -231,5 +238,7 @@ declare global {
       | "center"
       | "initial"
       | "inherit";
+
+    type TextAlign = "center" | "left" | "right" | "justify";
   }
 }

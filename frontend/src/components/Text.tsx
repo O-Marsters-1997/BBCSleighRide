@@ -12,6 +12,7 @@ type StyleProps = {
   fontFamily?: Utils.FontType;
   lineHeight?: number;
   marginBottom?: string;
+  textAlign?: CSS.TextAlign;
 };
 
 interface TextProps extends TypographyProps {
@@ -39,12 +40,14 @@ const Text: React.FC<Props> = ({
   colorvariant,
   lineHeight,
   marginBottom,
+  textAlign,
 }) => (
   <StyledText
     variant={variant}
     colorvariant={colorvariant}
     lineHeight={lineHeight}
     marginBottom={marginBottom}
+    textAlign={textAlign}
   >
     {children}
   </StyledText>

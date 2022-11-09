@@ -6,3 +6,9 @@ export const getQuestions = async () => {
   return data;
   //  return fetch(`${baseUrl}questions`);
 };
+
+export const getJokes = async () => {
+  const response = await fetch(`${baseUrl}jokes`);
+  const data = await response.json();
+  return data;
+};
