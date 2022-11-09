@@ -69,7 +69,7 @@ const questions = [
   new Quiz({
     question:
       "How do you say merry Christmas in Kenya(their main language is Swahili!)?",
-    correct: "Heri ya Krsmasi",
+    correct: "Heri ya Krismasi",
     options: [" Joyeux Noel", "Happy Holidays", "Heri ya Krismasi"],
   }),
 ];
