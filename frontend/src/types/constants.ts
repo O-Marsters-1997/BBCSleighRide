@@ -2,6 +2,13 @@ import { theme } from "../utils/theme";
 
 const { viewports } = theme;
 
+// API
+export const endpoints: Endpoints = {
+  jokes: "jokes",
+  quiz: "questions",
+  countries: "countries",
+};
+
 // Quiz
 export const currentAnswerQuiz = {
   incorrect: "incorrect",

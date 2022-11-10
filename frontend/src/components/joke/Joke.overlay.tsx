@@ -13,8 +13,9 @@ import {
   CentralRowContainer,
   CentralColumnContainer,
 } from "../Lib";
+import { endpoints } from "../../types/constants";
 import { shuffleArray } from "../../utils/sharedHelpers";
-import { getJokes } from "../../services";
+import { getData } from "../../services";
 import santa from "../../assets/images/santa_happy.svg";
 
 const StyledJokeRow = styled(CentralRowContainer)`
@@ -39,7 +40,7 @@ const Joke: React.FC = () => {
   const dispatch: Dispatch = useDispatch();
 
   const getMyJokes = async () => {
-    const data = await getJokes();
+    const data = await getData(endpoints.jokes);
     return setJokes(data.jokes);
   };
 

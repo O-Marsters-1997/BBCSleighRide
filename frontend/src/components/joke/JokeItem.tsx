@@ -19,11 +19,11 @@ const StyledPunchline = styled(View)`
   animation: ${fadeIn} 1 0.75s linear;
   animation-delay: 2s;
   animation-fill-mode: forwards;
+  padding-top: 0.85em;
 `;
 
 const JokeItem: React.FC = () => {
   const { selectedJoke } = useSelector((state: State) => state.joke);
-  console.log(selectedJoke);
   return (
     <View>
       <Text variant="body1" textAlign="center">

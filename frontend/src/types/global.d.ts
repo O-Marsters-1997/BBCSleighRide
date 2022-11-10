@@ -36,6 +36,10 @@ declare global {
     selectJoke: (joke: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
   };
 
+  type Endpoint = "jokes" | "quiz" | "countries";
+
+  type Endpoints = { [enpoint in Endpoints]: string };
+
   declare namespace Joke {
     interface JokeState {
       modalOpen: boolean;
