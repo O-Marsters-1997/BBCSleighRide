@@ -9,6 +9,7 @@ import countdownTitle from "../assets/images/christmas_countdown.svg";
 import MapCracker from "../components/Svg/MapCracker";
 import QuizCracker from "../components/Svg/QuizCracker";
 import JokeCracker from "../components/Svg/JokeCracker";
+// import Background from "../components/Svg/Background"
 import { CentralRowContainer } from "../components/Lib";
 import { ActionsContext } from "../contexts/StateActions.context";
 

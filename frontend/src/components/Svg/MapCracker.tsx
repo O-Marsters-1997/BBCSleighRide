@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Cracker } from "../Lib";
 
-const MapCracker = (props) => (
+const MapCracker = (props: any) => (
   <Cracker
     viewBox="0 0 3332 1706"
     xmlns="http://www.w3.org/2000/svg"

@@ -68,6 +68,7 @@
     "react/jsx-props-no-spreading": "warn",
     "react/no-unused-prop-types": "warn",
     "@typescript-eslint/no-shadow": "warn",
+    "import/newline-after-import": "warn",
     "quotes": [
       "error",
       "double",

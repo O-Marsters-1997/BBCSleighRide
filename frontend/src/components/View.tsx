@@ -1,7 +1,7 @@
 import React, { ReactNode, ElementType } from "react";
 import styled, { css } from "styled-components";
 import Box from "@mui/material/Box";
-import app_background from "../assets/images/app_background.jpg";
+import Background from "./Svg/Background";
 
 type StyleProps = {
   width?: number;
@@ -51,20 +51,17 @@ const StyledBackground = styled(StyledView)<Props>`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    background-image: linear-gradient(rgba(4, 9, 30, 0), rgba(4, 9, 30, 0)),
-      url(${app_background});
-    min-height: 120vh;
     z-index: 10;
   }
 `;
 
-const StyledOverlay = styled(Box)`
+const StyledOverlay = styled(Background)`
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(83, 153, 80, 0.2);
+
   z-index: -5;
 `;
 

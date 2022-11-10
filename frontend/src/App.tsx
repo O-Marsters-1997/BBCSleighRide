@@ -10,6 +10,7 @@ import Joke from "./components/joke/Joke.overlay";
 import Header from "./components/Header";
 import View from "./components/View";
 import { AppContainer, CompleteOverlayContainer } from "./components/Lib";
+// import Background from "./components/Svg/Background";
 
 const BBCSleighride = lazy(() => import("./pages/BBCSleighride.page"));
 const Map = lazy(() => import("./pages/Map.page"));
@@ -33,7 +34,6 @@ const App: React.FC = () => {
               <Joke />
             </CompleteOverlayContainer>
           )}
-
           <Header showSanta={showSanta} />
           <ActionsProvider>
             <View backgroundImg>
