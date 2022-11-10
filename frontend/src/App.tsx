@@ -9,7 +9,7 @@ import ActionsProvider from "./contexts/StateActions.context";
 import Joke from "./components/joke/Joke.overlay";
 import Header from "./components/Header";
 import View from "./components/View";
-import { AppContainer, CompleteOverlayContainer } from "./components/Lib";
+import { AppContainer } from "./components/Lib";
 // import Background from "./components/Svg/Background";
 
 const BBCSleighride = lazy(() => import("./pages/BBCSleighride.page"));
@@ -28,15 +28,26 @@ const App: React.FC = () => {
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
+        <Header showSanta={showSanta} />
         <AppContainer>
-          {modalOpen && (
-            <CompleteOverlayContainer>
-              <Joke />
-            </CompleteOverlayContainer>
-          )}
-          <Header showSanta={showSanta} />
           <ActionsProvider>
             <View backgroundImg>
+              {modalOpen && (
+                <View
+                  style={{
+                    position: "absolute",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100%",
+                    height: "100%",
+                    zIndex: "100",
+                  }}
+                >
+                  <Joke />
+                </View>
+              )}
               <Routes>
                 <Route
                   path="/"

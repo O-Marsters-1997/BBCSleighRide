@@ -2,6 +2,7 @@ import React, { ReactNode, ElementType } from "react";
 import styled, { css } from "styled-components";
 import Box from "@mui/material/Box";
 import Background from "./Svg/Background";
+import app_background from "../assets/images/app_background.jpg";
 
 type StyleProps = {
   width?: number;
@@ -47,10 +48,13 @@ const StyledView = styled(Box)<Props>`
 const StyledBackground = styled(StyledView)<Props>`
   && {
     position: relative;
-    object-fit: cover;
+
+    /* object-fit: cover;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+    background-image: linear-gradient(rgba(4, 9, 30, 0), rgba(4, 9, 30, 0)),
+      url(${app_background}); */
     z-index: 10;
   }
 `;
@@ -61,7 +65,6 @@ const StyledOverlay = styled(Background)`
   right: 0;
   bottom: 0;
   left: 0;
-
   z-index: -5;
 `;
 
@@ -95,7 +98,7 @@ const View: React.FC<Props> = ({
         style={style}
         onClick={onClick}
       >
-        {backgroundImg && <StyledOverlay />}
+        <StyledOverlay />
         {children}
       </StyledBackground>
     );
