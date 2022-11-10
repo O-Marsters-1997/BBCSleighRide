@@ -1,8 +1,7 @@
 const baseUrl: string = "http://localhost:9090/";
 
-export const getQuestions = async () => {
-  const response = await fetch(`${baseUrl}questions`);
+export const getData = async (params: Endpoint) => {
+  const response = await fetch(`${baseUrl}${params}`);
   const data = await response.json();
   return data;
-  //  return fetch(`${baseUrl}questions`);
 };

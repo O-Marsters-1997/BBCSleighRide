@@ -8,4 +8,7 @@ export enum ActionType {
   ANSWER_INCORRECTLY = "answer incorrectly",
   NEXT_QUESTION = "next question",
   NEXT_QUESTION_GIVE_UP = "next question give up",
+  SHOW_MODAL = "show modal",
+  HIDE_MODAL = "hide modal",
+  SELECT_JOKE = "select joke",
 }

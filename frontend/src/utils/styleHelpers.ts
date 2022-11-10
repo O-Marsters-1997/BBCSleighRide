@@ -8,8 +8,25 @@ import {
 } from "../types/constants";
 import { theme } from "./theme";
 
-// Font variants
+// Palette variants
 
+export const getBorderColor = (color: Utils.ColorVariant) => {
+  const { palette } = theme;
+  switch (color) {
+    case colorVariants.primary:
+      return palette.primary.main;
+    case colorVariants.primaryAlt:
+      return palette.primary.contrastText;
+    case colorVariants.secondary:
+      return palette.secondary.main;
+    case colorVariants.secondaryAlt:
+      return palette.secondary.contrastText;
+    default:
+      return "initial";
+  }
+};
+
+// Font variants
 export const getTextColor = (color: string): string => {
   const { palette } = theme;
   switch (color) {

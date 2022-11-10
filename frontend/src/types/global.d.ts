@@ -23,6 +23,45 @@ declare global {
     options?: string[];
   }
 
+  type Context = {
+    resetQuiz: () => void;
+    startQuiz: () => void;
+    endQuiz: () => void;
+    answerCorrectly: () => void;
+    answerIncorrectly: () => void;
+    nextQuestion: () => void;
+    nextQuestionGiveUp: () => void;
+    showModal: () => void;
+    hideModal: () => void;
+    selectJoke: (joke: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
+  };
+
+  type Endpoint = "jokes" | "quiz" | "countries";
+
+  type Endpoints = { [enpoint in Endpoints]: string };
+
+  declare namespace Joke {
+    interface JokeState {
+      modalOpen: boolean;
+      selectedJoke: Joke | null;
+    }
+
+    interface ShowModal {
+      type: ActionType.SHOW_MODAL;
+    }
+
+    interface HideModal {
+      type: ActionType.HIDE_MODAL;
+    }
+
+    interface SelectJoke {
+      type: ActionType.SELECT_JOKE;
+      payload: Joke;
+    }
+
+    type Action = ShowModal | HideModal | SelectJoke;
+  }
+
   declare namespace Quiz {
     interface QuizGame {
       questions: Quiz[];
@@ -83,16 +122,6 @@ declare global {
       | AnswerIncorrectly
       | NextQuestion
       | NextQuestionGiveUp;
-
-    type Context = {
-      resetQuiz: () => void;
-      startQuiz: () => void;
-      endQuiz: () => void;
-      answerCorrectly: () => void;
-      answerIncorrectly: () => void;
-      nextQuestion: () => void;
-      nextQuestionGiveUp: () => void;
-    };
 
     type CurrentAnswer = "correct" | "incorrect" | undefined;
   }
@@ -213,5 +242,7 @@ declare global {
       | "center"
       | "initial"
       | "inherit";
+
+    type TextAlign = "center" | "left" | "right" | "justify";
   }
 }

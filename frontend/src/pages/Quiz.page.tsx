@@ -8,7 +8,9 @@ import QuizQuestion from "../components/Quiz/QuizQuestion";
 import QuizEnd from "../components/Quiz/QuizEnd";
 import Loading from "../components/Loading";
 import { CentralOverlayContainer, LoadingWrapper } from "../components/Lib";
-import { getQuestions } from "../services";
+import { endpoints } from "../types/constants";
+import { shuffleArray } from "../utils/sharedHelpers";
+import { getData } from "../services";
 
 const Quiz = () => {
   const [questions, setQuestions] = useState<Quiz[] | undefined>();
@@ -18,23 +20,8 @@ const Quiz = () => {
 
   const dispatch: Dispatch = useDispatch();
 
-  const shuffleArray = (array: Quiz[]) => {
-    let currentIndex: number = array.length;
-    let randomIndex;
-
-    while (currentIndex != 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-    return array;
-  };
-
   const getMyQuestions = async () => {
-    const data = await getQuestions();
+    const data = await getData(endpoints.quiz);
     return setQuestions(shuffleArray(data.quiz).slice(0, 5));
   };
 
