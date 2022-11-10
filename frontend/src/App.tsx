@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
 import { State } from "./state/reducers";
 import { theme, GlobalStyle } from "./utils/theme";
-import QuizActionsProvider from "./contexts/StateActions.context";
+import ActionsProvider from "./contexts/StateActions.context";
 import Joke from "./components/joke/Joke.overlay";
 import Header from "./components/Header";
 import View from "./components/View";
@@ -35,7 +35,7 @@ const App: React.FC = () => {
           )}
 
           <Header showSanta={showSanta} />
-          <QuizActionsProvider>
+          <ActionsProvider>
             <View backgroundImg>
               <Routes>
                 <Route
@@ -73,7 +73,7 @@ const App: React.FC = () => {
                 />
               </Routes>
             </View>
-          </QuizActionsProvider>
+          </ActionsProvider>
         </AppContainer>
       </ThemeProvider>
     </StyledEngineProvider>

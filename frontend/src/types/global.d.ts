@@ -34,11 +34,27 @@ declare global {
     showModal: () => void;
     hideModal: () => void;
     selectJoke: (joke: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
+    setCountries: (
+      countries: Country[],
+    ) => (dispatch: Dispatch<Countries.Action>) => void;
   };
 
   type Endpoint = "jokes" | "quiz" | "countries";
 
   type Endpoints = { [enpoint in Endpoints]: string };
+
+  declare namespace Countries {
+    interface MapState {
+      countries: Country[] | undefined;
+    }
+
+    interface SetCountries {
+      type: ActionType.SET_COUNTRIES;
+      payload: Country[];
+    }
+
+    type Action = SetCountries;
+  }
 
   declare namespace Joke {
     interface JokeState {

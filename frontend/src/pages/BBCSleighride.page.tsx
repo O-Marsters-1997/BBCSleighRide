@@ -4,7 +4,6 @@ import Grid from "@mui/material/Grid";
 
 import { CountdownImage } from "../components/Lib/Image";
 import Countdown from "../components/Countdown";
-// import Item from "@mui/material/Item";
 import View from "../components/View";
 import countdownTitle from "../assets/images/christmas_countdown.svg";
 import MapCracker from "../components/Svg/MapCracker";
@@ -12,7 +11,6 @@ import QuizCracker from "../components/Svg/QuizCracker";
 import JokeCracker from "../components/Svg/JokeCracker";
 import { CentralRowContainer } from "../components/Lib";
 import { ActionsContext } from "../contexts/StateActions.context";
-// import QuizCracker from "../components/Svg/QuizCracker";
 
 const BBCSleighride = () => {
   const navigate = useNavigate();
@@ -24,7 +22,7 @@ const BBCSleighride = () => {
       </CentralRowContainer>
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          <MapCracker pageSide="left" />
+          <MapCracker pageSide="left" onClick={() => navigate("/map")} />
         </Grid>
         <Grid item xs={4}>
           <Countdown />
