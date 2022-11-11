@@ -9,12 +9,12 @@ import ActionsProvider from "./contexts/StateActions.context";
 import Joke from "./components/joke/Joke.overlay";
 import Header from "./components/Header";
 import View from "./components/View";
-import { AppContainer } from "./components/Lib";
-// import Background from "./components/Svg/Background";
+import { AppContainer, CompleteOverlayContainer } from "./components/Lib";
 
 const BBCSleighride = lazy(() => import("./pages/BBCSleighride.page"));
 const Map = lazy(() => import("./pages/Map.page"));
 const Quiz = lazy(() => import("./pages/Quiz.page"));
+const QuizTest = lazy(() => import("./pages/QuizTest.page"));
 const Error = lazy(() => import("./pages/Error.page"));
 
 const App: React.FC = () => {
@@ -28,25 +28,16 @@ const App: React.FC = () => {
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Header showSanta={showSanta} />
         <AppContainer>
+          <Header showSanta={showSanta} />
           <ActionsProvider>
             <View backgroundImg>
               {modalOpen && (
-                <View
-                  style={{
-                    position: "absolute",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "100%",
-                    height: "100%",
-                    zIndex: "100",
-                  }}
-                >
-                  <Joke />
-                </View>
+                <CompleteOverlayContainer>
+                  <View style={{ paddingTop: "4em" }}>
+                    <Joke />
+                  </View>
+                </CompleteOverlayContainer>
               )}
               <Routes>
                 <Route
@@ -71,6 +62,14 @@ const App: React.FC = () => {
                   element={
                     <Suspense fallback={<>...</>}>
                       <Quiz />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="quizTest/"
+                  element={
+                    <Suspense fallback={<>...</>}>
+                      <QuizTest />
                     </Suspense>
                   }
                 />

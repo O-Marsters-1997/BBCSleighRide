@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Dispatch } from "redux";
 import { useDispatch } from "react-redux";
@@ -15,7 +15,9 @@ import {
 } from "../Lib";
 import { endpoints } from "../../types/constants";
 import { shuffleArray } from "../../utils/sharedHelpers";
-import { getData } from "../../services";
+// import { getData } from "../../services";
+import useAxios from "../../hooks/useAxios";
+import axios from "../../services/quizTest";
 import santa from "../../assets/images/santa_happy.svg";
 
 const StyledJokeRow = styled(CentralRowContainer)`
@@ -35,18 +37,29 @@ const StyledJokeRow = styled(CentralRowContainer)`
 `;
 
 const Joke: React.FC = () => {
-  const [jokes, setJokes] = useState<Joke[] | undefined>();
+  // const [jokes, setJokes] = useState<Joke[] | undefined>();
   const [toggleJokeView, setToggleJokeView] = useState<boolean>(false);
   const dispatch: Dispatch = useDispatch();
 
-  const getMyJokes = async () => {
-    const data = await getData(endpoints.jokes);
-    return setJokes(data.jokes);
-  };
+  const { response: jokes } = useAxios({
+    axiosInstance: axios,
+    method: "get",
+    url: endpoints.jokes,
+    requestConfig: {
+      header: {
+        "Content-Language": "EN-US",
+      },
+    },
+  });
 
-  useEffect(() => {
-    getMyJokes();
-  }, []);
+  // const getMyJokes = async () => {
+  //   const data = await getData(endpoints.jokes);
+  //   return setJokes(data.jokes);
+  // };
+
+  // useEffect(() => {
+  //   getMyJokes();
+  // }, []);
 
   const selectJoke = () => {
     setToggleJokeView(false);

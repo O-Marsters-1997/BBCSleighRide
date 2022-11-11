@@ -39,6 +39,7 @@ export const theme: DefaultTheme = {
     grey: {
       main: "rgb(49, 54, 56)",
       contrastText: "rgb(151, 151, 151)",
+      additional: "hsla(0, 0%, 0%, 0.25)",
     },
     primaryText: {
       main: "rgba(242, 242, 242, 1)",

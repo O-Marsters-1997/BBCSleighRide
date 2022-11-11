@@ -3,7 +3,6 @@ import View from "../View";
 import { device } from "../../types/constants";
 
 // Layouts
-
 export const AppContainer = styled(View)`
   position: relative;
   height: 100vh;
@@ -11,14 +10,15 @@ export const AppContainer = styled(View)`
 `;
 
 export const CompleteOverlayContainer = styled(View)`
+  position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  z-index: 101;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: ${({ theme }) => theme.palette.grey.additional};
 `;
 
 export const CentralOverlayContainer = styled(View)`

@@ -41,7 +41,7 @@ declare global {
 
   type Endpoint = "jokes" | "quiz" | "countries";
 
-  type Endpoints = { [enpoint in Endpoints]: string };
+  type Endpoints = { [point in Endpoints]: string };
 
   declare namespace Countries {
     interface MapState {
