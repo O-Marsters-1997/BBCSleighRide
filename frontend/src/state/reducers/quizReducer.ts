@@ -2,7 +2,9 @@ import { ActionType } from "../actionTypes";
 import { currentAnswerQuiz } from "../../types/constants";
 
 const inititalState: Quiz.QuizGame = {
-  questions: [],
+  response: [],
+  loading: true,
+  error: null,
   currentAnswer: undefined,
   answeredCorrectly: false,
   readyToPlay: false,
@@ -15,6 +17,10 @@ const inititalState: Quiz.QuizGame = {
 
 const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
   switch (action.type) {
+    case ActionType.SET_QUESTIONS:
+      return { ...state, response: action.payload };
+    case ActionType.QUESTIONS_ERROR:
+      return { ...state, loading: false, error: action.payload };
     case ActionType.RESET_QUIZ:
       return inititalState;
     case ActionType.START_QUIZ:

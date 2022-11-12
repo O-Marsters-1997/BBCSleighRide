@@ -1,5 +1,19 @@
 import { Dispatch } from "redux";
+import { AxiosError } from "axios";
 import { ActionType } from "../actionTypes";
+
+export const setQuestions =
+  (questions: Quiz[]) => (dispatch: Dispatch<Quiz.Action>) => {
+    dispatch({
+      type: ActionType.SET_QUESTIONS,
+      payload: questions,
+    });
+  };
+
+export const questionsError =
+  (error: AxiosError) => (dispatch: Dispatch<Quiz.Action>) => {
+    dispatch({ type: ActionType.QUESTIONS_ERROR, payload: error });
+  };
 
 export const resetQuiz = () => (dispatch: Dispatch<Quiz.Action>) => {
   dispatch({

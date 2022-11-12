@@ -1,9 +1,19 @@
 import React from "react";
-import useAxios from "../hooks/useAxios";
+// import { Dispatch } from "redux";
+// import { useDispatch } from "react-redux";
+// import { State } from "../state/reducers";
+// import { ActionType } from "../state/actionTypes";
+// import { endpoints } from "../types/constants";
+// import { getData } from "../services";
+// import { shuffleArray } from "../utils/sharedHelpers";
+import useFetchDuplicate from "../hooks/useFetchDuplicate";
 import axios from "../services/quizTest";
 
 const QuizTest: React.FC = () => {
-  const { response, error, loading } = useAxios({
+  // const dispatch: Dispatch = useDispatch();
+  // const { response: questions } = useSelector((state: State) => state.quiz);
+
+  const test = useFetchDuplicate({
     axiosInstance: axios,
     method: "get",
     url: "questions",
@@ -14,18 +24,30 @@ const QuizTest: React.FC = () => {
     },
   });
 
+  console.log(test);
+
+  // const getMyQuestions = async () => {
+  //   const data = await getData(endpoints.quiz);
+  //   return dispatch({
+  //     type: ActionType.SET_QUESTIONS,
+  //     payload: shuffleArray(data.quiz),
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   getMyQuestions();
+  // }, []);
+
+  // const repeatQuestions = () => {
+  //   getMyQuestions();
+  //   console.log(questions);
+  // };
+
   return (
     <article>
-      <h3>Random questions</h3>
-      {loading && <p>Loading...</p>}
-      {!loading && error && <p>{error.message}</p>}
-      {!loading && !error && response && (
-        <div>
-          {response.map((question: Quiz, index: number) => (
-            <p key={index}>{question.question}</p>
-          ))}
-        </div>
-      )}
+      <button type="button" onClick={() => console.log(test)}>
+        hello world
+      </button>
     </article>
   );
 };

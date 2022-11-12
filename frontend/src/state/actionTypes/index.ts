@@ -1,6 +1,7 @@
 export enum ActionType {
   // Quiz state
-  GET_QUESTIONS = "get questions",
+  SET_QUESTIONS = "set questions",
+  QUESTIONS_ERROR = "questions error",
   LOAD_QUESTIONS = "load questions",
   RESET_QUIZ = "reset quiz",
   START_QUIZ = "start quiz",

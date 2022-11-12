@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { ActionType } from "../state/actionTypes";
 
 declare global {
@@ -24,6 +25,12 @@ declare global {
   }
 
   type Context = {
+    setQuestions: (
+      questions: Quiz[],
+    ) => (dispatch: Dispatch<Quiz.Action>) => void;
+    questionsError: (
+      error: AxiosError,
+    ) => (dispatch: Dispatch<Quiz.Action>) => void;
     resetQuiz: () => void;
     startQuiz: () => void;
     endQuiz: () => void;
@@ -80,7 +87,9 @@ declare global {
 
   declare namespace Quiz {
     interface QuizGame {
-      questions: Quiz[];
+      response: Quiz[];
+      loading: boolean;
+      error: AxiosError | null;
       currentAnswer: CurrentAnswer;
       answeredCorrectly: boolean;
       readyToPlay: boolean;
@@ -95,11 +104,14 @@ declare global {
       type: ActionType.LOAD_QUESTIONS;
     }
 
-    interface Get {
-      type: ActionType.GET_QUESTIONS;
-      payload: {
-        quiz: Quiz[];
-      };
+    interface SetQuestions {
+      type: ActionType.SET_QUESTIONS;
+      payload: Quiz[];
+    }
+
+    interface Error {
+      type: ActionType.QUESTIONS_ERROR;
+      payload: any;
     }
 
     interface Reset {
@@ -131,6 +143,8 @@ declare global {
     }
 
     type Action =
+      | SetQuestions
+      | Error
       | Reset
       | Start
       | End
@@ -139,7 +153,7 @@ declare global {
       | NextQuestion
       | NextQuestionGiveUp;
 
-    type CurrentAnswer = "correct" | "incorrect" | undefined;
+    type CurrentAnswer = string | undefined;
   }
 
   declare namespace Utils {

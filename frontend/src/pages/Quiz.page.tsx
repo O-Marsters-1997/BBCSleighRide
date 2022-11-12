@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Dispatch } from "redux";
 import { useSelector, useDispatch } from "react-redux";
 import { State } from "../state/reducers";
@@ -13,16 +13,22 @@ import { shuffleArray } from "../utils/sharedHelpers";
 import { getData } from "../services";
 
 const Quiz = () => {
-  const [questions, setQuestions] = useState<Quiz[] | undefined>();
-  const { totalQuestions, readyToPlay, livesLeft } = useSelector(
-    (state: State) => state.quiz,
-  );
+  // const [questions, setQuestions] = useState<Quiz[] | undefined>();
+  const {
+    response: questions,
+    totalQuestions,
+    readyToPlay,
+    livesLeft,
+  } = useSelector((state: State) => state.quiz);
 
   const dispatch: Dispatch = useDispatch();
 
   const getMyQuestions = async () => {
     const data = await getData(endpoints.quiz);
-    return setQuestions(shuffleArray(data.quiz).slice(0, 5));
+    return dispatch({
+      type: ActionType.SET_QUESTIONS,
+      payload: shuffleArray(data.quiz),
+    });
   };
 
   useEffect(() => {
