@@ -30,8 +30,13 @@ type Props = {
 };
 
 const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
-  const { correctQuestions, livesLeft, currentAnswer, answeredCorrectly } =
-    useSelector((state: State) => state.quiz);
+  const {
+    correctQuestions,
+    incorrectQuestions,
+    livesLeft,
+    currentAnswer,
+    answeredCorrectly,
+  } = useSelector((state: State) => state.quiz);
   const dispatch: Dispatch = useDispatch();
   const navigate = useNavigate();
   const viewport = useViewport();
@@ -42,13 +47,11 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
 
   const handleClick = useCallback(
     (index: number) => (e: React.MouseEvent<HTMLButtonElement>) => {
-      console.log(e.target, question.correct);
       e.preventDefault();
       if ((e.target as Element).innerHTML.includes(question.correct)) {
         dispatch({ type: ActionType.ANSWER_CORRECTLY });
         soundCorrect();
       } else {
-        console.log((e.target as Element).innerHTML);
         dispatch({ type: ActionType.ANSWER_INCORRECTLY });
         soundIncorrect();
       }
@@ -56,6 +59,8 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
     },
     [question],
   );
+
+  console.log(incorrectQuestions);
 
   const rejectClick = () => {
     setWarning(true);
@@ -129,7 +134,7 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
             <View style={{ padding: "0 0 1em 0" }}>
               <Text variant="h5">{question.question}</Text>
             </View>
-            <View onClick={() => console.log("yeay")}>
+            <View>
               {question?.options?.map((option: string, index: number) => (
                 <>
                   {!answeredCorrectly ? (

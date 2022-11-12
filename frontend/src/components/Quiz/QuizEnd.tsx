@@ -28,8 +28,9 @@ const QuizEnd = () => {
   const navigate = useNavigate();
   const dispatch: Dispatch = useDispatch();
   const viewport = useViewport();
-  const { livesLeft, totalQuestions, correctQuestions, incorrectQuestions } =
-    useSelector((state: State) => state.quiz);
+  const { livesLeft, totalQuestions, correctQuestions } = useSelector(
+    (state: State) => state.quiz,
+  );
   const { endQuiz } = useContext(ActionsContext) ?? {};
 
   const handleEndQuiz = (): void => {
@@ -56,7 +57,7 @@ const QuizEnd = () => {
             </Text>
           )}
           <Text variant="body1">
-            You got {correctQuestions - incorrectQuestions} correct out of
+            You got {correctQuestions} correct out of
             <View component="span" display="inline">
               {totalQuestions}
             </View>
@@ -64,11 +65,7 @@ const QuizEnd = () => {
           <Text variant="body1">
             That is
             <View component="span" display="inline">
-              {correctPercentage(
-                correctQuestions,
-                incorrectQuestions,
-                totalQuestions,
-              )}
+              {correctPercentage(correctQuestions, totalQuestions)}
             </View>
           </Text>
         </TextWrapper>

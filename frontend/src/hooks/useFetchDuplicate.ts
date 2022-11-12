@@ -27,7 +27,7 @@ const useFetchDuplicate = (configObj: any) => {
 
   const dispatch: Dispatch = useDispatch();
   useEffect(() => {
-    console.log("running hook");
+    console.log("running fetch");
     const controller = new AbortController();
     const fetchData = async () => {
       try {
@@ -47,9 +47,10 @@ const useFetchDuplicate = (configObj: any) => {
           type: ActionType.QUESTIONS_ERROR,
           payload: err as AxiosError,
         });
-        console.log(err.message);
+        throw new Error(err.message);
       }
     };
+
     fetchData();
     // Use effect clean up function
     return () => controller.abort();

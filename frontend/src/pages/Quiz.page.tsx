@@ -1,16 +1,14 @@
-import React, { useEffect } from "react";
-// import { Dispatch } from "redux";
+import React from "react";
+
 import { useSelector } from "react-redux";
 import { State } from "../state/reducers";
-// import { ActionType } from "../state/actionTypes";
+
 import QuizWelcome from "../components/Quiz/QuizWelcome";
 import QuizQuestion from "../components/Quiz/QuizQuestion";
 import QuizEnd from "../components/Quiz/QuizEnd";
 import Loading from "../components/Loading";
 import { LoadingWrapper, CentralOverlayContainer } from "../components/Lib";
-// import { endpoints } from "../types/constants";
-// import { shuffleArray } from "../utils/sharedHelpers";
-// import { getData } from "../services";
+
 import useFetchDuplicate from "../hooks/useFetchDuplicate";
 import axios from "../services/quizTest";
 
@@ -34,9 +32,7 @@ const Quiz = () => {
     },
   });
 
-  useEffect(() => {
-    console.log(questions);
-  }, [questions]);
+  console.log(questions);
 
   if (loading) {
     return (
