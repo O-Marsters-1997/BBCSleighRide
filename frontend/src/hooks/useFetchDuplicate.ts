@@ -6,6 +6,7 @@ import { AxiosResponse, AxiosRequestConfig, Method, AxiosError } from "axios";
 import { State } from "../state/reducers";
 import { ActionType } from "../state/actionTypes";
 import { endpoints } from "../types/constants";
+// import { shuffleArray } from "../utils/sharedHelpers";
 
 const useFetchDuplicate = (configObj: any) => {
   const {
@@ -26,6 +27,7 @@ const useFetchDuplicate = (configObj: any) => {
 
   const dispatch: Dispatch = useDispatch();
   useEffect(() => {
+    console.log("running hook");
     const controller = new AbortController();
     const fetchData = async () => {
       try {
@@ -38,7 +40,7 @@ const useFetchDuplicate = (configObj: any) => {
         );
         dispatch({
           type: ActionType.SET_QUESTIONS,
-          payload: res.data,
+          payload: Object.values(res.data)[0] as any[],
         });
       } catch (err: any) {
         dispatch({
@@ -49,10 +51,10 @@ const useFetchDuplicate = (configObj: any) => {
       }
     };
     fetchData();
-
     // Use effect clean up function
     return () => controller.abort();
-  }, []);
+  }, [loading]);
+
   return { response, error, loading };
 };
 

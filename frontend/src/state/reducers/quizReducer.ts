@@ -1,5 +1,6 @@
 import { ActionType } from "../actionTypes";
 import { currentAnswerQuiz } from "../../types/constants";
+// import { shuffleArray } from "../../utils/sharedHelpers";
 
 const inititalState: Quiz.QuizGame = {
   response: [],
@@ -18,13 +19,17 @@ const inititalState: Quiz.QuizGame = {
 const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
   switch (action.type) {
     case ActionType.SET_QUESTIONS:
-      return { ...state, response: action.payload };
+      return {
+        ...state,
+        response: action.payload,
+        loading: false,
+      };
     case ActionType.QUESTIONS_ERROR:
       return { ...state, loading: false, error: action.payload };
     case ActionType.RESET_QUIZ:
       return inititalState;
     case ActionType.START_QUIZ:
-      return { ...inititalState, readyToPlay: true };
+      return { ...state, readyToPlay: true };
     case ActionType.ANSWER_CORRECTLY:
       return {
         ...state,

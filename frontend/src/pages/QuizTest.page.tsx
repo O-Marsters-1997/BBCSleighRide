@@ -13,7 +13,7 @@ const QuizTest: React.FC = () => {
   // const dispatch: Dispatch = useDispatch();
   // const { response: questions } = useSelector((state: State) => state.quiz);
 
-  const test = useFetchDuplicate({
+  const { response } = useFetchDuplicate({
     axiosInstance: axios,
     method: "get",
     url: "questions",
@@ -24,7 +24,7 @@ const QuizTest: React.FC = () => {
     },
   });
 
-  console.log(test);
+  console.log(response);
 
   // const getMyQuestions = async () => {
   //   const data = await getData(endpoints.quiz);
@@ -45,7 +45,7 @@ const QuizTest: React.FC = () => {
 
   return (
     <article>
-      <button type="button" onClick={() => console.log(test)}>
+      <button type="button" onClick={() => console.log(response)}>
         hello world
       </button>
     </article>

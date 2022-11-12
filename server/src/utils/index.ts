@@ -18,6 +18,23 @@ export const seedData = async (schema: any, items: any) => {
   }
 };
 
+export const shuffleArray = (array: any[], qs: number) => {
+  let currentIndex = array.length;
+  let randomIndex;
+
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array.slice(0, qs);
+};
+
 async function exit(): Promise<void> {
   try {
     await mongoose.disconnect();

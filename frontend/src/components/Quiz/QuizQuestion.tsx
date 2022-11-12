@@ -42,11 +42,13 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
 
   const handleClick = useCallback(
     (index: number) => (e: React.MouseEvent<HTMLButtonElement>) => {
+      console.log(e.target, question.correct);
       e.preventDefault();
-      if ((e.target as Element).innerHTML == question.correct) {
+      if ((e.target as Element).innerHTML.includes(question.correct)) {
         dispatch({ type: ActionType.ANSWER_CORRECTLY });
         soundCorrect();
       } else {
+        console.log((e.target as Element).innerHTML);
         dispatch({ type: ActionType.ANSWER_INCORRECTLY });
         soundIncorrect();
       }
@@ -74,7 +76,7 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
     navigate("/");
   };
 
-  const presents = [...Array(correctQuestions)].map((index) => (
+  const presents = [...Array(correctQuestions)].map((index: number) => (
     <Image
       src={present}
       alt="present to demonstrate correct answers in quiz"
@@ -86,7 +88,7 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
     />
   ));
 
-  const candyCanes = [...Array(livesLeft)].map((index) => (
+  const candyCanes = [...Array(livesLeft)].map((index: number) => (
     <Image
       src={candy_cane}
       alt={`${livesLeft} candy canes to show how many lives are left`}
@@ -127,7 +129,7 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
             <View style={{ padding: "0 0 1em 0" }}>
               <Text variant="h5">{question.question}</Text>
             </View>
-            <View>
+            <View onClick={() => console.log("yeay")}>
               {question?.options?.map((option: string, index: number) => (
                 <>
                   {!answeredCorrectly ? (
