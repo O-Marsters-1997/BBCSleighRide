@@ -3,8 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { State } from "../state/reducers";
 
-// import QuizWelcome from "../components/Quiz/QuizWelcome";
-// import QuizQuestion from "../components/Quiz/QuizQuestion";
+import QuizWelcome from "../components/Quiz/QuizWelcome";
+import QuizQuestion from "../components/Quiz/QuizQuestion";
 import QuizEnd from "../components/Quiz/QuizEnd";
 import Loading from "../components/Loading";
 import { LoadingWrapper, CentralOverlayContainer } from "../components/Lib";
@@ -13,7 +13,7 @@ import useFetchDuplicate from "../hooks/useFetchDuplicate";
 import axios from "../services/quizTest";
 
 const Quiz = () => {
-  const { totalQuestions, livesLeft } = useSelector(
+  const { totalQuestions, livesLeft, readyToPlay } = useSelector(
     (state: State) => state.quiz,
   );
 
@@ -56,9 +56,13 @@ const Quiz = () => {
   }
 
   return (
-    <LoadingWrapper>
-      <Loading size="medium" error title="testing error" />
-    </LoadingWrapper>
+    <CentralOverlayContainer>
+      {!readyToPlay ? (
+        <QuizWelcome />
+      ) : (
+        <QuizQuestion question={questions[totalQuestions]} />
+      )}
+    </CentralOverlayContainer>
   );
 };
 
