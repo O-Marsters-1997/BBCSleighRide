@@ -74,14 +74,14 @@ export const CentralColumnContainer = styled(View)<{ reverse?: boolean }>`
 
 export const ElfImageWrapper = styled(View)`
   padding: 2em 0;
-  @media ${device.laptopM} {
+  @media ${device.mediumLarge} {
     padding: 2em 0 0 2em;
   } ;
 `;
 
 export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
   cursor: pointer;
-  @media ${device.laptop} {
+  @media ${device.mediumPlus} {
     transform: rotate(${(props) => (props.pageSide == "right" ? 5 : -5)}deg);
     transition-property: all;
     transition: 0.4s ease-in;
@@ -95,7 +95,7 @@ export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
 export const QuizGameCracker = styled(Cracker)`
   height: 5em;
   width: 10em;
-  @media ${device.laptop} {
+  @media ${device.mediumPlus} {
     height: 7em;
     width: 14em;
   } ;

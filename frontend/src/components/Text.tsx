@@ -41,6 +41,7 @@ const Text: React.FC<Props> = ({
   lineHeight,
   marginBottom,
   textAlign,
+  paddingTop,
 }) => (
   <StyledText
     variant={variant}
@@ -48,11 +49,10 @@ const Text: React.FC<Props> = ({
     lineHeight={lineHeight}
     marginBottom={marginBottom}
     textAlign={textAlign}
+    paddingTop={paddingTop}
   >
     {children}
   </StyledText>
 );
 
 export default Text;
-
-// getFontVariant(variant).fontSize

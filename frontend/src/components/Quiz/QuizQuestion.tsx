@@ -30,13 +30,8 @@ type Props = {
 };
 
 const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
-  const {
-    correctQuestions,
-    incorrectQuestions,
-    livesLeft,
-    currentAnswer,
-    answeredCorrectly,
-  } = useSelector((state: State) => state.quiz);
+  const { correctQuestions, livesLeft, currentAnswer, answeredCorrectly } =
+    useSelector((state: State) => state.quiz);
   const dispatch: Dispatch = useDispatch();
   const navigate = useNavigate();
   const viewport = useViewport();
@@ -59,8 +54,6 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
     },
     [question],
   );
-
-  console.log(incorrectQuestions);
 
   const rejectClick = () => {
     setWarning(true);

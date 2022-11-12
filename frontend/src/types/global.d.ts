@@ -94,7 +94,6 @@ declare global {
       answeredCorrectly: boolean;
       readyToPlay: boolean;
       correctQuestions: number;
-      incorrectQuestions: number;
       totalQuestions: number;
       questionsRemaining: number;
       livesLeft: number;
@@ -273,6 +272,6 @@ declare global {
       | "initial"
       | "inherit";
 
-    type TextAlign = "center" | "left" | "right" | "justify";
+    type TextAlign = "start" | "center" | "left" | "right" | "justify";
   }
 }

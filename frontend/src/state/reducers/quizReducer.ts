@@ -1,6 +1,5 @@
 import { ActionType } from "../actionTypes";
 import { currentAnswerQuiz } from "../../types/constants";
-// import { shuffleArray } from "../../utils/sharedHelpers";
 
 const inititalState: Quiz.QuizGame = {
   response: [],
@@ -10,7 +9,6 @@ const inititalState: Quiz.QuizGame = {
   answeredCorrectly: false,
   readyToPlay: false,
   correctQuestions: 0,
-  incorrectQuestions: 0,
   totalQuestions: 0,
   questionsRemaining: 5,
   livesLeft: 5,
@@ -42,7 +40,6 @@ const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
       return {
         ...state,
         questionsRemaining: state.questionsRemaining - 1,
-        incorrectQuestions: state.incorrectQuestions + 1,
         livesLeft: state.livesLeft - 1,
         currentAnswer: currentAnswerQuiz.incorrect,
       };

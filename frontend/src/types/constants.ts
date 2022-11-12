@@ -70,11 +70,12 @@ export const breakpoints: Utils.BreakpointsMap = {
 };
 
 export const device = {
-  mobileS: `(min-width: ${viewports.mobileS}px)`,
-  mobileL: `(min-width: ${viewports.mobileL}px)`,
-  tablet: `(min-width: ${viewports.tablet}px)`,
-  laptop: `(min-width: ${viewports.laptop}px)`,
-  laptopM: `(min-width: ${viewports.laptopM}px)`,
-  LaptopL: `(min-width: ${viewports.laptopL}px)`,
-  desktop: `(min-width: ${viewports.desktop}px)`,
+  xSmall: `(min-width: ${viewports.mobileS}px)`,
+  small: `(min-width: ${viewports.mobileL}px)`,
+  smallMedium: `(min-width: ${viewports.tabletS}px)`,
+  medium: `(min-width: ${viewports.tablet}px)`,
+  mediumPlus: `(min-width: ${viewports.laptop}px)`,
+  mediumLarge: `(min-width: ${viewports.laptopM}px)`,
+  large: `(min-width: ${viewports.laptopL}px)`,
+  xLarge: `(min-width: ${viewports.desktop}px)`,
 };
