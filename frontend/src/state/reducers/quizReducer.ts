@@ -14,7 +14,10 @@ const inititalState: Quiz.QuizGame = {
   livesLeft: 5,
 };
 
-const reducer = (state: Quiz.QuizGame = inititalState, action: Quiz.Action) => {
+const reducer = (
+  state: Quiz.QuizGame = inititalState,
+  action: Quiz.Action,
+): Quiz.QuizGame => {
   switch (action.type) {
     case ActionType.SET_QUESTIONS:
       return {

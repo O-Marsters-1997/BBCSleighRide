@@ -17,6 +17,18 @@ export const jokeError =
     });
   };
 
+export const refetchJoke = () => (dispatch: Dispatch<Joke.Action>) => {
+  dispatch({
+    type: ActionType.REFETCH_JOKE,
+  });
+};
+
+export const resetJoke = () => (dispatch: Dispatch<Joke.Action>) => {
+  dispatch({
+    type: ActionType.RESET_JOKE,
+  });
+};
+
 export const showModal = () => (dispatch: Dispatch<Joke.Action>) => {
   dispatch({
     type: ActionType.SHOW_MODAL,

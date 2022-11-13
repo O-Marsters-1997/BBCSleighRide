@@ -1,51 +1,21 @@
 import { useEffect } from "react";
 import _ from "lodash";
 import { Dispatch } from "redux";
-import { useDispatch, useSelector } from "react-redux";
-import { AxiosResponse, AxiosRequestConfig, Method, AxiosError } from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { AxiosResponse, AxiosError } from "axios";
 import { State } from "../state/reducers";
-import { ActionType } from "../state/actionTypes";
 import { endpoints } from "../types/constants";
-// import { shuffleArray } from "../utils/sharedHelpers";
+import { getActionType } from "../utils";
 
-const getActionType = (url: string): ActionTypeObject => {
-  const result: ActionTypeObject = { res: null, err: null };
-
-  switch (url) {
-    case endpoints.quiz:
-      result.res = ActionType.SET_QUESTIONS;
-      result.err = ActionType.QUESTIONS_ERROR;
-      break;
-    case endpoints.jokes:
-      result.res = ActionType.SET_JOKE;
-      result.err = ActionType.JOKE_ERROR;
-      break;
-    default:
-      return result;
-  }
-  return result;
-};
-
-const useFetchDuplicate = (configObj: any) => {
-  const {
-    axiosInstance,
-    method,
-    url,
-    requestConfig = {},
-  }: {
-    axiosInstance: any;
-    method: Method;
-    url: string;
-    requestConfig: AxiosRequestConfig;
-  } = configObj;
-
+const useFetchDuplicate = (configObj: FetchConfig) => {
+  const { axiosInstance, method, url, requestConfig = {} } = configObj;
   const { response, error, loading } = useSelector((state: State) =>
     configObj.url == endpoints.quiz ? state.quiz : _.get(state, configObj.url),
   );
 
   const dispatch: Dispatch = useDispatch();
+
   useEffect(() => {
-    console.log("running fetch");
     const controller = new AbortController();
     const fetchData = async () => {
       try {
@@ -56,6 +26,7 @@ const useFetchDuplicate = (configObj: any) => {
             signal: controller.signal,
           },
         );
+
         dispatch({
           type: getActionType(configObj.url).res,
           payload: Object.values(res.data)[0] as any,
@@ -69,7 +40,9 @@ const useFetchDuplicate = (configObj: any) => {
       }
     };
 
-    fetchData();
+    if (loading) {
+      fetchData();
+    }
     // Use effect clean up function
     return () => controller.abort();
   }, [loading]);

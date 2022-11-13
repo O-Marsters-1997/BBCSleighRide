@@ -25,7 +25,7 @@ const Quiz = () => {
     method: "get",
     url: endpoints.quiz,
     requestConfig: {
-      header: {
+      headers: {
         "Content-Language": "EN-US",
       },
     },

@@ -1,4 +1,4 @@
-import { AxiosError } from "axios";
+import { AxiosError, AxiosRequestConfig, Method } from "axios";
 import { ActionType } from "../state/actionTypes";
 
 declare global {
@@ -41,11 +41,14 @@ declare global {
     | "next question"
     | "next question give up"
     | "set joke"
+    | "refetch joke"
     | "joke error"
+    | "reset joke"
     | "show modal"
     | "hide modal"
     | "select joke"
     | "set countries"
+    | "countries error"
     | null;
 
   type Context = {
@@ -64,21 +67,37 @@ declare global {
     nextQuestionGiveUp: () => void;
     setJoke: (jokes: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
     jokeError: (error: AxiosError) => (dispatch: Dispatch<Joke.Action>) => void;
+    refetchJoke: () => void;
+    resetJoke: () => void;
     showModal: () => void;
     hideModal: () => void;
     selectJoke: (joke: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
     setCountries: (
       countries: Country[],
     ) => (dispatch: Dispatch<Countries.Action>) => void;
+    countriesError: (
+      error: AxiosError,
+    ) => (dispatch: Dispatch<Countries.Action>) => void;
   };
 
-  type Endpoint = "jokes" | "quiz" | "countries";
+  // Api types
+
+  type FetchConfig = {
+    axiosInstance: any;
+    method: Method;
+    url: string;
+    requestConfig: AxiosRequestConfig;
+  };
+
+  type Endpoint = "joke" | "quiz" | "countries";
 
   type Endpoints = { [point in Endpoints]: string };
 
   declare namespace Countries {
     interface MapState {
-      countries: Country[] | undefined;
+      response: Country[] | undefined;
+      loading: boolean;
+      error: AxiosError | null;
     }
 
     interface SetCountries {
@@ -86,7 +105,12 @@ declare global {
       payload: Country[];
     }
 
-    type Action = SetCountries;
+    interface CountriesError {
+      type: ActionType.COUNTRIES_ERROR;
+      payload: any;
+    }
+
+    type Action = SetCountries | CountriesError;
   }
 
   declare namespace Joke {
@@ -94,8 +118,10 @@ declare global {
       response: Joke | undefined;
       loading: boolean;
       error: AxiosError | null;
+      newRequest: number;
       modalOpen: boolean;
       selectedJoke: Joke | null;
+      toggleJokeView: boolean;
     }
 
     interface SetJoke {
@@ -107,6 +133,15 @@ declare global {
       type: ActionType.JOKE_ERROR;
       payload: any;
     }
+
+    interface RefetchJoke {
+      type: ActionType.REFETCH_JOKE;
+    }
+
+    interface ResetJoke {
+      type: ActionType.RESET_JOKE;
+    }
+
     interface ShowModal {
       type: ActionType.SHOW_MODAL;
     }
@@ -120,7 +155,14 @@ declare global {
       payload: Joke;
     }
 
-    type Action = SetJoke | JokeError | ShowModal | HideModal | SelectJoke;
+    type Action =
+      | SetJoke
+      | JokeError
+      | RefetchJoke
+      | ResetJoke
+      | ShowModal
+      | HideModal
+      | SelectJoke;
   }
 
   declare namespace Quiz {

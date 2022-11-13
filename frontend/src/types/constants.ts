@@ -4,9 +4,9 @@ const { viewports } = theme;
 
 // API
 export const endpoints: Endpoints = {
-  jokes: "jokes",
+  joke: "joke",
   quiz: "questions",
-  countries: "countries",
+  map: "map",
 };
 
 // Quiz

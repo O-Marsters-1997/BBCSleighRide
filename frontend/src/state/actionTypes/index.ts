@@ -13,9 +13,12 @@ export enum ActionType {
   // Joke state
   SET_JOKE = "set joke",
   JOKE_ERROR = "joke error",
+  REFETCH_JOKE = "refetch joke",
+  RESET_JOKE = "reset joke",
   SHOW_MODAL = "show modal",
   HIDE_MODAL = "hide modal",
   SELECT_JOKE = "select joke",
   // Map state
   SET_COUNTRIES = "set countries",
+  COUNTRIES_ERROR = "countries error",
 }
