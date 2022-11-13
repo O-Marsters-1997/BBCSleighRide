@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import ReactTooltip from "react-tooltip";
 
-import styled from "styled-components";
 import Loading from "../components/Loading";
 import View from "../components/View";
 import Map from "../components/Map/map";
@@ -10,10 +10,13 @@ import { endpoints } from "../types/constants";
 import axios from "../services/quizTest";
 import useAxios from "../hooks/useAxios";
 
-const StledView = styled(View)``;
+const StledView = styled(View)`
+  max-width: 600px;
+`;
 
 const MapController = () => {
   const [content, setContent] = useState<string | undefined>("");
+  console.log(content);
   const {
     response: countries,
     loading,
@@ -28,6 +31,8 @@ const MapController = () => {
       },
     },
   });
+
+  useEffect(() => console.log(content), [content]);
 
   const handleContentSet = (content: string): void => {
     setContent(content);

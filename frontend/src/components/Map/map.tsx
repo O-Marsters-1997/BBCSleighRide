@@ -1,9 +1,16 @@
 import React, { useState, ReactNode } from "react";
 import styled from "styled-components";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import Tooltip from "@mui/material/Tooltip";
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  ZoomableGroup,
+  Marker,
+} from "react-simple-maps";
 import useSound from "use-sound";
 import { Dispatch } from "redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 // import { ActionsContext } from "../../contexts/StateActions.context";
 import { ActionType } from "../../state/actionTypes";
 import View from "../View";
@@ -24,7 +31,7 @@ import jingle_bells from "../../assets/sounds/jingle_bells_cut.mp3";
 import wishyoumerry from "../../assets/sounds/we_wish_you_a_merry_christmas.mp3";
 
 interface MapAxis {
-  coordinates: number[];
+  coordinates: [number, number];
   name?: string;
   zoom?: any;
 }
@@ -48,7 +55,7 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
   const [play2] = useSound(hohoho);
   const [play3] = useSound(wishyoumerry);
 
-  // const { selectedMapFilter } = useSelector((state: any) => state.map);
+  const { selectedMapFilter } = useSelector((state: any) => state.map);
 
   const handleChange = (target: string) => {
     const playArray = [play1, play2, play3];
@@ -59,39 +66,38 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
 
   // Map Zooming functions
   const handleZoomIn = () => {
-    if (position.zoom >= 4) return;
+    if (position.zoom >= 2.5) return;
     setPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.2 }));
   };
 
   const handleZoomOut = () => {
-    if (position.zoom <= 1) return;
+    if (position.zoom <= 5) return;
     setPosition((pos) => ({ ...pos, zoom: pos.zoom / 1.2 }));
   };
 
-  // const handleMoveEnd = () => {
-  //   setPosition(position);
-  // };
+  const handleMoveEnd = () => {
+    setPosition(position);
+  };
 
   // Map data
   const geoUrl =
     "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
-  console.log(geoUrl);
 
   // these are set here to allow for easy adjustment (can set e.g. offset values for each individual pin, easier here than tweaking wihtin a DB)
-  // const markers: MapAxis[] = [
-  //   { name: "France", coordinates: [2.349014, 48.864716] },
-  //   { name: "South Africa", coordinates: [24.7499, -28.7282] },
-  //   { name: "Kenya", coordinates: [37.9062, -0.0236] },
-  //   { name: "United States of America", coordinates: [-100.8603, 38.27] },
-  //   { name: "Australia", coordinates: [136.2092, -26.5957] },
-  //   { name: "Nicaragua", coordinates: [-85.2072, 12.8654] },
-  //   { name: "Argentina", coordinates: [-67.3667, -37.1833] },
-  //   { name: "Japan", coordinates: [138.2529, 36.2048] },
-  //   { name: "Algeria", coordinates: [1.6596, 28.0339] },
-  //   { name: "Kazakhstan", coordinates: [66.9237, 48.0196] },
-  //   { name: "India", coordinates: [78.9629, 20.5937] },
-  //   { name: "Brazil", coordinates: [-51.9253, -14.235] },
-  // ];
+  const markers: MapAxis[] = [
+    { name: "France", coordinates: [2.349014, 48.864716] },
+    { name: "South Africa", coordinates: [24.7499, -28.7282] },
+    { name: "Kenya", coordinates: [37.9062, -0.0236] },
+    { name: "United States of America", coordinates: [-100.8603, 38.27] },
+    { name: "Australia", coordinates: [136.2092, -26.5957] },
+    { name: "Nicaragua", coordinates: [-85.2072, 12.8654] },
+    { name: "Argentina", coordinates: [-67.3667, -37.1833] },
+    { name: "Japan", coordinates: [138.2529, 36.2048] },
+    { name: "Algeria", coordinates: [1.6596, 28.0339] },
+    { name: "Kazakhstan", coordinates: [66.9237, 48.0196] },
+    { name: "India", coordinates: [78.9629, 20.5937] },
+    { name: "Brazil", coordinates: [-51.9253, -14.235] },
+  ];
 
   const toggleContent = (): ReactNode => (
     <>
@@ -123,13 +129,86 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
         </RowContainer>
         <RowContainer>
           <ComposableMap>
-            <Geographies geography={geoUrl}>
-              {({ geographies }) =>
-                geographies.map((geo) => (
-                  <Geography key={geo.rsmKey} geography={geo} />
-                ))
-              }
-            </Geographies>
+            <ZoomableGroup
+              zoom={position.zoom}
+              center={position.coordinates}
+              onMoveEnd={handleMoveEnd}
+            >
+              <Geographies geography={geoUrl}>
+                {({ geographies }) =>
+                  geographies.map((geo) => (
+                    <Tooltip title="hello">
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        onMouseEnter={() => {
+                          const { name } = geo.properties;
+                          console.log(name);
+                          const found = countriesData.find(
+                            (country) => country.name === name,
+                          );
+                          if (found) {
+                            const TOOLTIP =
+                              found[selectedMapFilter as keyof typeof found];
+                            console.log(TOOLTIP);
+                            const CONTINENT = found.continent;
+                            setTooltipContent(
+                              `<center><b>${TOOLTIP}</b><br>${name}, ${CONTINENT}</center>`,
+                            );
+                          }
+                        }}
+                        onMouseLeave={() => {
+                          setTooltipContent("");
+                        }}
+                        stroke="#FEFFFD"
+                        strokeWidth="0.5"
+                        style={{
+                          default: {
+                            fill: "#ffbdc4",
+                            outline: "none",
+                          },
+                          hover: {
+                            fill: "#D20018",
+                            outline: "none",
+                          },
+                          pressed: {
+                            fill: "#008011",
+                            outline: "none",
+                          },
+                        }}
+                      />
+                    </Tooltip>
+                  ))
+                }
+              </Geographies>
+              {markers.map(({ name, coordinates }) => (
+                <Marker key={name} coordinates={coordinates}>
+                  <g
+                    fill="none"
+                    stroke="#008011"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    transform="translate(-12, -24)"
+                  >
+                    <circle cx="12" cy="10" r="3" />
+                    <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
+                  </g>
+
+                  <text
+                    textAnchor="middle"
+                    y="-27"
+                    style={{
+                      fontFamily: "system-ui",
+                      fontSize: "11px",
+                      fontWeight: "400px",
+                    }}
+                  >
+                    {name}
+                  </text>
+                </Marker>
+              ))}
+            </ZoomableGroup>
           </ComposableMap>
         </RowContainer>
       </Card>
