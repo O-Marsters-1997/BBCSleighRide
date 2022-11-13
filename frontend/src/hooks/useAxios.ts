@@ -1,7 +1,32 @@
-import { useState, useEffect } from "react";
-import { AxiosError, AxiosResponse, AxiosRequestConfig, Method } from "axios";
+import { useEffect } from "react";
+import _ from "lodash";
+import { Dispatch } from "redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AxiosResponse, AxiosRequestConfig, Method, AxiosError } from "axios";
+import { State } from "../state/reducers";
+import { ActionType } from "../state/actionTypes";
+import { endpoints } from "../types/constants";
+// import { shuffleArray } from "../utils/sharedHelpers";
 
-const useAxios = (configObj: any) => {
+const getActionType = (url: string): ActionTypeObject => {
+  const result: ActionTypeObject = { res: null, err: null };
+
+  switch (url) {
+    case endpoints.quiz:
+      result.res = ActionType.SET_QUESTIONS;
+      result.err = ActionType.QUESTIONS_ERROR;
+      break;
+    case endpoints.jokes:
+      result.res = ActionType.SET_JOKE;
+      result.err = ActionType.JOKE_ERROR;
+      break;
+    default:
+      return result;
+  }
+  return result;
+};
+
+const useFetchDuplicate = (configObj: any) => {
   const {
     axiosInstance,
     method,
@@ -14,11 +39,13 @@ const useAxios = (configObj: any) => {
     requestConfig: AxiosRequestConfig;
   } = configObj;
 
-  const [response, setResponse] = useState<any>();
-  const [error, setError] = useState<AxiosError>();
-  const [loading, setLoading] = useState(true);
+  const { response, error, loading } = useSelector((state: State) =>
+    configObj.url == endpoints.quiz ? state.quiz : _.get(state, configObj.url),
+  );
 
+  const dispatch: Dispatch = useDispatch();
   useEffect(() => {
+    console.log("running fetch");
     const controller = new AbortController();
     const fetchData = async () => {
       try {
@@ -29,21 +56,25 @@ const useAxios = (configObj: any) => {
             signal: controller.signal,
           },
         );
-        setResponse(Object.values(res.data)[0]);
+        dispatch({
+          type: getActionType(configObj.url).res,
+          payload: Object.values(res.data)[0] as any,
+        });
       } catch (err: any) {
-        console.log(err.message);
-        setError(err);
-      } finally {
-        setLoading(false);
+        dispatch({
+          type: getActionType(configObj.url).err,
+          payload: err as AxiosError,
+        });
+        throw new Error(err.message);
       }
     };
-    fetchData();
 
+    fetchData();
     // Use effect clean up function
     return () => controller.abort();
-  }, []);
+  }, [loading]);
 
   return { response, error, loading };
 };
 
-export default useAxios;
+export default useFetchDuplicate;

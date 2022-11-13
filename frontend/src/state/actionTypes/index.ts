@@ -11,6 +11,8 @@ export enum ActionType {
   NEXT_QUESTION = "next question",
   NEXT_QUESTION_GIVE_UP = "next question give up",
   // Joke state
+  SET_JOKE = "set joke",
+  JOKE_ERROR = "joke error",
   SHOW_MODAL = "show modal",
   HIDE_MODAL = "hide modal",
   SELECT_JOKE = "select joke",

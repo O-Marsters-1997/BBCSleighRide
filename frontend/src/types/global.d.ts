@@ -24,6 +24,30 @@ declare global {
     options?: string[];
   }
 
+  interface ActionTypeObject {
+    res: ActionTypeOptions;
+    err: ActionTypeOptions;
+  }
+
+  type ActionTypeOptions =
+    | "set questions"
+    | "questions error"
+    | "load questions"
+    | "reset quiz"
+    | "start quiz"
+    | "end quiz"
+    | "answer correctly"
+    | "answer incorrectly"
+    | "next question"
+    | "next question give up"
+    | "set joke"
+    | "joke error"
+    | "show modal"
+    | "hide modal"
+    | "select joke"
+    | "set countries"
+    | null;
+
   type Context = {
     setQuestions: (
       questions: Quiz[],
@@ -38,6 +62,8 @@ declare global {
     answerIncorrectly: () => void;
     nextQuestion: () => void;
     nextQuestionGiveUp: () => void;
+    setJoke: (jokes: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
+    jokeError: (error: AxiosError) => (dispatch: Dispatch<Joke.Action>) => void;
     showModal: () => void;
     hideModal: () => void;
     selectJoke: (joke: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
@@ -65,10 +91,22 @@ declare global {
 
   declare namespace Joke {
     interface JokeState {
+      response: Joke | undefined;
+      loading: boolean;
+      error: AxiosError | null;
       modalOpen: boolean;
       selectedJoke: Joke | null;
     }
 
+    interface SetJoke {
+      type: ActionType.SET_JOKE;
+      payload: Joke;
+    }
+
+    interface JokeError {
+      type: ActionType.JOKE_ERROR;
+      payload: any;
+    }
     interface ShowModal {
       type: ActionType.SHOW_MODAL;
     }
@@ -82,7 +120,7 @@ declare global {
       payload: Joke;
     }
 
-    type Action = ShowModal | HideModal | SelectJoke;
+    type Action = SetJoke | JokeError | ShowModal | HideModal | SelectJoke;
   }
 
   declare namespace Quiz {

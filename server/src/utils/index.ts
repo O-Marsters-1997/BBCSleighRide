@@ -18,7 +18,7 @@ export const seedData = async (schema: any, items: any) => {
   }
 };
 
-export const shuffleArray = (array: any[], qs: number) => {
+export const shuffleArray = (array: any[], qs?: number) => {
   let currentIndex = array.length;
   let randomIndex;
 
@@ -32,7 +32,7 @@ export const shuffleArray = (array: any[], qs: number) => {
     ];
   }
 
-  return array.slice(0, qs);
+  return qs ? array.slice(0, qs) : array;
 };
 
 async function exit(): Promise<void> {

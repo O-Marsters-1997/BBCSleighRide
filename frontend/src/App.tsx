@@ -14,7 +14,7 @@ import { AppContainer, CompleteOverlayContainer } from "./components/Lib";
 const BBCSleighride = lazy(() => import("./pages/BBCSleighride.page"));
 const Map = lazy(() => import("./pages/Map.page"));
 const Quiz = lazy(() => import("./pages/Quiz.page"));
-const QuizTest = lazy(() => import("./pages/QuizTest.page"));
+
 const Error = lazy(() => import("./pages/Error.page"));
 
 const App: React.FC = () => {
@@ -65,14 +65,7 @@ const App: React.FC = () => {
                     </Suspense>
                   }
                 />
-                <Route
-                  path="quizTest/"
-                  element={
-                    <Suspense fallback={<>...</>}>
-                      <QuizTest />
-                    </Suspense>
-                  }
-                />
+
                 <Route
                   path="*"
                   element={

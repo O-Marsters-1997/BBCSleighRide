@@ -1,5 +1,21 @@
 import { Dispatch } from "redux";
+import { AxiosError } from "axios";
 import { ActionType } from "../actionTypes";
+
+export const setJoke = (joke: Joke) => (dispatch: Dispatch<Joke.Action>) => {
+  dispatch({
+    type: ActionType.SET_JOKE,
+    payload: joke,
+  });
+};
+
+export const jokeError =
+  (error: AxiosError) => (dispatch: Dispatch<Joke.Action>) => {
+    dispatch({
+      type: ActionType.JOKE_ERROR,
+      payload: error,
+    });
+  };
 
 export const showModal = () => (dispatch: Dispatch<Joke.Action>) => {
   dispatch({
