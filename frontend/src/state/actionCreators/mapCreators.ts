@@ -25,3 +25,11 @@ export const selectGreeting =
       payload: greeting,
     });
   };
+
+export const setMapPosition =
+  (position: Countries.MapAxis) => (dispatch: Dispatch<Countries.Action>) => {
+    dispatch({
+      type: ActionType.SET_MAP_POSITION,
+      payload: position,
+    });
+  };

@@ -1,9 +1,11 @@
+import { Dispatch } from "redux";
+import { useSelector, useDispatch } from "react-redux";
 import { endpoints } from "../types/constants";
 import { ActionType } from "../state/actionTypes";
+import { State } from "../state/reducers";
 
 export const getActionType = (url: string): ActionTypeObject => {
   const result: ActionTypeObject = { res: null, err: null };
-
   switch (url) {
     case endpoints.quiz:
       result.res = ActionType.SET_QUESTIONS;
@@ -23,6 +25,38 @@ export const getActionType = (url: string): ActionTypeObject => {
   return result;
 };
 
+// Map zoom functions
+export const HandleZoom = () => {
+  const dispatch: Dispatch = useDispatch();
+  const { position } = useSelector((state: State) => state.map);
+
+  const handleZoomIn = () => {
+    if (position.zoom >= 2.5) return;
+    dispatch({
+      type: ActionType.SET_MAP_POSITION,
+      payload: { ...position, zoom: position.zoom * 1.2 },
+    });
+  };
+
+  const handleZoomOut = () => {
+    if (position.zoom <= 1.25) return;
+    dispatch({
+      type: ActionType.SET_MAP_POSITION,
+      payload: { ...position, zoom: position.zoom / 1.2 },
+    });
+  };
+
+  const handleMoveEnd = () => {
+    dispatch({
+      type: ActionType.SET_MAP_POSITION,
+      payload: { ...position },
+    });
+  };
+
+  return { handleZoomIn, handleZoomOut, handleMoveEnd };
+};
+
+// Misc functions
 export const shuffleArray = (array: any[]) => {
   let currentIndex = array.length;
   let randomIndex;

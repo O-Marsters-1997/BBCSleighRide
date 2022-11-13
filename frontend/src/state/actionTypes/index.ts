@@ -22,4 +22,5 @@ export enum ActionType {
   SET_COUNTRIES = "set countries",
   COUNTRIES_ERROR = "countries error",
   SELECT_GREETING = "select greeting",
+  SET_MAP_POSITION = "map position",
 }

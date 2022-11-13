@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 import Tooltip from "@mui/material/Tooltip";
 import {
@@ -25,12 +25,7 @@ import {
 } from "../Lib";
 import { useViewport } from "../../hooks/useViewport";
 import useSounds from "../../hooks/useSounds";
-
-interface MapAxis {
-  coordinates: [number, number];
-  name?: string;
-  zoom?: any;
-}
+import { HandleZoom } from "../../utils";
 
 type Props = {
   countriesData: Country[];
@@ -40,15 +35,13 @@ type Props = {
 const StyledView = styled(View)<Props>``;
 
 const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
-  const [position, setPosition] = useState<MapAxis>({
-    coordinates: [10, 8],
-    zoom: 1.1,
-  });
   const dispatch: Dispatch = useDispatch();
   const viewport = useViewport();
   const sounds = useSounds();
-
-  const { selectedMapFilter } = useSelector((state: any) => state.map);
+  const { selectedMapFilter, position } = useSelector(
+    (state: any) => state.map,
+  );
+  const { handleZoomIn, handleZoomOut, handleMoveEnd } = HandleZoom();
 
   const handleChange = (target: string) => {
     const { jingle, santa, merryXmas } = sounds;
@@ -58,27 +51,11 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
     dispatch({ type: ActionType.SELECT_GREETING, payload: target });
   };
 
-  // Map Zooming functions
-  const handleZoomIn = () => {
-    if (position.zoom >= 2.5) return;
-    setPosition((pos) => ({ ...pos, zoom: pos.zoom * 1.2 }));
-  };
-
-  const handleZoomOut = () => {
-    if (position.zoom <= 1.25) return;
-    setPosition((pos) => ({ ...pos, zoom: pos.zoom / 1.2 }));
-  };
-
-  const handleMoveEnd = () => {
-    setPosition(position);
-  };
-
   // Map data
   const geoUrl =
     "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 
-  // these are set here to allow for easy adjustment (can set e.g. offset values for each individual pin, easier here than tweaking wihtin a DB)
-  const markers: MapAxis[] = [
+  const markers: Countries.MapAxis[] = [
     { name: "France", coordinates: [2.349014, 48.864716] },
     { name: "South Africa", coordinates: [24.7499, -28.7282] },
     { name: "Kenya", coordinates: [37.9062, -0.0236] },
@@ -137,14 +114,12 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
                         geography={geo}
                         onMouseEnter={() => {
                           const { name } = geo.properties;
-                          console.log(name);
                           const found = countriesData.find(
                             (country) => country.name === name,
                           );
                           if (found) {
                             const TOOLTIP =
                               found[selectedMapFilter as keyof typeof found];
-                            console.log(TOOLTIP);
                             const CONTINENT = found.continent;
                             setTooltipContent(
                               `<center><b>${TOOLTIP}</b><br>${name}, ${CONTINENT}</center>`,
