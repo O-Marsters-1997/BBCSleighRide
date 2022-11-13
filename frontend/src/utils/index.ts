@@ -1,5 +1,6 @@
 import { Dispatch } from "redux";
 import { useSelector, useDispatch } from "react-redux";
+import { PlayFunction } from "use-sound/dist/types";
 import { endpoints } from "../types/constants";
 import { ActionType } from "../state/actionTypes";
 import { State } from "../state/reducers";
@@ -25,7 +26,9 @@ export const getActionType = (url: string): ActionTypeObject => {
   return result;
 };
 
-// Map zoom functions
+// Map
+
+// zoom functions
 export const HandleZoom = () => {
   const dispatch: Dispatch = useDispatch();
   const { position } = useSelector((state: State) => state.map);
@@ -54,6 +57,12 @@ export const HandleZoom = () => {
   };
 
   return { handleZoomIn, handleZoomOut, handleMoveEnd };
+};
+
+// Sound functions
+export const randomChristmasSound = (sounds: PlayFunction[]): void => {
+  const toPlay = sounds[Math.floor(Math.random() * sounds.length)];
+  return toPlay();
 };
 
 // Misc functions

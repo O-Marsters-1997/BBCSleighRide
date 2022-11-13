@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 // import { ActionsContext } from "../../contexts/StateActions.context";
 import { ActionType } from "../../state/actionTypes";
 import View from "../View";
+import Text from "../Text";
 import Button from "../Button";
 import Card from "../Card";
 import DateCracker from "../Svg/DateCracker";
@@ -25,7 +26,7 @@ import {
 } from "../Lib";
 import { useViewport } from "../../hooks/useViewport";
 import useSounds from "../../hooks/useSounds";
-import { HandleZoom } from "../../utils";
+import { HandleZoom, randomChristmasSound } from "../../utils";
 
 type Props = {
   countriesData: Country[];
@@ -46,8 +47,7 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
   const handleChange = (target: string) => {
     const { jingle, santa, merryXmas } = sounds;
     const playArray = [jingle, santa, merryXmas];
-    const toPlay = playArray[Math.floor(Math.random() * playArray.length)];
-    toPlay();
+    randomChristmasSound(playArray);
     dispatch({ type: ActionType.SELECT_GREETING, payload: target });
   };
 
@@ -76,8 +76,8 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
         alt="greeting"
         onClick={() => handleChange("greeting")}
       />
-      <DateCracker alt="dates" onClick={() => handleChange("date")} />
-      <FoodCracker alt="foods" onClick={() => handleChange("food")} />
+      <DateCracker alt="dates" onClick={() => handleChange("celebrated")} />
+      <FoodCracker alt="foods" onClick={() => handleChange("meal")} />
     </>
   );
 
@@ -107,16 +107,16 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
             >
               <Geographies geography={geoUrl}>
                 {({ geographies }) =>
-                  geographies.map((geo) => (
-                    <Tooltip title="hello" arrow followCursor>
+                  geographies.map((geo) => {
+                    const { name } = geo.properties;
+                    const found = countriesData.find(
+                      (country) => country.name === name,
+                    );
+
+                    const geogContent = () => (
                       <Geography
-                        key={geo.rsmKey}
                         geography={geo}
                         onMouseEnter={() => {
-                          const { name } = geo.properties;
-                          const found = countriesData.find(
-                            (country) => country.name === name,
-                          );
                           if (found) {
                             const TOOLTIP =
                               found[selectedMapFilter as keyof typeof found];
@@ -146,8 +146,24 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
                           },
                         }}
                       />
-                    </Tooltip>
-                  ))
+                    );
+
+                    return (
+                      <React.Fragment key={geo.rsmKey}>
+                        {found ? (
+                          <Tooltip
+                            arrow
+                            followCursor
+                            title={<Text variant="subtitle1">{name}</Text>}
+                          >
+                            {geogContent()}
+                          </Tooltip>
+                        ) : (
+                          <>{geogContent()}</>
+                        )}
+                      </React.Fragment>
+                    );
+                  })
                 }
               </Geographies>
               {markers.map(({ name, coordinates }) => (

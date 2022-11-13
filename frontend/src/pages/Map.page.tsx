@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { useState, ReactNode } from "react";
 import styled from "styled-components";
 
 import Loading from "../components/Loading";
@@ -30,8 +30,6 @@ const MapController = () => {
       },
     },
   });
-
-  useEffect(() => console.log(content), [content]);
 
   const handleContentSet = (content: ReactNode): void => {
     setContent(content);
