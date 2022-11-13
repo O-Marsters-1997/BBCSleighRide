@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import logger from "../logger";
 
+// Database
 export const seedData = async (schema: any, items: any) => {
   try {
     await schema.deleteMany({});
@@ -18,6 +19,16 @@ export const seedData = async (schema: any, items: any) => {
   }
 };
 
+async function exit(): Promise<void> {
+  try {
+    await mongoose.disconnect();
+    logger.info("disconnecting");
+  } catch (error) {
+    logger.info(error);
+  }
+}
+
+// Misc util functions
 export const shuffleArray = (array: any[], qs?: number) => {
   let currentIndex = array.length;
   let randomIndex;
@@ -34,12 +45,3 @@ export const shuffleArray = (array: any[], qs?: number) => {
 
   return qs ? array.slice(0, qs) : array;
 };
-
-async function exit(): Promise<void> {
-  try {
-    await mongoose.disconnect();
-    logger.info("disconnecting");
-  } catch (error) {
-    logger.info(error);
-  }
-}

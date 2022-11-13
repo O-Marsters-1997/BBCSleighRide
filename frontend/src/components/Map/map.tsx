@@ -8,7 +8,6 @@ import {
   ZoomableGroup,
   Marker,
 } from "react-simple-maps";
-import useSound from "use-sound";
 import { Dispatch } from "redux";
 import { useSelector, useDispatch } from "react-redux";
 // import { ActionsContext } from "../../contexts/StateActions.context";
@@ -25,10 +24,7 @@ import {
   CentralColumnContainer,
 } from "../Lib";
 import { useViewport } from "../../hooks/useViewport";
-// import hohoho from "../assets/sounds/hohoho.mp3";
-import hohoho from "../../assets/sounds/hohoho.mp3";
-import jingle_bells from "../../assets/sounds/jingle_bells_cut.mp3";
-import wishyoumerry from "../../assets/sounds/we_wish_you_a_merry_christmas.mp3";
+import useSounds from "../../hooks/useSounds";
 
 interface MapAxis {
   coordinates: [number, number];
@@ -38,27 +34,25 @@ interface MapAxis {
 
 type Props = {
   countriesData: Country[];
-  setTooltipContent: (content: string) => void;
+  setTooltipContent: (content: ReactNode) => void;
 };
 
 const StyledView = styled(View)<Props>``;
 
 const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
-  //   const { selectGreeting } = useContext(ActionsContext) ?? {};
   const [position, setPosition] = useState<MapAxis>({
     coordinates: [10, 8],
     zoom: 1.1,
   });
   const dispatch: Dispatch = useDispatch();
   const viewport = useViewport();
-  const [play1] = useSound(jingle_bells);
-  const [play2] = useSound(hohoho);
-  const [play3] = useSound(wishyoumerry);
+  const sounds = useSounds();
 
   const { selectedMapFilter } = useSelector((state: any) => state.map);
 
   const handleChange = (target: string) => {
-    const playArray = [play1, play2, play3];
+    const { jingle, santa, merryXmas } = sounds;
+    const playArray = [jingle, santa, merryXmas];
     const toPlay = playArray[Math.floor(Math.random() * playArray.length)];
     toPlay();
     dispatch({ type: ActionType.SELECT_GREETING, payload: target });
@@ -71,7 +65,7 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
   };
 
   const handleZoomOut = () => {
-    if (position.zoom <= 5) return;
+    if (position.zoom <= 1.25) return;
     setPosition((pos) => ({ ...pos, zoom: pos.zoom / 1.2 }));
   };
 
@@ -137,7 +131,7 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
               <Geographies geography={geoUrl}>
                 {({ geographies }) =>
                   geographies.map((geo) => (
-                    <Tooltip title="hello">
+                    <Tooltip title="hello" arrow followCursor>
                       <Geography
                         key={geo.rsmKey}
                         geography={geo}

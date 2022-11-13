@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import styled from "styled-components";
-import ReactTooltip from "react-tooltip";
 
 import Loading from "../components/Loading";
 import View from "../components/View";
@@ -15,7 +14,7 @@ const StledView = styled(View)`
 `;
 
 const MapController = () => {
-  const [content, setContent] = useState<string | undefined>("");
+  const [content, setContent] = useState<ReactNode | undefined>("");
   console.log(content);
   const {
     response: countries,
@@ -34,7 +33,7 @@ const MapController = () => {
 
   useEffect(() => console.log(content), [content]);
 
-  const handleContentSet = (content: string): void => {
+  const handleContentSet = (content: ReactNode): void => {
     setContent(content);
   };
 
@@ -59,17 +58,6 @@ const MapController = () => {
       {countries && (
         <Map countriesData={countries} setTooltipContent={handleContentSet} />
       )}
-      <ReactTooltip
-        type="dark"
-        effect="float"
-        multiline
-        html
-        border
-        borderColor="#D20018"
-        scrollHide
-      >
-        {content}
-      </ReactTooltip>
     </StledView>
   );
 };

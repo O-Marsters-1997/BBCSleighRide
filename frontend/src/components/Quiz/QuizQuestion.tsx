@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import useSound from "use-sound";
 import { Dispatch } from "redux";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../state/reducers";
@@ -19,11 +18,9 @@ import {
   CentralColumnContainer,
 } from "../Lib";
 import { useViewport } from "../../hooks/useViewport";
-
+import useSounds from "../../hooks/useSounds";
 import candy_cane from "../../assets/images/candy_cane.svg";
 import present from "../../assets/images/present.svg";
-import correct from "../../assets/sounds/Correct-answer.mp3";
-import incorrect from "../../assets/sounds/Incorrect-answer.mp3";
 
 type Props = {
   question: Quiz;
@@ -37,8 +34,7 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
   const viewport = useViewport();
   const [selected, setSelected] = useState<number>(-1);
   const [warning, setWarning] = useState<boolean>(false);
-  const [soundCorrect] = useSound(correct);
-  const [soundIncorrect] = useSound(incorrect);
+  const { soundCorrect, soundIncorrect } = useSounds();
 
   const handleClick = useCallback(
     (index: number) => (e: React.MouseEvent<HTMLButtonElement>) => {
