@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactTooltip from "react-tooltip";
 
 import styled from "styled-components";
 import Loading from "../components/Loading";
-import { LoadingWrapper } from "../components/Lib";
+import View from "../components/View";
+import Map from "../components/Map/map";
+import { LoadingWrapper, ErrorWrapper } from "../components/Lib";
 import { endpoints } from "../types/constants";
 import axios from "../services/quizTest";
 import useAxios from "../hooks/useAxios";
 
-const StledView = styled.button`
-  margin: 500px;
-`;
+const StledView = styled(View)``;
 
-const Map = () => {
+const MapController = () => {
+  const [content, setContent] = useState<string | undefined>("");
   const {
     response: countries,
     loading,
@@ -27,6 +29,10 @@ const Map = () => {
     },
   });
 
+  const handleContentSet = (content: string): void => {
+    setContent(content);
+  };
+
   if (loading) {
     return (
       <LoadingWrapper>
@@ -37,17 +43,30 @@ const Map = () => {
 
   if (error) {
     return (
-      <LoadingWrapper>
+      <ErrorWrapper>
         <Loading size="medium" error title={`${error.message}`} />
-      </LoadingWrapper>
+      </ErrorWrapper>
     );
   }
 
   return (
-    <StledView type="button" onClick={() => console.log(countries)}>
-      I am a map
+    <StledView>
+      {countries && (
+        <Map countriesData={countries} setTooltipContent={handleContentSet} />
+      )}
+      <ReactTooltip
+        type="dark"
+        effect="float"
+        multiline
+        html
+        border
+        borderColor="#D20018"
+        scrollHide
+      >
+        {content}
+      </ReactTooltip>
     </StledView>
   );
 };
 
-export default Map;
+export default MapController;

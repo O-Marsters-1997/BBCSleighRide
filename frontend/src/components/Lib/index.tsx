@@ -38,6 +38,8 @@ export const LoadingWrapper = styled(View)`
   position: relative;
 `;
 
+export const ErrorWrapper = styled(LoadingWrapper)``;
+
 export const CardWrapper = styled(View)<{ padding?: number }>`
   padding: ${({ padding }) => padding && padding}px;
 `;

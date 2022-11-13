@@ -17,3 +17,11 @@ export const countriesError =
       payload: error,
     });
   };
+
+export const selectGreeting =
+  (greeting: string) => (dispatch: Dispatch<Countries.Action>) => {
+    dispatch({
+      type: ActionType.SELECT_GREETING,
+      payload: greeting,
+    });
+  };

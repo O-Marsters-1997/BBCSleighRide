@@ -49,6 +49,7 @@ declare global {
     | "select joke"
     | "set countries"
     | "countries error"
+    | "select greeting"
     | null;
 
   type Context = {
@@ -78,6 +79,9 @@ declare global {
     countriesError: (
       error: AxiosError,
     ) => (dispatch: Dispatch<Countries.Action>) => void;
+    selectGreeting: (
+      greeting: string,
+    ) => (dispatch: Dispatch<Countries.Action>) => void;
   };
 
   // Api types
@@ -98,6 +102,7 @@ declare global {
       response: Country[] | undefined;
       loading: boolean;
       error: AxiosError | null;
+      selectedMapFilter: string | undefined;
     }
 
     interface SetCountries {
@@ -110,7 +115,12 @@ declare global {
       payload: any;
     }
 
-    type Action = SetCountries | CountriesError;
+    interface SelectGreeting {
+      type: ActionType.SELECT_GREETING;
+      payload: any;
+    }
+
+    type Action = SetCountries | CountriesError | SelectGreeting;
   }
 
   declare namespace Joke {

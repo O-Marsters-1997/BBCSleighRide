@@ -23,6 +23,7 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "react-simple-maps": "^3.0.0",
+    "react-tooltip": "^4.5.0",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.6",
@@ -61,6 +62,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-simple-maps": "^3.0.0",
     "@types/redux": "^3.6.0",
     "@types/redux-thunk": "^2.1.0",
     "@types/styled-components": "^5.1.26",
