@@ -35,6 +35,14 @@ type Props = {
 
 const StyledView = styled(View)<Props>``;
 
+const StyledTooltip = styled(({ className, ...other }) => (
+  <Tooltip classes={{ tooltip: className }} {...other} />
+))`
+  font-size: 2em;
+  color: blue;
+  background-color: yellow;
+`;
+
 const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
   const dispatch: Dispatch = useDispatch();
   const viewport = useViewport();
@@ -112,7 +120,6 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
                     const found = countriesData.find(
                       (country) => country.name === name,
                     );
-
                     const geogContent = () => (
                       <Geography
                         geography={geo}
@@ -151,13 +158,13 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
                     return (
                       <React.Fragment key={geo.rsmKey}>
                         {found ? (
-                          <Tooltip
+                          <StyledTooltip
                             arrow
                             followCursor
                             title={<Text variant="subtitle1">{name}</Text>}
                           >
                             {geogContent()}
-                          </Tooltip>
+                          </StyledTooltip>
                         ) : (
                           <>{geogContent()}</>
                         )}
