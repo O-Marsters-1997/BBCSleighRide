@@ -7,7 +7,7 @@ import Image from "./Image";
 import { CentralColumnContainer, CentralRowContainer } from "./Lib";
 import { useViewport } from "../hooks/useViewport";
 import { getLoadingSize } from "../utils/styleHelpers";
-import { device } from "../types/constants";
+import { deviceMin } from "../types/constants";
 import elfSad from "../assets/images/elf_sad.svg";
 
 type Props = {
@@ -40,7 +40,7 @@ const ErrorCard = styled(View)<Props>`
   .MuiTypography-root {
     padding-bottom: 0.2em;
   }
-  @media ${device.medium} {
+  @media ${deviceMin.medium} {
     .text-wrapper {
       padding-left: 2.55em;
     }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import View from "../View";
-import { device } from "../../types/constants";
+import { deviceMin, deviceMax } from "../../types/constants";
 
 // Layouts
 export const AppContainer = styled(View)`
@@ -19,6 +19,17 @@ export const CompleteOverlayContainer = styled(View)`
   height: 100%;
   z-index: 100;
   background-color: ${({ theme }) => theme.palette.grey.additional};
+`;
+
+export const PageContainer = styled(View)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  @media ${deviceMin.mediumLarge} {
+    padding-top: 50px;
+  }
 `;
 
 export const CentralOverlayContainer = styled(View)`
@@ -51,15 +62,16 @@ export const RowContainer = styled(View)<{ justifyContent?: CSS.JustifyContent, 
   gap: ${({gap}) => gap && gap};
 `;
 
-export const DetailsContainer = styled(View)`
+export const DetailsContainer = styled(View)<{ reverse?: boolean }>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ reverse }) => (reverse ? "column-reverse" : "column")};
 `;
 
-export const CentralRowContainer = styled(View)`
+export const CentralRowContainer = styled(View)<{ gap?: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: ${({ gap }) => gap && gap};
   width: 100%;
 `;
 
@@ -76,14 +88,14 @@ export const CentralColumnContainer = styled(View)<{ reverse?: boolean }>`
 
 export const ElfImageWrapper = styled(View)`
   padding: 2em 0;
-  @media ${device.mediumLarge} {
+  @media ${deviceMin.mediumLarge} {
     padding: 2em 0 0 2em;
   } ;
 `;
 
 export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
   cursor: pointer;
-  @media ${device.mediumPlus} {
+  @media ${deviceMin.mediumPlus} {
     transform: rotate(${(props) => (props.pageSide == "right" ? 5 : -5)}deg);
     transition-property: all;
     transition: 0.4s ease-in;
@@ -94,10 +106,16 @@ export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
   }
 `;
 
+export const MapCracker = styled(Cracker)`
+  @media ${deviceMax.mediumPlus} {
+    width: clamp(175px, 23vw, 400px);
+  }
+`;
+
 export const QuizGameCracker = styled(Cracker)`
   height: 5em;
   width: 10em;
-  @media ${device.mediumPlus} {
+  @media ${deviceMin.mediumPlus} {
     height: 7em;
     width: 14em;
   } ;

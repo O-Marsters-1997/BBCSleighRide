@@ -69,7 +69,7 @@ export const breakpoints: Utils.BreakpointsMap = {
   xLarge: "xLarge",
 };
 
-export const device = {
+export const deviceMin = {
   xSmall: `(min-width: ${viewports.mobileS}px)`,
   small: `(min-width: ${viewports.mobileL}px)`,
   smallMedium: `(min-width: ${viewports.tabletS}px)`,
@@ -78,4 +78,15 @@ export const device = {
   mediumLarge: `(min-width: ${viewports.laptopM}px)`,
   large: `(min-width: ${viewports.laptopL}px)`,
   xLarge: `(min-width: ${viewports.desktop}px)`,
+};
+
+export const deviceMax = {
+  xSmall: `(max-width: ${viewports.mobileS}px)`,
+  small: `(max-width: ${viewports.mobileL}px)`,
+  smallMedium: `(max-width: ${viewports.tabletS}px)`,
+  medium: `(max-width: ${viewports.tablet}px)`,
+  mediumPlus: `(max-width: ${viewports.laptop}px)`,
+  mediumLarge: `(max-width: ${viewports.laptopM}px)`,
+  large: `(max-width: ${viewports.laptopL}px)`,
+  xLarge: `(max-width: ${viewports.desktop}px)`,
 };

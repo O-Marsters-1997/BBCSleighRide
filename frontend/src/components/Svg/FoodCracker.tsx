@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Cracker } from "../Lib";
+import { MapCracker } from "../Lib";
 
 const SvgComponent = (props: any) => (
-  <Cracker
+  <MapCracker
     viewBox="0 0 3332 1706"
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
@@ -143,7 +143,7 @@ const SvgComponent = (props: any) => (
         fillRule: "nonzero",
       }}
     />
-  </Cracker>
+  </MapCracker>
 );
 
 export default SvgComponent;

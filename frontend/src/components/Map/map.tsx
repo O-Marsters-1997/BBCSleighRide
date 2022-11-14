@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 // import { ActionsContext } from "../../contexts/StateActions.context";
 import { ActionType } from "../../state/actionTypes";
 import View from "../View";
-import Text from "../Text";
+// import Text from "../Text";
 import Button from "../Button";
 import Card from "../Card";
 import DateCracker from "../Svg/DateCracker";
@@ -23,7 +23,9 @@ import {
   CentralRowContainer,
   RowContainer,
   CentralColumnContainer,
+  DetailsContainer,
 } from "../Lib";
+// import { device } from "../../types/constants";
 import { useViewport } from "../../hooks/useViewport";
 import useSounds from "../../hooks/useSounds";
 import { HandleZoom, randomChristmasSound } from "../../utils";
@@ -33,14 +35,16 @@ type Props = {
   setTooltipContent: (content: ReactNode) => void;
 };
 
-const StyledView = styled(View)<Props>``;
+const StyledView = styled(DetailsContainer)<Props>``;
 
 const StyledTooltip = styled(({ className, ...other }) => (
   <Tooltip classes={{ tooltip: className }} {...other} />
 ))`
-  font-size: 2em;
   color: blue;
   background-color: yellow;
+  * {
+    font-size: 1.6em;
+  }
 `;
 
 const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
@@ -93,9 +97,11 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
     <StyledView
       countriesData={countriesData}
       setTooltipContent={setTooltipContent}
+      width={viewport("small") ? "clamp(400px, 50vw, 775px)" : "300px"}
+      reverse={!viewport("medium")}
     >
-      {viewport("mediumPlus") ? (
-        <CentralRowContainer>{toggleContent()}</CentralRowContainer>
+      {viewport("medium") ? (
+        <CentralRowContainer gap="20px">{toggleContent()}</CentralRowContainer>
       ) : (
         <CentralColumnContainer>{toggleContent()}</CentralColumnContainer>
       )}
@@ -161,7 +167,17 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
                           <StyledTooltip
                             arrow
                             followCursor
-                            title={<Text variant="subtitle1">{name}</Text>}
+                            title={
+                              <View
+                                style={{
+                                  height: "500px",
+                                  width: "500px",
+                                }}
+                              >
+                                <h6>{name}</h6>
+                              </View>
+                            }
+                            sx={{ fontSize: "60px" }}
                           >
                             {geogContent()}
                           </StyledTooltip>

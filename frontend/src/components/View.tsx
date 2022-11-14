@@ -4,10 +4,8 @@ import Box from "@mui/material/Box";
 import app_background from "../assets/images/green_background.png";
 
 type StyleProps = {
-  width?: number;
-  height?: number;
-  widthmeasurement?: string;
-  heightmeasurement?: string;
+  width?: string;
+  height?: string;
   background?: string;
   fontWeight?: string;
 };
@@ -23,14 +21,8 @@ type Props = {
 } & StyleProps;
 
 const StyledView = styled(Box)<Props>`
-  width: ${(props) =>
-    props.width &&
-    props.widthmeasurement &&
-    `${props.width} ${props.widthmeasurement}`};
-  height: ${(props) =>
-    props.height &&
-    props.heightmeasurement &&
-    `${props.height} ${props.heightmeasurement}`};
+  width: ${(props) => props.width && `${props.width}`};
+  height: ${(props) => props.height && `${props.height} `};
   background: ${(props) => props.background && props.background};
   font-weight: ${(props) =>
     props.fontWeight
@@ -53,7 +45,6 @@ const StyledBackground = styled(StyledView)<Props>`
     background-position: center center;
     background-image: linear-gradient(rgba(4, 9, 30, 0), rgba(4, 9, 30, 0)),
       url(${app_background});
-
     min-height: 120vh;
     z-index: 10;
   }
@@ -73,8 +64,7 @@ const StyledOverlay = styled(Box)`
 const View: React.FC<Props> = ({
   width,
   height,
-  widthmeasurement,
-  heightmeasurement,
+
   background,
   fontWeight,
   className,
@@ -90,8 +80,6 @@ const View: React.FC<Props> = ({
       <StyledBackground
         width={width}
         height={height}
-        widthmeasurement={widthmeasurement}
-        heightmeasurement={heightmeasurement}
         background={background}
         fontWeight={fontWeight}
         className={className}
@@ -109,8 +97,6 @@ const View: React.FC<Props> = ({
     <StyledView
       width={width}
       height={height}
-      widthmeasurement={widthmeasurement}
-      heightmeasurement={heightmeasurement}
       background={background}
       fontWeight={fontWeight}
       className={className}
