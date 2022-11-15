@@ -1,5 +1,5 @@
 import React from "react";
-import { getBreakpointMatches } from "../utils/styleHelpers";
+import { getBreakpointMatches } from "../utils/style/styleHelpers";
 
 export const useViewport = (): ((size: Utils.Breakpoints) => boolean) => {
   const [width, setWidth] = React.useState<number>(window.innerWidth);

@@ -1,3 +1,4 @@
+import { AxiosError, AxiosRequestConfig, Method } from "axios";
 import { ActionType } from "../state/actionTypes";
 
 declare global {
@@ -23,7 +24,44 @@ declare global {
     options?: string[];
   }
 
+  interface ActionTypeObject {
+    res: ActionTypeOptions;
+    err: ActionTypeOptions;
+  }
+
+  type ActionTypeOptions =
+    | "set questions"
+    | "questions error"
+    | "load questions"
+    | "reset quiz"
+    | "start quiz"
+    | "end quiz"
+    | "answer correctly"
+    | "answer incorrectly"
+    | "next question"
+    | "next question give up"
+    | "set joke"
+    | "refetch joke"
+    | "joke error"
+    | "reset joke"
+    | "show modal"
+    | "hide modal"
+    | "select joke"
+    | "set countries"
+    | "countries error"
+    | "toggle instructions"
+    | "select greeting"
+    | "set map position"
+    | null;
+
   type Context = {
+    // Quiz
+    setQuestions: (
+      questions: Quiz[],
+    ) => (dispatch: Dispatch<Quiz.Action>) => void;
+    questionsError: (
+      error: AxiosError,
+    ) => (dispatch: Dispatch<Quiz.Action>) => void;
     resetQuiz: () => void;
     startQuiz: () => void;
     endQuiz: () => void;
@@ -31,21 +69,62 @@ declare global {
     answerIncorrectly: () => void;
     nextQuestion: () => void;
     nextQuestionGiveUp: () => void;
+    // Joke
+    setJoke: (jokes: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
+    jokeError: (error: AxiosError) => (dispatch: Dispatch<Joke.Action>) => void;
+    refetchJoke: () => void;
+    resetJoke: () => void;
     showModal: () => void;
     hideModal: () => void;
     selectJoke: (joke: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
+    // Map
     setCountries: (
       countries: Country[],
     ) => (dispatch: Dispatch<Countries.Action>) => void;
+    countriesError: (
+      error: AxiosError,
+    ) => (dispatch: Dispatch<Countries.Action>) => void;
+    toggleInstructions: () => void;
+    selectGreeting: (
+      greeting: string,
+    ) => (dispatch: Dispatch<Countries.Action>) => void;
+    setMapPosition: (
+      position: MapAxis,
+    ) => (dispatch: Dispatch<Countries.Action>) => void;
   };
 
-  type Endpoint = "jokes" | "quiz" | "countries";
+  // Api types
+  type FetchConfig = {
+    axiosInstance: any;
+    method: Method;
+    url: string;
+    requestConfig: AxiosRequestConfig;
+  };
 
-  type Endpoints = { [enpoint in Endpoints]: string };
+  type Endpoint = "joke" | "quiz" | "countries";
+
+  type Endpoints = { [point in Endpoints]: string };
 
   declare namespace Countries {
     interface MapState {
-      countries: Country[] | undefined;
+      response: Country[] | undefined;
+      loading: boolean;
+      error: AxiosError | null;
+      selectedMapFilter: string | undefined;
+      modalOpen: boolean;
+      position: MapAxis;
+    }
+
+    interface MapAxis {
+      coordinates: [number, number];
+      name?: string;
+      zoom?: any;
+    }
+
+    interface ToolTipContent {
+      option: string;
+      optionValue: string;
+      name: string;
     }
 
     interface SetCountries {
@@ -53,13 +132,60 @@ declare global {
       payload: Country[];
     }
 
-    type Action = SetCountries;
+    interface CountriesError {
+      type: ActionType.COUNTRIES_ERROR;
+      payload: any;
+    }
+
+    interface ToggleInstructions {
+      type: ActionType.TOGGLE_INSTRUCTIONS;
+    }
+
+    interface SelectGreeting {
+      type: ActionType.SELECT_GREETING;
+      payload: any;
+    }
+
+    interface SetMapPosition {
+      type: ActionType.SET_MAP_POSITION;
+      payload: MapAxis;
+    }
+
+    type Action =
+      | SetCountries
+      | CountriesError
+      | ToggleInstructions
+      | SelectGreeting
+      | SetMapPosition;
   }
 
   declare namespace Joke {
     interface JokeState {
+      response: Joke | undefined;
+      loading: boolean;
+      error: AxiosError | null;
+      newRequest: number;
       modalOpen: boolean;
       selectedJoke: Joke | null;
+      toggleJokeView: boolean;
+    }
+
+    interface SetJoke {
+      type: ActionType.SET_JOKE;
+      payload: Joke;
+    }
+
+    interface JokeError {
+      type: ActionType.JOKE_ERROR;
+      payload: any;
+    }
+
+    interface RefetchJoke {
+      type: ActionType.REFETCH_JOKE;
+    }
+
+    interface ResetJoke {
+      type: ActionType.RESET_JOKE;
     }
 
     interface ShowModal {
@@ -75,17 +201,25 @@ declare global {
       payload: Joke;
     }
 
-    type Action = ShowModal | HideModal | SelectJoke;
+    type Action =
+      | SetJoke
+      | JokeError
+      | RefetchJoke
+      | ResetJoke
+      | ShowModal
+      | HideModal
+      | SelectJoke;
   }
 
   declare namespace Quiz {
     interface QuizGame {
-      questions: Quiz[];
+      response: Quiz[];
+      loading: boolean;
+      error: AxiosError | null;
       currentAnswer: CurrentAnswer;
       answeredCorrectly: boolean;
       readyToPlay: boolean;
       correctQuestions: number;
-      incorrectQuestions: number;
       totalQuestions: number;
       questionsRemaining: number;
       livesLeft: number;
@@ -95,11 +229,14 @@ declare global {
       type: ActionType.LOAD_QUESTIONS;
     }
 
-    interface Get {
-      type: ActionType.GET_QUESTIONS;
-      payload: {
-        quiz: Quiz[];
-      };
+    interface SetQuestions {
+      type: ActionType.SET_QUESTIONS;
+      payload: Quiz[];
+    }
+
+    interface Error {
+      type: ActionType.QUESTIONS_ERROR;
+      payload: any;
     }
 
     interface Reset {
@@ -131,6 +268,8 @@ declare global {
     }
 
     type Action =
+      | SetQuestions
+      | Error
       | Reset
       | Start
       | End
@@ -139,7 +278,7 @@ declare global {
       | NextQuestion
       | NextQuestionGiveUp;
 
-    type CurrentAnswer = "correct" | "incorrect" | undefined;
+    type CurrentAnswer = string | undefined;
   }
 
   declare namespace Utils {
@@ -247,6 +386,8 @@ declare global {
       x6: number;
       x7: number;
     };
+
+    type ButtonVariant = "normal" | "rounded";
   }
 
   declare namespace CSS {
@@ -259,6 +400,15 @@ declare global {
       | "initial"
       | "inherit";
 
-    type TextAlign = "center" | "left" | "right" | "justify";
+    type AlignItems =
+      | "flex-start"
+      | "flex-end"
+      | "space-between"
+      | "space-around"
+      | "center"
+      | "initial"
+      | "inherit";
+
+    type TextAlign = "start" | "center" | "left" | "right" | "justify";
   }
 }

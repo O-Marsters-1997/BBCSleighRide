@@ -12,6 +12,7 @@ const SvgComponent = (props: any) => (
       strokeLinejoin: "round",
       strokeMiterlimit: 2,
     }}
+    preserveAspectRatio="none"
     {...props}
   >
     <path style={{ fill: "url(#a)" }} d="M0 0h8000v4500H0z" />

@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import View from "../View";
-import { device } from "../../types/constants";
+import { deviceMin, deviceMax } from "../../types/constants";
 
 // Layouts
-
 export const AppContainer = styled(View)`
   position: relative;
   height: 100vh;
@@ -11,14 +10,25 @@ export const AppContainer = styled(View)`
 `;
 
 export const CompleteOverlayContainer = styled(View)`
+  position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  position: fixed;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: ${({ theme }) => theme.palette.grey.additional};
+`;
+
+export const PageContainer = styled(View)<{ alignItems?: CSS.AlignItems }>`
+  display: flex;
+  justify-content: center;
+  align-items: ${({ alignItems }) => alignItems && alignItems};
   height: 100vh;
   width: 100vw;
-  z-index: 101;
+  @media ${deviceMin.mediumLarge} {
+  }
 `;
 
 export const CentralOverlayContainer = styled(View)`
@@ -38,27 +48,39 @@ export const LoadingWrapper = styled(View)`
   position: relative;
 `;
 
+export const ErrorWrapper = styled(LoadingWrapper)``;
+
 export const CardWrapper = styled(View)<{ padding?: number }>`
   padding: ${({ padding }) => padding && padding}px;
 `;
 
 // prettier-ignore
-export const RowContainer = styled(View)<{ justifyContent?: CSS.JustifyContent, gap?: string }>`
+export const RowContainer = styled(View)<{justifyContent?: CSS.JustifyContent; alignItems?: CSS.AlignItems; gap?: string;}>`
+  position: relative;
   display: flex;
   justify-content: ${({ justifyContent }) => justifyContent && justifyContent};
-  gap: ${({gap}) => gap && gap};
+  align-items: ${({ alignItems }) => alignItems && alignItems};
+  gap: ${({ gap }) => gap && gap};
 `;
 
-export const DetailsContainer = styled(View)`
+export const DetailsContainer = styled(View)<{ reverse?: boolean }>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ reverse }) => (reverse ? "column-reverse" : "column")};
 `;
 
-export const CentralRowContainer = styled(View)`
+export const CentralRowContainer = styled(View)<{ gap?: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: ${({ gap }) => gap && gap};
   width: 100%;
+`;
+export const RowContainerOverlayBorderBottom = styled(CentralRowContainer)`
+  width: 90%;
+  padding: 0.85rem 0;
+  margin: 0 auto;
+  border-bottom: ${({ theme }) =>
+    `2px solid ${theme.palette.primary.contrastText}`};
 `;
 
 export const CentralColumnContainer = styled(View)<{ reverse?: boolean }>`
@@ -74,14 +96,14 @@ export const CentralColumnContainer = styled(View)<{ reverse?: boolean }>`
 
 export const ElfImageWrapper = styled(View)`
   padding: 2em 0;
-  @media ${device.laptopM} {
+  @media ${deviceMin.mediumLarge} {
     padding: 2em 0 0 2em;
   } ;
 `;
 
 export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
   cursor: pointer;
-  @media ${device.laptop} {
+  @media ${deviceMin.mediumPlus} {
     transform: rotate(${(props) => (props.pageSide == "right" ? 5 : -5)}deg);
     transition-property: all;
     transition: 0.4s ease-in;
@@ -92,10 +114,17 @@ export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
   }
 `;
 
+export const MapCracker = styled(Cracker)<{ translateY?: string }>`
+  @media ${deviceMax.medium} {
+    width: clamp(175px, 23vw, 400px);
+    transform: translateY(${({ translateY }) => translateY && translateY});
+  }
+`;
+
 export const QuizGameCracker = styled(Cracker)`
   height: 5em;
   width: 10em;
-  @media ${device.laptop} {
+  @media ${deviceMin.mediumPlus} {
     height: 7em;
     width: 14em;
   } ;
@@ -103,13 +132,14 @@ export const QuizGameCracker = styled(Cracker)`
 
 // Overlay
 export const CardOverlayWrapper = styled(View)`
-  padding: 80px 0;
   width: clamp(300px, 60vw, 1100px);
+  padding-top: 8rem;
 `;
 
 export const HomePageCardOverlayWrapper = styled(View)`
   padding: 80px 0;
   width: clamp(250px, 45vw, 850px);
+  justify-self: center;
 `;
 
 // prettier-ignore
@@ -117,9 +147,11 @@ export const TextWrapper = styled(View)<{
   lineHeight?: number;
   indent?: boolean;
   childrenPadding?: string;
+  alignItems?: CSS.AlignItems;
 }>`
   display: flex;
   flex-direction: column;
+  align-items: ${({alignItems}) => alignItems && alignItems};
   padding-bottom: 1em;
   padding-left: ${({ indent }) => (indent ? "5px" : 0)};
   .MuiTypography-body1 {

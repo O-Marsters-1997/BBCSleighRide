@@ -34,11 +34,16 @@ export const theme: DefaultTheme = {
     },
     secondary: {
       main: "rgb(37,119,35)",
-      contrastText: "#ffffff",
+      contrastText: "rgb(255, 255, 255)",
+    },
+    black: {
+      main: "rgb(0, 0, 0)",
+      contrastText: "rgb(36, 36, 36)",
     },
     grey: {
       main: "rgb(49, 54, 56)",
       contrastText: "rgb(151, 151, 151)",
+      additional: "rgba(0, 0, 0, 0.55)",
     },
     primaryText: {
       main: "rgba(242, 242, 242, 1)",
@@ -95,6 +100,11 @@ export const theme: DefaultTheme = {
       fontFamily: "Roboto",
       fontSize: 0.8,
     },
+    subtitle2: {
+      fontWeight: 700,
+      fontFamily: "Roboto",
+      fontSize: 0.8,
+    },
   },
   viewports: {
     mobileS: 320,
@@ -109,7 +119,7 @@ export const theme: DefaultTheme = {
   modifiers: {
     x1: 0.7,
     x2: 0.8,
-    x3: 0.9,
+    x3: 0.2,
     x4: 1,
     x5: 1.1,
     x6: 1.2,

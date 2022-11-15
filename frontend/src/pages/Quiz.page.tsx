@@ -1,36 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { Dispatch } from "redux";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { State } from "../state/reducers";
-import { ActionType } from "../state/actionTypes";
 import QuizWelcome from "../components/Quiz/QuizWelcome";
 import QuizQuestion from "../components/Quiz/QuizQuestion";
 import QuizEnd from "../components/Quiz/QuizEnd";
 import Loading from "../components/Loading";
-import { CentralOverlayContainer, LoadingWrapper } from "../components/Lib";
+import {
+  LoadingWrapper,
+  CentralOverlayContainer,
+  ErrorWrapper,
+} from "../components/Lib";
 import { endpoints } from "../types/constants";
-import { shuffleArray } from "../utils/sharedHelpers";
-import { getData } from "../services";
+import useAxios from "../hooks/useAxios";
+import axios from "../services/quizTest";
 
 const Quiz = () => {
-  const [questions, setQuestions] = useState<Quiz[] | undefined>();
-  const { totalQuestions, readyToPlay, livesLeft } = useSelector(
+  const { totalQuestions, livesLeft, readyToPlay } = useSelector(
     (state: State) => state.quiz,
   );
 
-  const dispatch: Dispatch = useDispatch();
+  const {
+    response: questions,
+    error,
+    loading,
+  } = useAxios({
+    axiosInstance: axios,
+    method: "get",
+    url: endpoints.quiz,
+    requestConfig: {
+      headers: {
+        "Content-Language": "EN-US",
+      },
+    },
+  });
 
-  const getMyQuestions = async () => {
-    const data = await getData(endpoints.quiz);
-    return setQuestions(shuffleArray(data.quiz).slice(0, 5));
-  };
-
-  useEffect(() => {
-    dispatch({ type: ActionType.RESET_QUIZ });
-    getMyQuestions();
-  }, []);
-
-  if (!questions) {
+  if (loading) {
     return (
       <LoadingWrapper>
         <Loading size="medium" title="loading questions" />
@@ -38,14 +42,21 @@ const Quiz = () => {
     );
   }
 
+  if (error) {
+    return (
+      <ErrorWrapper>
+        <Loading size="medium" error title={`${error.message}`} />
+      </ErrorWrapper>
+    );
+  }
   if (totalQuestions == questions.length || livesLeft == 0) {
-    getMyQuestions();
     return (
       <CentralOverlayContainer>
         <QuizEnd />
       </CentralOverlayContainer>
     );
   }
+
   return (
     <CentralOverlayContainer>
       {!readyToPlay ? (

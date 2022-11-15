@@ -4,9 +4,9 @@ const { viewports } = theme;
 
 // API
 export const endpoints: Endpoints = {
-  jokes: "jokes",
+  joke: "joke",
   quiz: "questions",
-  countries: "countries",
+  map: "map",
 };
 
 // Quiz
@@ -57,7 +57,6 @@ export const textVariants: Utils.TextVariantMap = {
 };
 
 // Responsiveness Components
-
 export const breakpoints: Utils.BreakpointsMap = {
   xSmall: "xSmall",
   small: "small",
@@ -69,12 +68,30 @@ export const breakpoints: Utils.BreakpointsMap = {
   xLarge: "xLarge",
 };
 
-export const device = {
-  mobileS: `(min-width: ${viewports.mobileS}px)`,
-  mobileL: `(min-width: ${viewports.mobileL}px)`,
-  tablet: `(min-width: ${viewports.tablet}px)`,
-  laptop: `(min-width: ${viewports.laptop}px)`,
-  laptopM: `(min-width: ${viewports.laptopM}px)`,
-  LaptopL: `(min-width: ${viewports.laptopL}px)`,
-  desktop: `(min-width: ${viewports.desktop}px)`,
+export const deviceMin = {
+  xSmall: `(min-width: ${viewports.mobileS}px)`,
+  small: `(min-width: ${viewports.mobileL}px)`,
+  smallMedium: `(min-width: ${viewports.tabletS}px)`,
+  medium: `(min-width: ${viewports.tablet}px)`,
+  mediumPlus: `(min-width: ${viewports.laptop}px)`,
+  mediumLarge: `(min-width: ${viewports.laptopM}px)`,
+  large: `(min-width: ${viewports.laptopL}px)`,
+  xLarge: `(min-width: ${viewports.desktop}px)`,
+};
+
+export const deviceMax = {
+  xSmall: `(max-width: ${viewports.mobileS}px)`,
+  small: `(max-width: ${viewports.mobileL}px)`,
+  smallMedium: `(max-width: ${viewports.tabletS}px)`,
+  medium: `(max-width: ${viewports.tablet}px)`,
+  mediumPlus: `(max-width: ${viewports.laptop}px)`,
+  mediumLarge: `(max-width: ${viewports.laptopM}px)`,
+  large: `(max-width: ${viewports.laptopL}px)`,
+  xLarge: `(max-width: ${viewports.desktop}px)`,
+};
+
+// Error handling
+
+export const forseenErrors = {
+  database: "database error, please refresh",
 };

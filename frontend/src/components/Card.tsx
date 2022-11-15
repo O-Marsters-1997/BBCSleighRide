@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Paper, { PaperProps } from "@mui/material/Paper";
-import { getBorderColor } from "../utils/styleHelpers";
+import { getBorderColor } from "../utils/style/styleHelpers";
 
 type StyleProps = {
   borderradius?: number;

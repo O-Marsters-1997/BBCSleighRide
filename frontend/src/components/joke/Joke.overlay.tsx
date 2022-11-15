@@ -9,21 +9,17 @@ import Image from "../Image";
 import QuizExitCracker from "../Svg/QuizExitCracker";
 import JokeItem from "./JokeItem";
 import {
+  RowContainerOverlayBorderBottom,
   HomePageCardOverlayWrapper,
   CentralRowContainer,
   CentralColumnContainer,
 } from "../Lib";
 import { endpoints } from "../../types/constants";
-import { shuffleArray } from "../../utils/sharedHelpers";
-import { getData } from "../../services";
+import useAxios from "../../hooks/useAxios";
+import axios from "../../services/quizTest";
 import santa from "../../assets/images/santa_happy.svg";
 
-const StyledJokeRow = styled(CentralRowContainer)`
-  margin: 0 auto;
-  padding-bottom: 0.85rem;
-  width: 90%;
-  border-bottom: ${({ theme }) =>
-    `2px solid ${theme.palette.primary.contrastText}`};
+const StyledJokeRow = styled(RowContainerOverlayBorderBottom)`
   &.top-row {
     margin-top: 1.25em;
   }
@@ -35,26 +31,30 @@ const StyledJokeRow = styled(CentralRowContainer)`
 `;
 
 const Joke: React.FC = () => {
-  const [jokes, setJokes] = useState<Joke[] | undefined>();
   const [toggleJokeView, setToggleJokeView] = useState<boolean>(false);
   const dispatch: Dispatch = useDispatch();
 
-  const getMyJokes = async () => {
-    const data = await getData(endpoints.jokes);
-    return setJokes(data.jokes);
-  };
+  const { response: joke } = useAxios({
+    axiosInstance: axios,
+    method: "get",
+    url: endpoints.joke,
+    requestConfig: {
+      headers: {
+        "Content-Language": "EN-US",
+      },
+    },
+  });
 
   useEffect(() => {
-    getMyJokes();
-  }, []);
+    setToggleJokeView(true);
+  }, [joke]);
 
   const selectJoke = () => {
     setToggleJokeView(false);
-    const chooseNewJoke = () => {
+
+    const chooseNewJoke = async () => {
       try {
-        const shuffledJoke = jokes && shuffleArray(jokes).find((item) => item);
-        dispatch({ type: ActionType.SELECT_JOKE, payload: shuffledJoke });
-        setToggleJokeView(true);
+        dispatch({ type: ActionType.RESET_JOKE });
       } catch (error) {
         console.log(error);
       }

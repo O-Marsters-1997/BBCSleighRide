@@ -64,10 +64,10 @@ export const startServer = () => {
   // Routes
 
   const jokesRouter = createRouter("jokes");
-  app.use("/jokes", jokesRouter);
+  app.use("/joke", jokesRouter);
 
   const countriesRouter = createRouter("countries");
-  app.use("/countries", countriesRouter);
+  app.use("/map", countriesRouter);
 
   //
   const quizRouter = createRouter("quiz");

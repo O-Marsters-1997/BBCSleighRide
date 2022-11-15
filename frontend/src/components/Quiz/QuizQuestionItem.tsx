@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import View from "../View";
 import Text from "../Text";
-import { getTextBackgroundColor } from "../../utils/styleHelpers";
+import { getTextBackgroundColor } from "../../utils/style/styleHelpers";
 
 type QuestionProps = {
   selected: number;

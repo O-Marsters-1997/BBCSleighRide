@@ -23,15 +23,15 @@ const StyledPunchline = styled(View)`
 `;
 
 const JokeItem: React.FC = () => {
-  const { selectedJoke } = useSelector((state: State) => state.joke);
+  const { response: joke } = useSelector((state: State) => state.joke);
   return (
     <View>
       <Text variant="body1" textAlign="center">
-        {selectedJoke?.joke}
+        {joke?.joke}
       </Text>
       <StyledPunchline>
         <Text variant="body2" textAlign="center">
-          {selectedJoke?.punchline}
+          {joke?.punchline}
         </Text>
       </StyledPunchline>
     </View>

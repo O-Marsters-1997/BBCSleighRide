@@ -5,8 +5,8 @@ import {
   Size,
   currentAnswerQuiz,
   breakpoints,
-} from "../types/constants";
-import { theme } from "./theme";
+} from "../../types/constants";
+import { theme } from "../theme";
 
 // Palette variants
 
@@ -52,6 +52,11 @@ export const getFontVariant = (variant: string): Utils.FontVariant => {
   };
 
   switch (variant) {
+    case textVariants.h1:
+      fontVariant.fontWeight = typography.h1.fontWeight;
+      fontVariant.fontFamily = typography.h1.fontFamily;
+      fontVariant.fontSize = typography.h1.fontSize;
+      break;
     case textVariants.h2:
       fontVariant.fontWeight = typography.h2.fontWeight;
       fontVariant.fontFamily = typography.h2.fontFamily;
@@ -86,6 +91,11 @@ export const getFontVariant = (variant: string): Utils.FontVariant => {
       fontVariant.fontWeight = typography.subtitle1.fontWeight;
       fontVariant.fontFamily = typography.subtitle1.fontFamily;
       fontVariant.fontSize = typography.subtitle1.fontSize;
+      break;
+    case textVariants.subtitle2:
+      fontVariant.fontWeight = typography.subtitle2.fontWeight;
+      fontVariant.fontFamily = typography.subtitle2.fontFamily;
+      fontVariant.fontSize = typography.subtitle2.fontSize;
       break;
     default:
       break;
@@ -123,88 +133,26 @@ export const getLoadingSize = (size?: string): number | null => {
 };
 
 // Responsiveness
-
 export const getBreakpointMatches = (breakpoint?: string): number | null => {
   const { viewports } = theme;
   switch (breakpoint) {
     case breakpoints.xSmall:
       return viewports.mobileS;
-
     case breakpoints.small:
       return viewports.mobileL;
-
     case breakpoints.smallMedium:
       return viewports.tabletS;
-
     case breakpoints.medium:
       return viewports.tablet;
-
     case breakpoints.mediumPlus:
       return viewports.laptop;
-
     case breakpoints.mediumLarge:
       return viewports.laptopM;
-
     case breakpoints.large:
       return viewports.laptopL;
-
     case breakpoints.xLarge:
       return viewports.desktop;
-
     default:
       return null;
-  }
-};
-
-const h3Modifier = () => {
-  const width = window.innerWidth;
-  const { viewports, modifiers } = theme;
-  switch (true) {
-    case width > viewports.laptopL:
-      return modifiers.x7;
-    case width > viewports.laptopM:
-      return modifiers.x6;
-    case width > viewports.laptop:
-      return modifiers.x5;
-    case width > viewports.tablet:
-      return modifiers.x4;
-    case width > viewports.mobileL:
-      return modifiers.x3;
-    case width > viewports.mobileS:
-      return modifiers.x2;
-    default:
-      return modifiers.x1;
-  }
-};
-
-const h5Modifier = () => {
-  const width = window.innerWidth;
-  const { viewports, modifiers } = theme;
-  switch (true) {
-    case width > viewports.laptopL:
-      return modifiers.x4;
-    case width > viewports.laptopM:
-      return modifiers.x4;
-    case width > viewports.laptop:
-      return modifiers.x4;
-    case width > viewports.tablet:
-      return modifiers.x4;
-    case width > viewports.mobileL:
-      return modifiers.x3;
-    case width > viewports.mobileS:
-      return modifiers.x2;
-    default:
-      return modifiers.x1;
-  }
-};
-
-export const getModifier = (variant: Utils.TextVariant) => {
-  switch (variant) {
-    case textVariants.h3:
-      return h3Modifier();
-    case textVariants.h5:
-      return h5Modifier();
-    default:
-      return 1;
   }
 };

@@ -1,4 +1,6 @@
-import React, { useContext, ReactNode } from "react";
+import React, { ReactNode, useContext } from "react";
+// import { useSelector } from "react-redux";
+// import { State } from "../../state/reducers";
 import { ActionsContext } from "../../contexts/StateActions.context";
 import Image from "../Image";
 import Card from "../Card";
@@ -18,6 +20,7 @@ import { useViewport } from "../../hooks/useViewport";
 
 const QuizWelcome = () => {
   const { startQuiz } = useContext(ActionsContext) ?? {};
+  // const { response } = useSelector((state: State) => state.quiz);
 
   const viewport = useViewport();
   const welcomeContent = (): ReactNode => (

@@ -7,6 +7,7 @@ declare module "styled-components" {
     palette: {
       primary: Utils.Palette;
       secondary: Utils.Palette;
+      black: Utils.Palette;
       primaryText: Utils.Palette;
       secondaryText: Utils.Palette;
       grey: Utils.Palette;
@@ -19,7 +20,7 @@ declare module "styled-components" {
       h5: Utils.FontVariant;
       h6: Utils.FontVariant;
       subtitle1: Utils.FontVariant;
-      subtitle2?: Utils.FontVariant;
+      subtitle2: Utils.FontVariant;
       body1: Utils.FontVariant;
       body2: Utils.FontVariant;
       caption?: Utils.FontVariant;

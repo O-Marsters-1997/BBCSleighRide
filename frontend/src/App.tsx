@@ -10,11 +10,11 @@ import Joke from "./components/joke/Joke.overlay";
 import Header from "./components/Header";
 import View from "./components/View";
 import { AppContainer, CompleteOverlayContainer } from "./components/Lib";
-// import Background from "./components/Svg/Background";
 
 const BBCSleighride = lazy(() => import("./pages/BBCSleighride.page"));
 const Map = lazy(() => import("./pages/Map.page"));
 const Quiz = lazy(() => import("./pages/Quiz.page"));
+
 const Error = lazy(() => import("./pages/Error.page"));
 
 const App: React.FC = () => {
@@ -22,21 +22,23 @@ const App: React.FC = () => {
   const showSanta = (): void => {
     setSantaToggle(!santaToggle);
   };
-  const { modalOpen } = useSelector((state: State) => state.joke);
-
+  const { modalOpen: jokeOpen } = useSelector((state: State) => state.joke);
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <AppContainer>
-          {modalOpen && (
-            <CompleteOverlayContainer>
-              <Joke />
-            </CompleteOverlayContainer>
-          )}
           <Header showSanta={showSanta} />
           <ActionsProvider>
             <View backgroundImg>
+              {jokeOpen && (
+                <CompleteOverlayContainer>
+                  <View style={{ paddingTop: "4em" }}>
+                    <Joke />
+                  </View>
+                </CompleteOverlayContainer>
+              )}
+
               <Routes>
                 <Route
                   path="/"
@@ -63,6 +65,7 @@ const App: React.FC = () => {
                     </Suspense>
                   }
                 />
+
                 <Route
                   path="*"
                   element={
