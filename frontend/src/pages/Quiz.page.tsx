@@ -1,8 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
 import { State } from "../state/reducers";
-
 import QuizWelcome from "../components/Quiz/QuizWelcome";
 import QuizQuestion from "../components/Quiz/QuizQuestion";
 import QuizEnd from "../components/Quiz/QuizEnd";

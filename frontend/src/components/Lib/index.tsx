@@ -133,6 +133,7 @@ export const QuizGameCracker = styled(Cracker)`
 // Overlay
 export const CardOverlayWrapper = styled(View)`
   width: clamp(300px, 60vw, 1100px);
+  padding-top: 8rem;
 `;
 
 export const HomePageCardOverlayWrapper = styled(View)`
