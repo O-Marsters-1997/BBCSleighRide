@@ -10,7 +10,7 @@ type StyleProps = {
   lineHeight?: number;
   marginBottom?: string;
   textAlign?: CSS.TextAlign;
-  sizeAdjust?: number;
+  sizeadjust?: number;
 };
 
 interface TextProps extends TypographyProps {
@@ -34,7 +34,7 @@ const StyledText = styled(Typography)<Props>`
     props.variant &&
     adjustSize(
       getFontVariant(props.variant).fontSize * useModifier(props.variant),
-      props.sizeAdjust,
+      props.sizeadjust,
     )}rem;
   font-weight: ${({ variant }) =>
     variant && getFontVariant(variant).fontWeight};
@@ -52,7 +52,7 @@ const Text: React.FC<Props> = ({
   marginBottom,
   textAlign,
   paddingTop,
-  sizeAdjust,
+  sizeadjust,
 }) => (
   <StyledText
     variant={variant}
@@ -61,7 +61,7 @@ const Text: React.FC<Props> = ({
     marginBottom={marginBottom}
     textAlign={textAlign}
     paddingTop={paddingTop}
-    sizeAdjust={sizeAdjust}
+    sizeadjust={sizeadjust}
   >
     {children}
   </StyledText>

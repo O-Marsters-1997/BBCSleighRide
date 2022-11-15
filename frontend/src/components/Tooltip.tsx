@@ -27,14 +27,14 @@ const Tooltip: React.FC<Props> = ({ name, option, optionValue, children }) => {
           height={20}
           width={20}
         />
-        <Text variant="h5" sizeAdjust={0.9}>
+        <Text variant="h5" sizeadjust={0.9}>
           {name}
         </Text>
       </RowContainer>
-      <Text variant="subtitle2" sizeAdjust={0.9}>
+      <Text variant="subtitle2" sizeadjust={0.9}>
         {option}
       </Text>
-      <Text variant="subtitle1" sizeAdjust={0.9}>
+      <Text variant="subtitle1" sizeadjust={0.9}>
         {optionValue}
       </Text>
     </View>

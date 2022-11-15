@@ -1,15 +1,12 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Image from "./Image";
+import { SantaContext } from "../contexts/SantaContext";
 import logo from "../assets/images/logo_star.svg";
 import santa from "../assets/images/santa_happy.svg";
-
-type Props = {
-  showSanta: () => void;
-};
 
 const StyledToolbar = styled(Toolbar)`
   height: 11vh;
@@ -27,16 +24,21 @@ const StyledToolbar = styled(Toolbar)`
   }
 `;
 
-const Header: React.FC<Props> = ({ showSanta }) => {
+const Header: React.FC = () => {
   const navigate = useNavigate();
+  const { toggleSantaView, setToggleSantaView } = useContext(SantaContext);
 
   const navigateBack = (): void => {
     navigate("/");
   };
 
-  const handleSantaToggle = (): void => {
-    showSanta();
+  const handleClick = () => {
+    setToggleSantaView((prev: any) => !prev);
   };
+
+  useEffect(() => {
+    console.log(toggleSantaView);
+  }, [toggleSantaView]);
 
   return (
     <AppBar position="static">
@@ -53,7 +55,7 @@ const Header: React.FC<Props> = ({ showSanta }) => {
           src={santa}
           alt="santa chatbot image"
           className="chat-bot"
-          onClick={handleSantaToggle}
+          onClick={handleClick}
         />
       </StyledToolbar>
     </AppBar>
