@@ -10,7 +10,7 @@ const Santa: React.FC = () => {
 
   return (
     <>
-      {toggleSantaView && (
+      {toggleSantaView.isOpen && (
         <Chatbot
           config={config}
           messageParser={MessageParser}

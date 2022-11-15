@@ -3,10 +3,11 @@ import React, { useReducer, createContext, useMemo, ReactNode } from "react";
 export const SantaContext = createContext<any>(null);
 
 const SantaProvider = ({ children }: { children: ReactNode }) => {
-  const reducer = (initial: any) => !initial;
-  const [toggleSantaView, invertToggleSantaView] = useReducer<any>(
+  const initialState = { isOpen: false };
+  const reducer = (initial: any) => ({ ...initial, isOpen: !initial.isOpen });
+  const [toggleSantaView, invertToggleSantaView] = useReducer(
     reducer,
-    false,
+    initialState,
   );
 
   const value = useMemo(
