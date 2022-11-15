@@ -4,7 +4,7 @@ import Typography, { TypographyProps } from "@mui/material/Typography";
 import {
   getTextColor,
   getFontVariant,
-  getModifier,
+  useModifier,
 } from "../utils/style/styleHelpers";
 
 type StyleProps = {
@@ -36,7 +36,7 @@ const StyledText = styled(Typography)<Props>`
   font-size: ${(props) =>
     props.variant &&
     adjustSize(
-      getFontVariant(props.variant).fontSize * getModifier(props.variant),
+      getFontVariant(props.variant).fontSize * useModifier(props.variant),
       props.sizeAdjust,
     )}rem;
   font-weight: ${({ variant }) =>
