@@ -6,7 +6,6 @@ import {
   currentAnswerQuiz,
   breakpoints,
 } from "../../types/constants";
-import { useViewport } from "../../hooks/useViewport";
 import { theme } from "../theme";
 
 // Palette variants
@@ -134,85 +133,26 @@ export const getLoadingSize = (size?: string): number | null => {
 };
 
 // Responsiveness
-const h2Modifier = () => {
-  const width = window.innerWidth;
-  const { viewports, modifiers } = theme;
-  switch (true) {
-    case width > viewports.laptopL:
-      return modifiers.x7;
-    case width > viewports.laptopM:
-      return modifiers.x6;
-    case width > viewports.laptop:
-      return modifiers.x5;
-    case width > viewports.tablet:
-      return modifiers.x4;
-    case width > viewports.mobileL:
-      return modifiers.x3;
-    case width > viewports.mobileS:
-      return modifiers.x2;
+export const getBreakpointMatches = (breakpoint?: string): number | null => {
+  const { viewports } = theme;
+  switch (breakpoint) {
+    case breakpoints.xSmall:
+      return viewports.mobileS;
+    case breakpoints.small:
+      return viewports.mobileL;
+    case breakpoints.smallMedium:
+      return viewports.tabletS;
+    case breakpoints.medium:
+      return viewports.tablet;
+    case breakpoints.mediumPlus:
+      return viewports.laptop;
+    case breakpoints.mediumLarge:
+      return viewports.laptopM;
+    case breakpoints.large:
+      return viewports.laptopL;
+    case breakpoints.xLarge:
+      return viewports.desktop;
     default:
-      return modifiers.x1;
+      return null;
   }
-};
-
-export const useModifier = (variant: Utils.TextVariant): number => {
-  const viewport = useViewport();
-
-  const h3Modifier = () => {
-    const { modifiers } = theme;
-    switch (true) {
-      case viewport(breakpoints.large as Utils.Breakpoints):
-        return modifiers.x7;
-      case viewport(breakpoints.mediumLarge as Utils.Breakpoints):
-        return modifiers.x4;
-      case viewport(breakpoints.mediumPlus as Utils.Breakpoints):
-        return modifiers.x4;
-      case viewport(breakpoints.medium as Utils.Breakpoints):
-        return modifiers.x4;
-      case viewport(breakpoints.smallMedium as Utils.Breakpoints):
-        return modifiers.x3;
-      case viewport(breakpoints.small as Utils.Breakpoints):
-        return modifiers.x2;
-      default:
-        return modifiers.x1;
-    }
-  };
-
-  const h5Modifier = () => {
-    const width = window.innerWidth;
-    const { viewports, modifiers } = theme;
-    switch (true) {
-      case width > viewports.laptopL:
-        return modifiers.x7;
-      case width > viewports.laptopM:
-        return modifiers.x7;
-      case width > viewports.laptop:
-        return modifiers.x7;
-      case width > viewports.tablet:
-        console.log("yes");
-        return modifiers.x7;
-      case width > viewports.mobileL:
-        return modifiers.x3;
-      case width > viewports.mobileS:
-        return modifiers.x2;
-      default:
-        return modifiers.x1;
-    }
-  };
-
-  const getModifier = () => {
-    switch (variant) {
-      case textVariants.h2:
-        return h2Modifier();
-      case textVariants.h3:
-        console.log(h3Modifier());
-        return h3Modifier();
-      case textVariants.h5:
-        return h5Modifier();
-      default:
-        return 1;
-    }
-  };
-
-  return getModifier();
 };

@@ -1,11 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Typography, { TypographyProps } from "@mui/material/Typography";
-import {
-  getTextColor,
-  getFontVariant,
-  useModifier,
-} from "../utils/style/styleHelpers";
+import { useModifier } from "../hooks/useModifier";
+import { getTextColor, getFontVariant } from "../utils/style/styleHelpers";
 
 type StyleProps = {
   colorvariant?: Utils.ColorVariant;

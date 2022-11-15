@@ -119,7 +119,7 @@ export const theme: DefaultTheme = {
   modifiers: {
     x1: 0.7,
     x2: 0.8,
-    x3: 0.9,
+    x3: 0.2,
     x4: 1,
     x5: 1.1,
     x6: 1.2,
