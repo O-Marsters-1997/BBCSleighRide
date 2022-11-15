@@ -29,7 +29,6 @@ const App: React.FC = () => {
         <SantaProvider>
           <AppContainer>
             <Header />
-
             <ActionsProvider>
               <View backgroundImg>
                 {jokeOpen && (

@@ -4,10 +4,13 @@ export const SantaContext = createContext<any>(null);
 
 const SantaProvider = ({ children }: { children: ReactNode }) => {
   const reducer = (initial: any) => !initial;
-  const [toggleSantaView, setToggleSantaView] = useReducer<any>(reducer, false);
+  const [toggleSantaView, invertToggleSantaView] = useReducer<any>(
+    reducer,
+    false,
+  );
 
   const value = useMemo(
-    () => ({ toggleSantaView, setToggleSantaView }),
+    () => ({ toggleSantaView, invertToggleSantaView }),
     [toggleSantaView],
   );
   return (

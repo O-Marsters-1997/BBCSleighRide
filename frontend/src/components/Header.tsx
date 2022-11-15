@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
@@ -26,19 +26,15 @@ const StyledToolbar = styled(Toolbar)`
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-  const { toggleSantaView, setToggleSantaView } = useContext(SantaContext);
+  const { invertToggleSantaView } = useContext(SantaContext);
 
   const navigateBack = (): void => {
     navigate("/");
   };
 
   const handleClick = () => {
-    setToggleSantaView((prev: any) => !prev);
+    invertToggleSantaView();
   };
-
-  useEffect(() => {
-    console.log(toggleSantaView);
-  }, [toggleSantaView]);
 
   return (
     <AppBar position="static">
