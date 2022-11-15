@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { State } from "./state/reducers";
 import { theme, GlobalStyle } from "./utils/theme";
 import ActionsProvider from "./contexts/StateActions.context";
+import Santa from "./components/santa/Santa";
 import Joke from "./components/joke/Joke.overlay";
 import Header from "./components/Header";
 import View from "./components/View";
@@ -38,7 +39,7 @@ const App: React.FC = () => {
                   </View>
                 </CompleteOverlayContainer>
               )}
-
+              <Santa />
               <Routes>
                 <Route
                   path="/"
