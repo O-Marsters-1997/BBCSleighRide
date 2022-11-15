@@ -1,17 +1,53 @@
 import React from "react";
-import styled from "styled-components";
-import Button from "@mui/material/Button";
+import styled, { css } from "styled-components";
+import View from "./View";
+import Text from "./Text";
 
-type Props = {
-  onClick?: () => void;
-  text: string;
+type StyleProps = {
+  colorvariant?: Utils.ColorVariant;
 };
 
-const StyledButton = styled(Button)<Props>``;
+type Props = {
+  text: string;
+  variant?: Utils.ButtonVariant;
+  onClick?: () => void;
+} & StyleProps;
 
-const MyButton: React.FC<Props> = ({ text, onClick }) => (
-  <StyledButton text={text} onClick={onClick}>
-    {text}
+const StyledButton = styled(View)<Props>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${(props) =>
+    props.variant == "rounded" &&
+    css`
+      color: ${props.colorvariant ?? props.theme.palette.primaryText.main};
+      background-color: ${props.theme.palette.primary.contrastText};
+      height: 35px;
+      width: 35px;
+      font-size: 2rem;
+      border: 2px solid ${props.theme.palette.primaryText.main};
+      border-radius: 50%;
+      /* .MuiTypography-root {
+        transform: translateX(0px);
+      } */
+    `}
+`;
+
+const MyButton: React.FC<Props> = ({
+  text,
+  variant,
+  colorvariant,
+  onClick,
+}) => (
+  <StyledButton
+    text={text}
+    variant={variant}
+    colorvariant={colorvariant}
+    onClick={onClick}
+  >
+    <Text variant="body1" sizeAdjust={1.5}>
+      {text}
+    </Text>
   </StyledButton>
 );
 

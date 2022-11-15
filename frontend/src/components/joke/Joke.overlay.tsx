@@ -9,23 +9,17 @@ import Image from "../Image";
 import QuizExitCracker from "../Svg/QuizExitCracker";
 import JokeItem from "./JokeItem";
 import {
+  RowContainerOverlayBorderBottom,
   HomePageCardOverlayWrapper,
   CentralRowContainer,
   CentralColumnContainer,
 } from "../Lib";
 import { endpoints } from "../../types/constants";
-// import { shuffleArray } from "../../utils/sharedHelpers";
-
 import useAxios from "../../hooks/useAxios";
 import axios from "../../services/quizTest";
 import santa from "../../assets/images/santa_happy.svg";
 
-const StyledJokeRow = styled(CentralRowContainer)`
-  margin: 0 auto;
-  padding-bottom: 0.85rem;
-  width: 90%;
-  border-bottom: ${({ theme }) =>
-    `2px solid ${theme.palette.primary.contrastText}`};
+const StyledJokeRow = styled(RowContainerOverlayBorderBottom)`
   &.top-row {
     margin-top: 1.25em;
   }

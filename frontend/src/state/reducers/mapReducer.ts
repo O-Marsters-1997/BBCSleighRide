@@ -5,6 +5,7 @@ const initialState: Countries.MapState = {
   loading: true,
   error: null,
   selectedMapFilter: "greeting",
+  modalOpen: false,
   position: {
     coordinates: [10, 8],
     zoom: 1.1,
@@ -20,6 +21,8 @@ const reducer = (
       return { ...state, response: action.payload, loading: false };
     case ActionType.COUNTRIES_ERROR:
       return { ...state, error: action.payload, loading: false };
+    case ActionType.TOGGLE_INSTRUCTIONS:
+      return { ...state, modalOpen: !state.modalOpen };
     case ActionType.SELECT_GREETING:
       return { ...state, selectedMapFilter: action.payload };
     case ActionType.SET_MAP_POSITION:

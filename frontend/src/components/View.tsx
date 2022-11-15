@@ -41,8 +41,8 @@ const StyledBackground = styled(StyledView)<Props>`
     position: relative;
     object-fit: cover;
     background-size: cover;
-    background-repeat: no-repeat;
     background-position: center center;
+    background-repeat: no-repeat;
     background-image: linear-gradient(rgba(4, 9, 30, 0), rgba(4, 9, 30, 0)),
       url(${app_background});
     min-height: 120vh;

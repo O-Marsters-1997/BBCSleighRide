@@ -21,6 +21,7 @@ export enum ActionType {
   // Map state
   SET_COUNTRIES = "set countries",
   COUNTRIES_ERROR = "countries error",
+  TOGGLE_INSTRUCTIONS = "toggle instructions",
   SELECT_GREETING = "select greeting",
   SET_MAP_POSITION = "map position",
 }

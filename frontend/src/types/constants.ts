@@ -57,7 +57,6 @@ export const textVariants: Utils.TextVariantMap = {
 };
 
 // Responsiveness Components
-
 export const breakpoints: Utils.BreakpointsMap = {
   xSmall: "xSmall",
   small: "small",
@@ -89,4 +88,10 @@ export const deviceMax = {
   mediumLarge: `(max-width: ${viewports.laptopM}px)`,
   large: `(max-width: ${viewports.laptopL}px)`,
   xLarge: `(max-width: ${viewports.desktop}px)`,
+};
+
+// Error handling
+
+export const forseenErrors = {
+  database: "database error, please refresh",
 };

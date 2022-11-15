@@ -49,11 +49,13 @@ declare global {
     | "select joke"
     | "set countries"
     | "countries error"
+    | "toggle instructions"
     | "select greeting"
     | "set map position"
     | null;
 
   type Context = {
+    // Quiz
     setQuestions: (
       questions: Quiz[],
     ) => (dispatch: Dispatch<Quiz.Action>) => void;
@@ -67,6 +69,7 @@ declare global {
     answerIncorrectly: () => void;
     nextQuestion: () => void;
     nextQuestionGiveUp: () => void;
+    // Joke
     setJoke: (jokes: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
     jokeError: (error: AxiosError) => (dispatch: Dispatch<Joke.Action>) => void;
     refetchJoke: () => void;
@@ -74,12 +77,14 @@ declare global {
     showModal: () => void;
     hideModal: () => void;
     selectJoke: (joke: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
+    // Map
     setCountries: (
       countries: Country[],
     ) => (dispatch: Dispatch<Countries.Action>) => void;
     countriesError: (
       error: AxiosError,
     ) => (dispatch: Dispatch<Countries.Action>) => void;
+    toggleInstructions: () => void;
     selectGreeting: (
       greeting: string,
     ) => (dispatch: Dispatch<Countries.Action>) => void;
@@ -89,7 +94,6 @@ declare global {
   };
 
   // Api types
-
   type FetchConfig = {
     axiosInstance: any;
     method: Method;
@@ -107,6 +111,7 @@ declare global {
       loading: boolean;
       error: AxiosError | null;
       selectedMapFilter: string | undefined;
+      modalOpen: boolean;
       position: MapAxis;
     }
 
@@ -114,6 +119,12 @@ declare global {
       coordinates: [number, number];
       name?: string;
       zoom?: any;
+    }
+
+    interface ToolTipContent {
+      option: string;
+      optionValue: string;
+      name: string;
     }
 
     interface SetCountries {
@@ -124,6 +135,10 @@ declare global {
     interface CountriesError {
       type: ActionType.COUNTRIES_ERROR;
       payload: any;
+    }
+
+    interface ToggleInstructions {
+      type: ActionType.TOGGLE_INSTRUCTIONS;
     }
 
     interface SelectGreeting {
@@ -139,6 +154,7 @@ declare global {
     type Action =
       | SetCountries
       | CountriesError
+      | ToggleInstructions
       | SelectGreeting
       | SetMapPosition;
   }
@@ -370,10 +386,21 @@ declare global {
       x6: number;
       x7: number;
     };
+
+    type ButtonVariant = "normal" | "rounded";
   }
 
   declare namespace CSS {
     type JustifyContent =
+      | "flex-start"
+      | "flex-end"
+      | "space-between"
+      | "space-around"
+      | "center"
+      | "initial"
+      | "inherit";
+
+    type AlignItems =
       | "flex-start"
       | "flex-end"
       | "space-between"

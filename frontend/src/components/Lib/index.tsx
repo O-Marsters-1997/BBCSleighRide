@@ -21,14 +21,13 @@ export const CompleteOverlayContainer = styled(View)`
   background-color: ${({ theme }) => theme.palette.grey.additional};
 `;
 
-export const PageContainer = styled(View)`
+export const PageContainer = styled(View)<{ alignItems?: CSS.AlignItems }>`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: ${({ alignItems }) => alignItems && alignItems};
   height: 100vh;
   width: 100vw;
   @media ${deviceMin.mediumLarge} {
-    padding-top: 50px;
   }
 `;
 
@@ -56,10 +55,12 @@ export const CardWrapper = styled(View)<{ padding?: number }>`
 `;
 
 // prettier-ignore
-export const RowContainer = styled(View)<{ justifyContent?: CSS.JustifyContent, gap?: string }>`
+export const RowContainer = styled(View)<{justifyContent?: CSS.JustifyContent; alignItems?: CSS.AlignItems; gap?: string;}>`
+  position: relative;
   display: flex;
   justify-content: ${({ justifyContent }) => justifyContent && justifyContent};
-  gap: ${({gap}) => gap && gap};
+  align-items: ${({ alignItems }) => alignItems && alignItems};
+  gap: ${({ gap }) => gap && gap};
 `;
 
 export const DetailsContainer = styled(View)<{ reverse?: boolean }>`
@@ -73,6 +74,13 @@ export const CentralRowContainer = styled(View)<{ gap?: string }>`
   align-items: center;
   gap: ${({ gap }) => gap && gap};
   width: 100%;
+`;
+export const RowContainerOverlayBorderBottom = styled(CentralRowContainer)`
+  width: 90%;
+  padding: 0.85rem 0;
+  margin: 0 auto;
+  border-bottom: ${({ theme }) =>
+    `2px solid ${theme.palette.primary.contrastText}`};
 `;
 
 export const CentralColumnContainer = styled(View)<{ reverse?: boolean }>`
@@ -106,9 +114,10 @@ export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
   }
 `;
 
-export const MapCracker = styled(Cracker)`
-  @media ${deviceMax.mediumPlus} {
+export const MapCracker = styled(Cracker)<{ translateY?: string }>`
+  @media ${deviceMax.medium} {
     width: clamp(175px, 23vw, 400px);
+    transform: translateY(${({ translateY }) => translateY && translateY});
   }
 `;
 
@@ -123,13 +132,13 @@ export const QuizGameCracker = styled(Cracker)`
 
 // Overlay
 export const CardOverlayWrapper = styled(View)`
-  padding: 80px 0;
   width: clamp(300px, 60vw, 1100px);
 `;
 
 export const HomePageCardOverlayWrapper = styled(View)`
   padding: 80px 0;
   width: clamp(250px, 45vw, 850px);
+  justify-self: center;
 `;
 
 // prettier-ignore
@@ -137,9 +146,11 @@ export const TextWrapper = styled(View)<{
   lineHeight?: number;
   indent?: boolean;
   childrenPadding?: string;
+  alignItems?: CSS.AlignItems;
 }>`
   display: flex;
   flex-direction: column;
+  align-items: ${({alignItems}) => alignItems && alignItems};
   padding-bottom: 1em;
   padding-left: ${({ indent }) => (indent ? "5px" : 0)};
   .MuiTypography-body1 {

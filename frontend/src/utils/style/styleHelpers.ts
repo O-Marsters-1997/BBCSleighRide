@@ -5,8 +5,8 @@ import {
   Size,
   currentAnswerQuiz,
   breakpoints,
-} from "../types/constants";
-import { theme } from "./theme";
+} from "../../types/constants";
+import { theme } from "../theme";
 
 // Palette variants
 
@@ -52,6 +52,11 @@ export const getFontVariant = (variant: string): Utils.FontVariant => {
   };
 
   switch (variant) {
+    case textVariants.h1:
+      fontVariant.fontWeight = typography.h1.fontWeight;
+      fontVariant.fontFamily = typography.h1.fontFamily;
+      fontVariant.fontSize = typography.h1.fontSize;
+      break;
     case textVariants.h2:
       fontVariant.fontWeight = typography.h2.fontWeight;
       fontVariant.fontFamily = typography.h2.fontFamily;
@@ -86,6 +91,11 @@ export const getFontVariant = (variant: string): Utils.FontVariant => {
       fontVariant.fontWeight = typography.subtitle1.fontWeight;
       fontVariant.fontFamily = typography.subtitle1.fontFamily;
       fontVariant.fontSize = typography.subtitle1.fontSize;
+      break;
+    case textVariants.subtitle2:
+      fontVariant.fontWeight = typography.subtitle2.fontWeight;
+      fontVariant.fontFamily = typography.subtitle2.fontFamily;
+      fontVariant.fontSize = typography.subtitle2.fontSize;
       break;
     default:
       break;

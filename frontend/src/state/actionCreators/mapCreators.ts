@@ -18,6 +18,13 @@ export const countriesError =
     });
   };
 
+export const toggleInstructions =
+  () => (dispatch: Dispatch<Countries.Action>) => {
+    dispatch({
+      type: ActionType.TOGGLE_INSTRUCTIONS,
+    });
+  };
+
 export const selectGreeting =
   (greeting: string) => (dispatch: Dispatch<Countries.Action>) => {
     dispatch({

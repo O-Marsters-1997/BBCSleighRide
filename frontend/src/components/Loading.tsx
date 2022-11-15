@@ -6,7 +6,7 @@ import Card from "./Card";
 import Image from "./Image";
 import { CentralColumnContainer, CentralRowContainer } from "./Lib";
 import { useViewport } from "../hooks/useViewport";
-import { getLoadingSize } from "../utils/styleHelpers";
+import { getLoadingSize } from "../utils/style/styleHelpers";
 import { deviceMin } from "../types/constants";
 import elfSad from "../assets/images/elf_sad.svg";
 

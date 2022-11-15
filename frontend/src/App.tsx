@@ -22,8 +22,7 @@ const App: React.FC = () => {
   const showSanta = (): void => {
     setSantaToggle(!santaToggle);
   };
-  const { modalOpen } = useSelector((state: State) => state.joke);
-
+  const { modalOpen: jokeOpen } = useSelector((state: State) => state.joke);
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
@@ -32,13 +31,14 @@ const App: React.FC = () => {
           <Header showSanta={showSanta} />
           <ActionsProvider>
             <View backgroundImg>
-              {modalOpen && (
+              {jokeOpen && (
                 <CompleteOverlayContainer>
                   <View style={{ paddingTop: "4em" }}>
                     <Joke />
                   </View>
                 </CompleteOverlayContainer>
               )}
+
               <Routes>
                 <Route
                   path="/"

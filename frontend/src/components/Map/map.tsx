@@ -1,6 +1,5 @@
-import React, { ReactNode } from "react";
+import React, { useState, ReactNode, useContext } from "react";
 import styled from "styled-components";
-import Tooltip from "@mui/material/Tooltip";
 import {
   ComposableMap,
   Geographies,
@@ -10,12 +9,12 @@ import {
 } from "react-simple-maps";
 import { Dispatch } from "redux";
 import { useSelector, useDispatch } from "react-redux";
-// import { ActionsContext } from "../../contexts/StateActions.context";
 import { ActionType } from "../../state/actionTypes";
-import View from "../View";
-// import Text from "../Text";
 import Button from "../Button";
+import View from "../View";
 import Card from "../Card";
+import Image from "../Image";
+import Tooltip from "../Tooltip";
 import DateCracker from "../Svg/DateCracker";
 import FoodCracker from "../Svg/FoodCracker";
 import GreetingCracker from "../Svg/GreetingCracker";
@@ -25,35 +24,51 @@ import {
   CentralColumnContainer,
   DetailsContainer,
 } from "../Lib";
-// import { device } from "../../types/constants";
 import { useViewport } from "../../hooks/useViewport";
 import useSounds from "../../hooks/useSounds";
+import { ActionsContext } from "../../contexts/StateActions.context";
 import { HandleZoom, randomChristmasSound } from "../../utils";
+import { shake } from "../../utils/style/keyframes";
+import { deviceMax } from "../../types/constants";
+import BaubleInstructions from "../../assets/images/bauble_instructions.svg";
+import Sleigh from "../../assets/images/sleigh_55_33.svg";
 
 type Props = {
   countriesData: Country[];
-  setTooltipContent: (content: ReactNode) => void;
 };
 
-const StyledView = styled(DetailsContainer)<Props>``;
-
-const StyledTooltip = styled(({ className, ...other }) => (
-  <Tooltip classes={{ tooltip: className }} {...other} />
-))`
-  color: blue;
-  background-color: yellow;
-  * {
-    font-size: 1.6em;
+const StyledView = styled(DetailsContainer)<Props>`
+  cursor: url(${Sleigh}) 6 6, auto;
+  @media ${deviceMax.medium} {
+    padding-top: 50px;
   }
 `;
 
-const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
+const StyledBaubleWrapper = styled(View)`
+  position: absolute;
+  top: 90%;
+  cursor: pointer;
+  transform: rotate(-15deg);
+  &:hover {
+    animation: ${shake} 0.5s;
+    animation-iteration-count: infinite;
+  }
+`;
+
+const Map: React.FC<Props> = ({ countriesData }) => {
   const dispatch: Dispatch = useDispatch();
   const viewport = useViewport();
   const sounds = useSounds();
+  const [tooltipContent, setTooltipContent] =
+    useState<Countries.ToolTipContent>({
+      option: "",
+      optionValue: "",
+      name: "",
+    });
   const { selectedMapFilter, position } = useSelector(
     (state: any) => state.map,
   );
+  const { toggleInstructions } = useContext(ActionsContext) ?? {};
   const { handleZoomIn, handleZoomOut, handleMoveEnd } = HandleZoom();
 
   const handleChange = (target: string) => {
@@ -88,29 +103,38 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
         alt="greeting"
         onClick={() => handleChange("greeting")}
       />
-      <DateCracker alt="dates" onClick={() => handleChange("celebrated")} />
-      <FoodCracker alt="foods" onClick={() => handleChange("meal")} />
+      <DateCracker
+        alt="dates"
+        onClick={() => handleChange("celebrated")}
+        translateY="-20px"
+      />
+      <FoodCracker
+        alt="foods"
+        onClick={() => handleChange("meal")}
+        translateY="-40px"
+      />
     </>
   );
 
   return (
     <StyledView
       countriesData={countriesData}
-      setTooltipContent={setTooltipContent}
-      width={viewport("small") ? "clamp(400px, 50vw, 775px)" : "300px"}
+      width={viewport("small") ? "clamp(400px, 60vw, 1000px)" : "300px"}
       reverse={!viewport("medium")}
     >
       {viewport("medium") ? (
-        <CentralRowContainer gap="20px">{toggleContent()}</CentralRowContainer>
+        <CentralRowContainer gap="30px" style={{ paddingTop: "50px" }}>
+          {toggleContent()}
+        </CentralRowContainer>
       ) : (
         <CentralColumnContainer>{toggleContent()}</CentralColumnContainer>
       )}
       <Card>
         <RowContainer justifyContent="flex-end">
-          <View>
-            <Button text="+" onClick={handleZoomIn} />
-            <Button text="-" onClick={handleZoomOut} />
-          </View>
+          <RowContainer gap="10px" style={{ padding: "10px" }}>
+            <Button text="+" variant="rounded" onClick={handleZoomIn} />
+            <Button text="-" variant="rounded" onClick={handleZoomOut} />
+          </RowContainer>
         </RowContainer>
         <RowContainer>
           <ComposableMap>
@@ -133,14 +157,25 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
                           if (found) {
                             const TOOLTIP =
                               found[selectedMapFilter as keyof typeof found];
-                            const CONTINENT = found.continent;
                             setTooltipContent(
-                              `<center><b>${TOOLTIP}</b><br>${name}, ${CONTINENT}</center>`,
+                              (prevState: Countries.ToolTipContent) => ({
+                                ...prevState,
+                                option: selectedMapFilter as string,
+                                optionValue: TOOLTIP as string,
+                                name,
+                              }),
                             );
                           }
                         }}
                         onMouseLeave={() => {
-                          setTooltipContent("");
+                          setTooltipContent(
+                            (prevState: Countries.ToolTipContent) => ({
+                              ...prevState,
+                              option: "",
+                              optionValue: "",
+                              name: "",
+                            }),
+                          );
                         }}
                         stroke="#FEFFFD"
                         strokeWidth="0.5"
@@ -164,23 +199,13 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
                     return (
                       <React.Fragment key={geo.rsmKey}>
                         {found ? (
-                          <StyledTooltip
-                            arrow
-                            followCursor
-                            title={
-                              <View
-                                style={{
-                                  height: "500px",
-                                  width: "500px",
-                                }}
-                              >
-                                <h6>{name}</h6>
-                              </View>
-                            }
-                            sx={{ fontSize: "60px" }}
+                          <Tooltip
+                            option={tooltipContent.option}
+                            optionValue={tooltipContent.optionValue}
+                            name={tooltipContent.name}
                           >
                             {geogContent()}
-                          </StyledTooltip>
+                          </Tooltip>
                         ) : (
                           <>{geogContent()}</>
                         )}
@@ -218,6 +243,17 @@ const Map: React.FC<Props> = ({ countriesData, setTooltipContent }) => {
               ))}
             </ZoomableGroup>
           </ComposableMap>
+          <StyledBaubleWrapper>
+            <Image
+              src={BaubleInstructions}
+              alt="instructions"
+              width={viewport("medium") ? 10 : 50}
+              height={viewport("medium") ? 10 : 50}
+              widthSizeUnits={viewport("medium") ? "vw" : "px"}
+              heightSizeUnits={viewport("medium") ? "vw" : "px"}
+              onClick={toggleInstructions}
+            />
+          </StyledBaubleWrapper>
         </RowContainer>
       </Card>
     </StyledView>
