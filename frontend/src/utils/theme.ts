@@ -238,13 +238,13 @@ export const GlobalStyle = createGlobalStyle`
     src:  url(${Roboto700Italic1}) format('woff'),
            url(${Roboto700Italic2}) format('woff2');
     }
-        
+  
+    /* Resets */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-size: 18px;
+  font-family: ${({ theme }) => theme.typography.body1.fontFamily};
 };
-
-
 `;

@@ -26,14 +26,14 @@ const StyledToolbar = styled(Toolbar)`
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-  const { invertToggleSantaView } = useContext(SantaContext);
+  const { dispatch } = useContext(SantaContext);
 
   const navigateBack = (): void => {
     navigate("/");
   };
 
   const handleClick = () => {
-    invertToggleSantaView();
+    dispatch({ type: "toggle" });
   };
 
   return (

@@ -1,25 +1,50 @@
-import React from "react";
+import React, { useContext } from "react";
+import View from "../View";
+import { SantaContext } from "../../contexts/SantaContext";
 
 const MessageParser = ({
   children,
-}: //   actions,
+  actions,
+}: //
 {
   children: any;
-  //   actions: any;
+  actions: any;
 }) => {
-  const parse = (message: any) => {
-    console.log(message);
+  const { state } = useContext(SantaContext);
+  const parse = (message: string) => {
+    const { messages } = state;
+    switch (messages.length) {
+      case 0:
+        actions.greet();
+        break;
+      case 1:
+        actions.nice(message);
+        break;
+      case 2:
+        actions.goodChoice();
+        setTimeout(() => {
+          actions.goodbye1();
+        }, 2000);
+        setTimeout(() => {
+          actions.goodbye2();
+        }, 4000);
+        break;
+      case 5:
+        break;
+      default:
+        actions.tooBusy();
+    }
   };
 
   return (
-    <div>
+    <View>
       {React.Children.map(children, (child) =>
         React.cloneElement(child, {
           parse,
-          actions: {},
+          actions,
         }),
       )}
-    </div>
+    </View>
   );
 };
 

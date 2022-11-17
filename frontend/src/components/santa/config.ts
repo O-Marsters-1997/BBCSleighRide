@@ -3,11 +3,7 @@ import { createChatBotMessage } from "react-chatbot-kit";
 
 const config = {
   initialMessages: [
-    createChatBotMessage("hello", { loading: false }),
-    createChatBotMessage("What is your name?", {
-      widget: "airportSelector",
-      delay: 500,
-    }),
+    createChatBotMessage("Ho ho Ho Merry Christmas!", { loading: false }),
   ],
   botName: "Santa",
 };
