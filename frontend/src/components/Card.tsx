@@ -8,6 +8,7 @@ type StyleProps = {
   bordercolor?: Utils.ColorVariant;
   borderthickness?: number;
   elavation?: number;
+  width?: string;
 };
 
 interface Props extends PaperProps {}
@@ -21,6 +22,7 @@ const StyledCard = styled(Paper)<StyleProps>`
   border-width: ${(props) =>
     props.borderthickness ? props.borderthickness : 0}px;
   border-style: solid;
+  width: ${({ width }) => width && width};
 `;
 
 const Card: React.FC<CardProps> = ({
@@ -29,12 +31,14 @@ const Card: React.FC<CardProps> = ({
   bordercolor,
   borderthickness,
   elavation,
+  width,
 }) => (
   <StyledCard
     elevation={elavation ?? 5}
     borderradius={borderradius}
     bordercolor={bordercolor}
     borderthickness={borderthickness}
+    width={width}
   >
     {children}
   </StyledCard>

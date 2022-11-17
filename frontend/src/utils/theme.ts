@@ -44,6 +44,7 @@ export const theme: DefaultTheme = {
       main: "rgb(49, 54, 56)",
       contrastText: "rgb(151, 151, 151)",
       additional: "rgba(0, 0, 0, 0.55)",
+      muted: "rgb(139, 139, 139)",
     },
     primaryText: {
       main: "rgba(242, 242, 242, 1)",
@@ -244,4 +245,6 @@ export const GlobalStyle = createGlobalStyle`
   padding: 0;
   font-size: 18px;
 };
+
+
 `;

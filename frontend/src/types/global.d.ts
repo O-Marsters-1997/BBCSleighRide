@@ -337,6 +337,7 @@ declare global {
       main: string;
       contrastText: string;
       additional?: string;
+      muted?: string;
     }
 
     type FontColor = string;
