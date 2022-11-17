@@ -4,12 +4,12 @@ import { SantaActionType } from "../state/actionTypes";
 export const SantaContext = createContext<any>(null);
 
 const SantaProvider = ({ children }: { children: ReactNode }) => {
-  const initialState = {
+  const initialState: Santa.SantaState = {
     isOpen: false,
     messages: [],
   };
 
-  const reducer = (state: any, action: any) => {
+  const reducer = (state: Santa.SantaState, action: Santa.SantaAction) => {
     const { type, payload } = action;
     switch (type) {
       case SantaActionType.TOGGLE:

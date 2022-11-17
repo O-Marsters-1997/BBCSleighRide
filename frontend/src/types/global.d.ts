@@ -1,5 +1,5 @@
 import { AxiosError, AxiosRequestConfig, Method } from "axios";
-import { ActionType } from "../state/actionTypes";
+import { ActionType, SantaActionType } from "../state/actionTypes";
 
 declare global {
   interface Country {
@@ -279,6 +279,20 @@ declare global {
       | NextQuestionGiveUp;
 
     type CurrentAnswer = string | undefined;
+  }
+
+  declare namespace Santa {
+    interface SantaState {
+      isOpen: boolean;
+      messages: string[];
+    }
+
+    type Keys = keyof typeof SantaActionType;
+
+    interface SantaAction {
+      type: typeof SantaActionType[Keys];
+      payload: string;
+    }
   }
 
   declare namespace Utils {
