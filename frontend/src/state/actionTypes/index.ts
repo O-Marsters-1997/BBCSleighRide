@@ -25,3 +25,9 @@ export enum ActionType {
   SELECT_GREETING = "select greeting",
   SET_MAP_POSITION = "map position",
 }
+
+export enum SantaActionType {
+  TOGGLE = "toggle",
+  RESET_MESSAGES = "reset messages",
+  INCREMENT_MESSAGES = "increment messages",
+}

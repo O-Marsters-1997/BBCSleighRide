@@ -45,7 +45,7 @@ const MyButton: React.FC<Props> = ({
     colorvariant={colorvariant}
     onClick={onClick}
   >
-    <Text variant="body1" sizeAdjust={1.5}>
+    <Text variant="body1" sizeadjust={1.5}>
       {text}
     </Text>
   </StyledButton>
