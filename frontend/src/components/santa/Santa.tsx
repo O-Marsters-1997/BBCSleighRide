@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import Chatbot from "react-chatbot-kit";
 import "react-chatbot-kit/build/main.css";
@@ -6,16 +6,14 @@ import View from "../View";
 import config from "./config";
 import MessageParser from "./MessageParser";
 import ActionProvider from "./ActionProvider";
-import { SantaContext } from "../../contexts/SantaContext";
 import santa from "../../assets/images/santa_happy.svg";
 
 const StyledView = styled(View)`
   display: flex;
   justify-content: flex-end;
-  margin-right: 0.5em;
   position: absolute;
-  width: 100%;
-  height: 100%;
+  margin-right: 0.5em;
+  right: 0%;
 
   /* Overides for Chatbot */
   ${({ theme }) => {
@@ -23,7 +21,8 @@ const StyledView = styled(View)`
     return css`
       .react-chatbot-kit-chat-container {
         margin-right: 1em;
-        z-index: 1000;
+        z-index: 1;
+
         .react-chatbot-kit-chat-inner-container {
           border: 0.5px solid ${palette.grey.muted};
           box-shadow: 0px 2px 9px ${palette.grey.muted};
@@ -56,8 +55,6 @@ const StyledView = styled(View)`
 `;
 
 const Santa: React.FC = () => {
-  const { state } = useContext(SantaContext);
-
   const saveMessages = (messages: string[]) => {
     localStorage.setItem("chat_messages", JSON.stringify(messages));
   };
@@ -71,15 +68,13 @@ const Santa: React.FC = () => {
 
   return (
     <StyledView>
-      {state.isOpen && (
-        <Chatbot
-          config={config}
-          messageParser={MessageParser}
-          actionProvider={ActionProvider}
-          messageHistory={loadMessages()}
-          saveMessages={saveMessages}
-        />
-      )}
+      <Chatbot
+        config={config}
+        messageParser={MessageParser}
+        actionProvider={ActionProvider}
+        messageHistory={loadMessages()}
+        saveMessages={saveMessages}
+      />
     </StyledView>
   );
 };

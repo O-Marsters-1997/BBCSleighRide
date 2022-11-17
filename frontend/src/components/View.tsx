@@ -21,6 +21,7 @@ type Props = {
 } & StyleProps;
 
 const StyledView = styled(Box)<Props>`
+  position: relative;
   width: ${(props) => props.width && `${props.width}`};
   height: ${(props) => props.height && `${props.height} `};
   background: ${(props) => props.background && props.background};
