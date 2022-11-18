@@ -32,7 +32,6 @@ declare global {
   type ActionTypeOptions =
     | "set questions"
     | "questions error"
-    | "load questions"
     | "reset quiz"
     | "start quiz"
     | "end quiz"
@@ -46,7 +45,6 @@ declare global {
     | "reset joke"
     | "show modal"
     | "hide modal"
-    | "select joke"
     | "set countries"
     | "countries error"
     | "toggle instructions"
@@ -72,11 +70,9 @@ declare global {
     // Joke
     setJoke: (jokes: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
     jokeError: (error: AxiosError) => (dispatch: Dispatch<Joke.Action>) => void;
-    refetchJoke: () => void;
     resetJoke: () => void;
     showModal: () => void;
     hideModal: () => void;
-    selectJoke: (joke: Joke) => (dispatch: Dispatch<Joke.Action>) => void;
     // Map
     setCountries: (
       countries: Country[],
@@ -180,10 +176,6 @@ declare global {
       payload: any;
     }
 
-    interface RefetchJoke {
-      type: ActionType.REFETCH_JOKE;
-    }
-
     interface ResetJoke {
       type: ActionType.RESET_JOKE;
     }
@@ -196,19 +188,14 @@ declare global {
       type: ActionType.HIDE_MODAL;
     }
 
-    interface SelectJoke {
-      type: ActionType.SELECT_JOKE;
-      payload: Joke;
-    }
-
     type Action =
       | SetJoke
       | JokeError
       | RefetchJoke
       | ResetJoke
       | ShowModal
-      | HideModal
-      | SelectJoke;
+      | HideModal;
+    // | SelectJoke;
   }
 
   declare namespace Quiz {

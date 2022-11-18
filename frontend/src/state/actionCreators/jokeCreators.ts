@@ -17,12 +17,6 @@ export const jokeError =
     });
   };
 
-export const refetchJoke = () => (dispatch: Dispatch<Joke.Action>) => {
-  dispatch({
-    type: ActionType.REFETCH_JOKE,
-  });
-};
-
 export const resetJoke = () => (dispatch: Dispatch<Joke.Action>) => {
   dispatch({
     type: ActionType.RESET_JOKE,
@@ -38,12 +32,5 @@ export const showModal = () => (dispatch: Dispatch<Joke.Action>) => {
 export const hideModal = () => (dispatch: Dispatch<Joke.Action>) => {
   dispatch({
     type: ActionType.HIDE_MODAL,
-  });
-};
-
-export const selectJoke = (joke: Joke) => (dispatch: Dispatch<Joke.Action>) => {
-  dispatch({
-    type: ActionType.SELECT_JOKE,
-    payload: joke,
   });
 };

@@ -58,52 +58,57 @@ export const theme: DefaultTheme = {
   typography: {
     h1: {
       fontWeight: 400,
-      fontFamily: "Roboto",
+      fontFamily:
+        "Roboto -apple-system, BlinkMacSystemFont, Tahoma, Ubuntu, sans‑serif",
       fontSize: 4.75,
     },
     h2: {
       fontWeight: 700,
-      fontFamily: "Raleway, sans-serif",
+      fontFamily: "Raleway, Montserrat, Poppins,  sans-serif",
       fontSize: 2.5,
     },
     h3: {
       fontWeight: 700,
-      fontFamily: "Raleway, sans-serif",
+      fontFamily: "Raleway, Montserrat, Poppins,  sans-serif",
       fontSize: 1.8,
     },
     h4: {
       fontWeight: 700,
-      fontFamily: "Raleway, sans-serif",
+      fontFamily: "Raleway, Montserrat, Poppins,  sans-serif",
       fontSize: 1.3,
     },
     h5: {
       fontWeight: 700,
-      fontFamily: "Raleway, sans-serif",
+      fontFamily: "Raleway, Montserrat, Poppins,  sans-serif",
       fontSize: 1.2,
     },
     h6: {
       fontWeight: 500,
-      fontFamily: "Raleway, sans-serif",
+      fontFamily: "Raleway, Montserrat, Poppins,  sans-serif",
       fontSize: 1.2,
     },
     body1: {
       fontWeight: 400,
-      fontFamily: "Roboto",
+      fontFamily:
+        "Roboto -apple-system, BlinkMacSystemFont, Tahoma, Ubuntu, sans‑serif",
       fontSize: 1,
     },
     body2: {
       fontWeight: 700,
-      fontFamily: "Roboto",
+      fontFamily:
+        "Roboto -apple-system, BlinkMacSystemFont, Tahoma, Ubuntu, sans‑serif",
       fontSize: 1,
     },
     subtitle1: {
       fontWeight: 400,
-      fontFamily: "Roboto",
+      fontFamily:
+        "Roboto -apple-system, BlinkMacSystemFont, Tahoma, Ubuntu, sans‑serif",
       fontSize: 0.8,
     },
     subtitle2: {
       fontWeight: 700,
-      fontFamily: "Roboto",
+      fontFamily:
+        "Roboto -apple-system, BlinkMacSystemFont, Tahoma, Ubuntu, sans‑serif",
       fontSize: 0.8,
     },
   },
