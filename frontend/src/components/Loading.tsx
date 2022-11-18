@@ -55,10 +55,8 @@ const Loading: React.FC<Props> = ({ size, title, subtitle, error }) => {
         <Image
           src={elfSad}
           alt="sad elf"
-          height={viewport("mediumPlus") ? 12 : 8}
-          width={viewport("mediumPlus") ? 12 : 8}
-          heightSizeUnits="em"
-          widthSizeUnits="em"
+          height={viewport("mediumPlus") ? "12em" : "8em"}
+          width={viewport("mediumPlus") ? "12em" : "8em"}
         />
         <View className="text-wrapper">
           <Text

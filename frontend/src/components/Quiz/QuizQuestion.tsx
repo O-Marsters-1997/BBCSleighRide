@@ -75,10 +75,8 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
       src={present}
       alt="present to demonstrate correct answers in quiz"
       key={index}
-      height={viewport("large") ? 6 : 4}
-      width={viewport("large") ? 6 : 4}
-      heightSizeUnits="em"
-      widthSizeUnits="em"
+      height={viewport("large") ? "6em" : "4em"}
+      width={viewport("large") ? "6em" : "4em"}
     />
   ));
 
@@ -87,10 +85,8 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
       src={candy_cane}
       alt={`${livesLeft} candy canes to show how many lives are left`}
       key={index}
-      height={3.5}
-      width={3.5}
-      heightSizeUnits="em"
-      widthSizeUnits="em"
+      height="3.5em"
+      width="3.5em"
     />
   ));
 

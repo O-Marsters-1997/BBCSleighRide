@@ -74,10 +74,8 @@ const QuizEnd = () => {
         <Image
           src={quizElf}
           alt="Buddy elf"
-          height={viewport("medium") ? 14 : 10}
-          width={viewport("medium") ? 14 : 10}
-          heightSizeUnits="em"
-          widthSizeUnits="em"
+          height={viewport("medium") ? "14em" : "10em"}
+          width={viewport("medium") ? "14em" : "10em"}
         />
       </ElfImageWrapper>
     </>

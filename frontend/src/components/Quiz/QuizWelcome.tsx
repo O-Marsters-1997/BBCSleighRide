@@ -1,6 +1,4 @@
 import React, { ReactNode, useContext } from "react";
-// import { useSelector } from "react-redux";
-// import { State } from "../../state/reducers";
 import { ActionsContext } from "../../contexts/StateActions.context";
 import Image from "../Image";
 import Card from "../Card";
@@ -20,8 +18,6 @@ import { useViewport } from "../../hooks/useViewport";
 
 const QuizWelcome = () => {
   const { startQuiz } = useContext(ActionsContext) ?? {};
-  // const { response } = useSelector((state: State) => state.quiz);
-
   const viewport = useViewport();
   const welcomeContent = (): ReactNode => (
     <>
@@ -38,10 +34,8 @@ const QuizWelcome = () => {
         <Image
           src={quizElf}
           alt="Buddy elf"
-          height={viewport("medium") ? 14 : 10}
-          width={viewport("medium") ? 14 : 10}
-          heightSizeUnits="em"
-          widthSizeUnits="em"
+          height={viewport("medium") ? "14em" : "10em"}
+          width={viewport("medium") ? "14em" : "10em"}
         />
       </ElfImageWrapper>
     </>

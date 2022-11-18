@@ -364,8 +364,6 @@ declare global {
 
     type PageSide = "left" | "right";
 
-    type SizeUnits = "px" | "vw" | "vh" | "em" | "rem" | "%";
-
     // Breakpoints
 
     type Breakpoints =
