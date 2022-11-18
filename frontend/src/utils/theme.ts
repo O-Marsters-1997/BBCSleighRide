@@ -1,4 +1,5 @@
 import { DefaultTheme, createGlobalStyle } from "styled-components";
+
 import RalewayRegularTTF from "../assets/fonts/RalewayRegularTTF.ttf";
 import RalewayRegularWOFF from "../assets/fonts/RalewayRegularWOFF.woff";
 import RalewayItalicTTF from "../assets/fonts/RalewayItalic.ttf";
