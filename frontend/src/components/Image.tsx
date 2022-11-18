@@ -1,28 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 
+type StyleProps = {
+  height?: string;
+  width?: string;
+  pointer?: boolean;
+};
+
 type Props = {
   src: string;
   alt: string;
-  height?: number;
-  width?: number;
-  heightSizeUnits?: Utils.SizeUnits;
-  widthSizeUnits?: Utils.SizeUnits;
   className?: string;
   logo?: boolean;
   onClick?: () => void;
-};
+} & StyleProps;
 
-const StyledImage = styled.img<Props>`
-  width: ${({ width, widthSizeUnits }) =>
-    width ? `${width}${widthSizeUnits}` : `400${widthSizeUnits}`};
-  height: ${({ height, heightSizeUnits }) =>
-    height ? `${height}${heightSizeUnits}` : `400${heightSizeUnits}`};
+const StyledImage = styled.img<StyleProps>`
+  height: ${({ height }) => height ?? "400px"};
+  width: ${({ width }) => width ?? "400px"};
+  cursor: ${(props) => props.pointer && "pointer"};
 `;
 
 const LogoImage = styled(StyledImage)`
-  width: 20vw;
   height: 100%;
+  width: 20vw;
   cursor: pointer;
   margin-left: 25px;
   z-index: 100;
@@ -35,8 +36,7 @@ const Image: React.FC<Props> = ({
   width,
   className,
   logo,
-  heightSizeUnits,
-  widthSizeUnits,
+  pointer,
   onClick,
 }) => {
   if (logo) {
@@ -46,9 +46,8 @@ const Image: React.FC<Props> = ({
         alt={alt}
         height={height}
         width={width}
-        heightSizeUnits={heightSizeUnits}
-        widthSizeUnits={widthSizeUnits}
         className={className}
+        pointer={pointer}
         onClick={onClick}
       />
     );
@@ -59,9 +58,8 @@ const Image: React.FC<Props> = ({
       alt={alt}
       height={height}
       width={width}
-      heightSizeUnits={heightSizeUnits ?? "px"}
-      widthSizeUnits={widthSizeUnits ?? "px"}
       className={className}
+      pointer={pointer}
       onClick={onClick}
     />
   );

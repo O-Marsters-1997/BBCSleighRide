@@ -247,10 +247,8 @@ const Map: React.FC<Props> = ({ countriesData }) => {
             <Image
               src={BaubleInstructions}
               alt="instructions"
-              width={viewport("medium") ? 10 : 50}
-              height={viewport("medium") ? 10 : 50}
-              widthSizeUnits={viewport("medium") ? "vw" : "px"}
-              heightSizeUnits={viewport("medium") ? "vw" : "px"}
+              width={viewport("medium") ? "10wv" : "50px"}
+              height={viewport("medium") ? "10vw" : "50px"}
               onClick={toggleInstructions}
             />
           </StyledBaubleWrapper>

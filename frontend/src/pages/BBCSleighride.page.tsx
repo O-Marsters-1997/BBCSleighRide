@@ -14,6 +14,7 @@ import JokeCracker from "../components/Svg/JokeCracker";
 import { CentralRowContainer } from "../components/Lib";
 import { ActionsContext } from "../contexts/StateActions.context";
 import snowflake from "../assets/images/snowflake_button.svg";
+import present from "../assets/images/present.svg";
 
 const BBCSleighride = () => {
   const [snowflakes, setSnowflakes] = useState<Snowflakes | null>(null);
@@ -25,6 +26,10 @@ const BBCSleighride = () => {
       console.log("ending snow");
       snowflakes.destroy();
     }
+  };
+
+  const navigateErrorPage = () => {
+    navigate("/santa-smells");
   };
 
   useEffect(() => {
@@ -73,6 +78,14 @@ const BBCSleighride = () => {
         </Grid>
         <Grid item xs={4}>
           <JokeCracker pageSide="right" onClick={showModal} />
+        </Grid>
+        <Grid item xs={4}>
+          <Image
+            src={present}
+            alt="present brings you to 404"
+            pointer
+            onClick={navigateErrorPage}
+          />
         </Grid>
       </Grid>
     </View>

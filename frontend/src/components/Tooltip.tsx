@@ -24,8 +24,8 @@ const Tooltip: React.FC<Props> = ({ name, option, optionValue, children }) => {
         <Image
           src={candy_cane}
           alt="candy cane decoration"
-          height={20}
-          width={20}
+          height="20px"
+          width="20px"
         />
         <Text variant="h5" sizeadjust={0.9}>
           {name}
