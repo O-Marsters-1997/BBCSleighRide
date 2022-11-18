@@ -129,131 +129,133 @@ const Map: React.FC<Props> = ({ countriesData }) => {
       ) : (
         <CentralColumnContainer>{toggleContent()}</CentralColumnContainer>
       )}
-      <Card>
-        <RowContainer justifyContent="flex-end">
-          <RowContainer gap="10px" style={{ padding: "10px" }}>
-            <Button text="+" variant="rounded" onClick={handleZoomIn} />
-            <Button text="-" variant="rounded" onClick={handleZoomOut} />
+      <View style={{ padding: "0 1em" }}>
+        <Card>
+          <RowContainer justifyContent="flex-end">
+            <RowContainer gap="10px" style={{ padding: "10px" }}>
+              <Button text="+" variant="rounded" onClick={handleZoomIn} />
+              <Button text="-" variant="rounded" onClick={handleZoomOut} />
+            </RowContainer>
           </RowContainer>
-        </RowContainer>
-        <RowContainer>
-          <ComposableMap>
-            <ZoomableGroup
-              zoom={position.zoom}
-              center={position.coordinates}
-              onMoveEnd={handleMoveEnd}
-            >
-              <Geographies geography={geoUrl}>
-                {({ geographies }) =>
-                  geographies.map((geo) => {
-                    const { name } = geo.properties;
-                    const found = countriesData.find(
-                      (country) => country.name === name,
-                    );
-                    const geogContent = () => (
-                      <Geography
-                        geography={geo}
-                        onMouseEnter={() => {
-                          if (found) {
-                            const TOOLTIP =
-                              found[selectedMapFilter as keyof typeof found];
+          <RowContainer>
+            <ComposableMap>
+              <ZoomableGroup
+                zoom={position.zoom}
+                center={position.coordinates}
+                onMoveEnd={handleMoveEnd}
+              >
+                <Geographies geography={geoUrl}>
+                  {({ geographies }) =>
+                    geographies.map((geo) => {
+                      const { name } = geo.properties;
+                      const found = countriesData.find(
+                        (country) => country.name === name,
+                      );
+                      const geogContent = () => (
+                        <Geography
+                          geography={geo}
+                          onMouseEnter={() => {
+                            if (found) {
+                              const TOOLTIP =
+                                found[selectedMapFilter as keyof typeof found];
+                              setTooltipContent(
+                                (prevState: Countries.ToolTipContent) => ({
+                                  ...prevState,
+                                  option: selectedMapFilter as string,
+                                  optionValue: TOOLTIP as string,
+                                  name,
+                                }),
+                              );
+                            }
+                          }}
+                          onMouseLeave={() => {
                             setTooltipContent(
                               (prevState: Countries.ToolTipContent) => ({
                                 ...prevState,
-                                option: selectedMapFilter as string,
-                                optionValue: TOOLTIP as string,
-                                name,
+                                option: "",
+                                optionValue: "",
+                                name: "",
                               }),
                             );
-                          }
-                        }}
-                        onMouseLeave={() => {
-                          setTooltipContent(
-                            (prevState: Countries.ToolTipContent) => ({
-                              ...prevState,
-                              option: "",
-                              optionValue: "",
-                              name: "",
-                            }),
-                          );
-                        }}
-                        stroke="#FEFFFD"
-                        strokeWidth="0.5"
-                        style={{
-                          default: {
-                            fill: "#ffbdc4",
-                            outline: "none",
-                          },
-                          hover: {
-                            fill: "#D20018",
-                            outline: "none",
-                          },
-                          pressed: {
-                            fill: "#008011",
-                            outline: "none",
-                          },
-                        }}
-                      />
-                    );
+                          }}
+                          stroke="#FEFFFD"
+                          strokeWidth="0.5"
+                          style={{
+                            default: {
+                              fill: "#ffbdc4",
+                              outline: "none",
+                            },
+                            hover: {
+                              fill: "#D20018",
+                              outline: "none",
+                            },
+                            pressed: {
+                              fill: "#008011",
+                              outline: "none",
+                            },
+                          }}
+                        />
+                      );
 
-                    return (
-                      <React.Fragment key={geo.rsmKey}>
-                        {found ? (
-                          <Tooltip
-                            option={tooltipContent.option}
-                            optionValue={tooltipContent.optionValue}
-                            name={tooltipContent.name}
-                          >
-                            {geogContent()}
-                          </Tooltip>
-                        ) : (
-                          <>{geogContent()}</>
-                        )}
-                      </React.Fragment>
-                    );
-                  })
-                }
-              </Geographies>
-              {markers.map(({ name, coordinates }) => (
-                <Marker key={name} coordinates={coordinates}>
-                  <g
-                    fill="none"
-                    stroke="#008011"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    transform="translate(-12, -24)"
-                  >
-                    <circle cx="12" cy="10" r="3" />
-                    <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
-                  </g>
+                      return (
+                        <React.Fragment key={geo.rsmKey}>
+                          {found ? (
+                            <Tooltip
+                              option={tooltipContent.option}
+                              optionValue={tooltipContent.optionValue}
+                              name={tooltipContent.name}
+                            >
+                              {geogContent()}
+                            </Tooltip>
+                          ) : (
+                            <>{geogContent()}</>
+                          )}
+                        </React.Fragment>
+                      );
+                    })
+                  }
+                </Geographies>
+                {markers.map(({ name, coordinates }) => (
+                  <Marker key={name} coordinates={coordinates}>
+                    <g
+                      fill="none"
+                      stroke="#008011"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      transform="translate(-12, -24)"
+                    >
+                      <circle cx="12" cy="10" r="3" />
+                      <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
+                    </g>
 
-                  <text
-                    textAnchor="middle"
-                    y="-27"
-                    style={{
-                      fontFamily: "system-ui",
-                      fontSize: "11px",
-                      fontWeight: "400px",
-                    }}
-                  >
-                    {name}
-                  </text>
-                </Marker>
-              ))}
-            </ZoomableGroup>
-          </ComposableMap>
-          <StyledBaubleWrapper>
-            <Image
-              src={BaubleInstructions}
-              alt="instructions"
-              width={viewport("medium") ? "10wv" : "50px"}
-              height={viewport("medium") ? "10vw" : "50px"}
-              onClick={toggleInstructions}
-            />
-          </StyledBaubleWrapper>
-        </RowContainer>
-      </Card>
+                    <text
+                      textAnchor="middle"
+                      y="-27"
+                      style={{
+                        fontFamily: "system-ui",
+                        fontSize: "11px",
+                        fontWeight: "400px",
+                      }}
+                    >
+                      {name}
+                    </text>
+                  </Marker>
+                ))}
+              </ZoomableGroup>
+            </ComposableMap>
+            <StyledBaubleWrapper>
+              <Image
+                src={BaubleInstructions}
+                alt="instructions"
+                width={viewport("medium") ? "10wv" : "50px"}
+                height={viewport("medium") ? "10vw" : "50px"}
+                onClick={toggleInstructions}
+              />
+            </StyledBaubleWrapper>
+          </RowContainer>
+        </Card>
+      </View>
     </StyledView>
   );
 };

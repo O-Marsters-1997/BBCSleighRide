@@ -118,7 +118,7 @@ export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
 
 export const MapCracker = styled(Cracker)<{ translateY?: string }>`
   @media ${deviceMax.medium} {
-    width: clamp(175px, 23vw, 400px);
+    width: clamp(125px, 33vw, 400px);
     transform: translateY(${({ translateY }) => translateY && translateY});
   }
 `;
