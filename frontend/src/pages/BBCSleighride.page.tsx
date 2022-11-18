@@ -80,16 +80,41 @@ const BBCSleighride = () => {
         <Grid item xs={4}>
           <QuizCracker pageSide="right" onClick={() => navigate("/quiz")} />
         </Grid>
-        <Grid item xs={4}>
-          <Image src={snowflake} alt="snowflakes" pointer onClick={snowStart} />
-        </Grid>
-        <Grid item xs={4}>
-          <JokeCracker pageSide="right" onClick={showModal} />
-        </Grid>
-        <Grid item xs={4}>
+        {viewport("medium") ? (
+          <Grid item xs={4}>
+            <Image
+              src={snowflake}
+              alt="snowflakes"
+              width="100%"
+              pointer
+              onClick={snowStart}
+            />
+          </Grid>
+        ) : (
+          <Grid item xs={4}>
+            <JokeCracker pageSide="right" onClick={showModal} />
+          </Grid>
+        )}
+        {viewport("medium") ? (
+          <Grid item xs={4}>
+            <JokeCracker pageSide="right" onClick={showModal} />
+          </Grid>
+        ) : (
+          <Grid item xs={6}>
+            <Image
+              src={snowflake}
+              alt="snowflakes"
+              width="100%"
+              pointer
+              onClick={snowStart}
+            />
+          </Grid>
+        )}
+        <Grid item xs={viewport("medium") ? 4 : 6}>
           <Image
             src={present}
             alt="present brings you to 404"
+            width="100%"
             pointer
             onClick={navigateErrorPage}
           />
