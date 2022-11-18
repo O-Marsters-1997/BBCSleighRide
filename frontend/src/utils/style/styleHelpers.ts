@@ -87,6 +87,11 @@ export const getFontVariant = (variant: string): Utils.FontVariant => {
       fontVariant.fontFamily = typography.body1.fontFamily;
       fontVariant.fontSize = typography.body1.fontSize;
       break;
+    case textVariants.body2:
+      fontVariant.fontWeight = typography.body2.fontWeight;
+      fontVariant.fontFamily = typography.body2.fontFamily;
+      fontVariant.fontSize = typography.body2.fontSize;
+      break;
     case textVariants.subtitle1:
       fontVariant.fontWeight = typography.subtitle1.fontWeight;
       fontVariant.fontFamily = typography.subtitle1.fontFamily;

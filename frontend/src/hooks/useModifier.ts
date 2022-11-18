@@ -25,6 +25,25 @@ export const useModifier = (variant: Utils.TextVariant): number => {
     }
   };
 
+  const body2Modifier = () => {
+    switch (true) {
+      case viewport(breakpoints.large as Utils.Breakpoints):
+        return modifiers.x6;
+      case viewport(breakpoints.mediumLarge as Utils.Breakpoints):
+        return modifiers.x6;
+      case viewport(breakpoints.mediumPlus as Utils.Breakpoints):
+        return modifiers.x5;
+      case viewport(breakpoints.medium as Utils.Breakpoints):
+        return modifiers.x4;
+      case viewport(breakpoints.smallMedium as Utils.Breakpoints):
+        return modifiers.x3;
+      case viewport(breakpoints.small as Utils.Breakpoints):
+        return modifiers.x3;
+      default:
+        return modifiers.x2;
+    }
+  };
+
   const h2Modifier = () => {
     const width = window.innerWidth;
 
@@ -107,6 +126,8 @@ export const useModifier = (variant: Utils.TextVariant): number => {
     switch (variant) {
       case textVariants.body1:
         return body1Modifier();
+      case textVariants.body2:
+        return body2Modifier();
       case textVariants.h2:
         return h2Modifier();
       case textVariants.h3:
