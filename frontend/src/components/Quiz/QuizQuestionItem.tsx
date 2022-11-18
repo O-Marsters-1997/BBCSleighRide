@@ -39,10 +39,8 @@ const QuizQuestionItem: React.FC<Props> = ({
     index={index}
     answer={answer}
   >
-    <Text variant="body2">{option}</Text>
+    <Text variant="body1">{option}</Text>
   </StyledView>
 );
 
 export default QuizQuestionItem;
-
-// ${({ selected }) => getBackgroundColor(selected)}

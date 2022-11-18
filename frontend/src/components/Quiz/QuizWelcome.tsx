@@ -15,6 +15,7 @@ import {
 import QuizCracker from "../Svg/QuizStartCracker";
 import quizElf from "../../assets/images/elf_happy.svg";
 import { useViewport } from "../../hooks/useViewport";
+import { getElfSize } from "../../utils/style/styleHelpers";
 
 const QuizWelcome = () => {
   const { startQuiz } = useContext(ActionsContext) ?? {};
@@ -34,8 +35,8 @@ const QuizWelcome = () => {
         <Image
           src={quizElf}
           alt="Buddy elf"
-          height={viewport("medium") ? "14em" : "10em"}
-          width={viewport("medium") ? "14em" : "10em"}
+          height={getElfSize(viewport)}
+          width={getElfSize(viewport)}
         />
       </ElfImageWrapper>
     </>
@@ -44,7 +45,7 @@ const QuizWelcome = () => {
   return (
     <CardOverlayWrapper>
       <Card>
-        <CardWrapper padding={60}>
+        <CardWrapper padding={viewport("small") ? 60 : 40}>
           <RowContainer style={{ padding: ".1em 0 .2rem 0 " }}>
             <Text variant="h3">Welcome to the Christmas quiz</Text>
           </RowContainer>

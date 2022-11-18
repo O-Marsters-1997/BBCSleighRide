@@ -2,6 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import View from "./View";
 import Text from "./Text";
+import { deviceMin } from "../types/constants";
 
 type StyleProps = {
   colorvariant?: Utils.ColorVariant;
@@ -20,16 +21,20 @@ const StyledButton = styled(View)<Props>`
   ${(props) =>
     props.variant == "rounded" &&
     css`
+      @media ${deviceMin.small} {
+        height: 35px;
+        width: 35px;
+      }
       color: ${props.colorvariant ?? props.theme.palette.primaryText.main};
       background-color: ${props.theme.palette.primary.contrastText};
-      height: 35px;
-      width: 35px;
       font-size: 2rem;
       border: 2px solid ${props.theme.palette.primaryText.main};
       border-radius: 50%;
-      /* .MuiTypography-root {
-        transform: translateX(0px);
-      } */
+      height: 20px;
+      width: 20px;
+      .MuiTypography-root {
+        transform: translate(0.2px);
+      }
     `}
 `;
 

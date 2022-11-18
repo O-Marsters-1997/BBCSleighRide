@@ -87,6 +87,11 @@ export const getFontVariant = (variant: string): Utils.FontVariant => {
       fontVariant.fontFamily = typography.body1.fontFamily;
       fontVariant.fontSize = typography.body1.fontSize;
       break;
+    case textVariants.body2:
+      fontVariant.fontWeight = typography.body2.fontWeight;
+      fontVariant.fontFamily = typography.body2.fontFamily;
+      fontVariant.fontSize = typography.body2.fontSize;
+      break;
     case textVariants.subtitle1:
       fontVariant.fontWeight = typography.subtitle1.fontWeight;
       fontVariant.fontFamily = typography.subtitle1.fontFamily;
@@ -154,5 +159,16 @@ export const getBreakpointMatches = (breakpoint?: string): number | null => {
       return viewports.desktop;
     default:
       return null;
+  }
+};
+
+export const getElfSize = (modify: (size: Utils.Breakpoints) => boolean) => {
+  switch (true) {
+    case modify(breakpoints.medium):
+      return "14em";
+    case modify(breakpoints.small):
+      return "10em";
+    default:
+      return "8em";
   }
 };

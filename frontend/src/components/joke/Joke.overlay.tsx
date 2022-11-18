@@ -15,6 +15,7 @@ import {
   CentralColumnContainer,
 } from "../Lib";
 import { endpoints } from "../../types/constants";
+import { useViewport } from "../../hooks/useViewport";
 import useAxios from "../../hooks/useAxios";
 import axios from "../../services/quizTest";
 import santa from "../../assets/images/santa_happy.svg";
@@ -23,16 +24,12 @@ const StyledJokeRow = styled(RowContainerOverlayBorderBottom)`
   &.top-row {
     margin-top: 1.25em;
   }
-  .chat-bot {
-    height: 150px;
-    width: 120px;
-    cursor: pointer;
-  }
 `;
 
 const Joke: React.FC = () => {
   const [toggleJokeView, setToggleJokeView] = useState<boolean>(false);
   const dispatch: Dispatch = useDispatch();
+  const viewport = useViewport();
 
   const { response: joke } = useAxios({
     axiosInstance: axios,
@@ -72,8 +69,10 @@ const Joke: React.FC = () => {
           <Image
             src={santa}
             alt="santa chatbot image"
-            className="chat-bot"
             onClick={selectJoke}
+            height={viewport("medium") ? "125px" : "90px"}
+            width={viewport("medium") ? "125px" : "90px"}
+            pointer
           />
         </StyledJokeRow>
         <CentralRowContainer style={{ padding: "1.5em 0" }}>

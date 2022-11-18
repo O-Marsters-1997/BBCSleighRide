@@ -57,53 +57,58 @@ export const theme: DefaultTheme = {
   },
   typography: {
     h1: {
-      fontWeight: 800,
-      fontFamily: "Roboto",
-      fontSize: 3,
+      fontWeight: 400,
+      fontFamily:
+        "Roboto -apple-system, BlinkMacSystemFont, Tahoma, Ubuntu, sans‑serif",
+      fontSize: 4.75,
     },
     h2: {
       fontWeight: 700,
-      fontFamily: "Raleway, sans-serif",
+      fontFamily: "Raleway, Montserrat, Poppins,  sans-serif",
       fontSize: 2.5,
     },
     h3: {
       fontWeight: 700,
-      fontFamily: "Raleway, sans-serif",
+      fontFamily: "Raleway, Montserrat, Poppins,  sans-serif",
       fontSize: 1.8,
     },
     h4: {
       fontWeight: 700,
-      fontFamily: "Raleway, sans-serif",
+      fontFamily: "Raleway, Montserrat, Poppins,  sans-serif",
       fontSize: 1.3,
     },
     h5: {
       fontWeight: 700,
-      fontFamily: "Raleway, sans-serif",
+      fontFamily: "Raleway, Montserrat, Poppins,  sans-serif",
       fontSize: 1.2,
     },
     h6: {
       fontWeight: 500,
-      fontFamily: "Raleway, sans-serif",
+      fontFamily: "Raleway, Montserrat, Poppins,  sans-serif",
       fontSize: 1.2,
     },
     body1: {
       fontWeight: 400,
-      fontFamily: "Roboto",
+      fontFamily:
+        "Roboto -apple-system, BlinkMacSystemFont, Tahoma, Ubuntu, sans‑serif",
       fontSize: 1,
     },
     body2: {
       fontWeight: 700,
-      fontFamily: "Roboto",
+      fontFamily:
+        "Roboto -apple-system, BlinkMacSystemFont, Tahoma, Ubuntu, sans‑serif",
       fontSize: 1,
     },
     subtitle1: {
       fontWeight: 400,
-      fontFamily: "Roboto",
+      fontFamily:
+        "Roboto -apple-system, BlinkMacSystemFont, Tahoma, Ubuntu, sans‑serif",
       fontSize: 0.8,
     },
     subtitle2: {
       fontWeight: 700,
-      fontFamily: "Roboto",
+      fontFamily:
+        "Roboto -apple-system, BlinkMacSystemFont, Tahoma, Ubuntu, sans‑serif",
       fontSize: 0.8,
     },
   },
@@ -118,13 +123,17 @@ export const theme: DefaultTheme = {
     desktop: 2560,
   },
   modifiers: {
-    x1: 0.7,
-    x2: 0.8,
-    x3: 0.2,
-    x4: 1,
-    x5: 1.1,
-    x6: 1.2,
-    x7: 1.3,
+    x1: 0.5,
+    x2: 0.6,
+    x3: 0.7,
+    x4: 0.8,
+    x5: 0.9,
+    x6: 1,
+    x7: 1.1,
+    x8: 1.2,
+    x9: 1.3,
+    x10: 1.4,
+    x11: 1.5,
   },
 };
 

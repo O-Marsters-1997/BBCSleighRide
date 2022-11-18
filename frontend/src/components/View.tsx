@@ -8,11 +8,11 @@ type StyleProps = {
   height?: string;
   background?: string;
   fontWeight?: string;
+  display?: string;
 };
 
 type Props = {
   className?: string;
-  display?: string;
   backgroundImg?: boolean;
   children?: ReactNode;
   component?: ElementType<any> & string;
@@ -20,7 +20,7 @@ type Props = {
   onClick?: (e?: any) => void;
 } & StyleProps;
 
-const StyledView = styled(Box)<Props>`
+const StyledView = styled(Box)<StyleProps>`
   position: relative;
   width: ${(props) => props.width && `${props.width}`};
   height: ${(props) => props.height && `${props.height} `};

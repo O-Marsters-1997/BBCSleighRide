@@ -2,7 +2,6 @@ export enum ActionType {
   // Quiz state
   SET_QUESTIONS = "set questions",
   QUESTIONS_ERROR = "questions error",
-  LOAD_QUESTIONS = "load questions",
   RESET_QUIZ = "reset quiz",
   START_QUIZ = "start quiz",
   END_QUIZ = "end quiz",
@@ -13,11 +12,9 @@ export enum ActionType {
   // Joke state
   SET_JOKE = "set joke",
   JOKE_ERROR = "joke error",
-  REFETCH_JOKE = "refetch joke",
   RESET_JOKE = "reset joke",
   SHOW_MODAL = "show modal",
   HIDE_MODAL = "hide modal",
-  SELECT_JOKE = "select joke",
   // Map state
   SET_COUNTRIES = "set countries",
   COUNTRIES_ERROR = "countries error",

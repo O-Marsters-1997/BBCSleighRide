@@ -4,6 +4,7 @@ import styled from "styled-components";
 type StyleProps = {
   height?: string;
   width?: string;
+  margin?: string;
   pointer?: boolean;
 };
 
@@ -18,12 +19,12 @@ type Props = {
 const StyledImage = styled.img<StyleProps>`
   height: ${({ height }) => height ?? "400px"};
   width: ${({ width }) => width ?? "400px"};
+  margin: ${({ margin }) => margin && margin};
   cursor: ${(props) => props.pointer && "pointer"};
 `;
 
 const LogoImage = styled(StyledImage)`
   height: 100%;
-  width: 20vw;
   cursor: pointer;
   margin-left: 25px;
   z-index: 100;
@@ -36,6 +37,7 @@ const Image: React.FC<Props> = ({
   width,
   className,
   logo,
+  margin,
   pointer,
   onClick,
 }) => {
@@ -47,6 +49,7 @@ const Image: React.FC<Props> = ({
         height={height}
         width={width}
         className={className}
+        margin={margin}
         pointer={pointer}
         onClick={onClick}
       />
@@ -59,6 +62,7 @@ const Image: React.FC<Props> = ({
       height={height}
       width={width}
       className={className}
+      margin={margin}
       pointer={pointer}
       onClick={onClick}
     />

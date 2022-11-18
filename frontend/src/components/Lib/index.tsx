@@ -116,9 +116,13 @@ export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
   }
 `;
 
+export const HomePageCracker = styled(Cracker)`
+  width: 90%;
+`;
+
 export const MapCracker = styled(Cracker)<{ translateY?: string }>`
   @media ${deviceMax.medium} {
-    width: clamp(175px, 23vw, 400px);
+    width: clamp(125px, 33vw, 400px);
     transform: translateY(${({ translateY }) => translateY && translateY});
   }
 `;
@@ -134,7 +138,7 @@ export const QuizGameCracker = styled(Cracker)`
 
 // Overlay
 export const CardOverlayWrapper = styled(View)`
-  width: clamp(300px, 60vw, 1100px);
+  width: clamp(275px, 60vw, 1100px);
   padding-top: 8rem;
 `;
 

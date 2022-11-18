@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Cracker } from "../Lib";
+import { HomePageCracker } from "../Lib";
 
 const MapCracker = (props: any) => (
-  <Cracker
+  <HomePageCracker
     viewBox="0 0 3332 1706"
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
@@ -131,7 +131,7 @@ const MapCracker = (props: any) => (
         fillRule: "nonzero",
       }}
     />
-  </Cracker>
+  </HomePageCracker>
 );
 
 export default MapCracker;

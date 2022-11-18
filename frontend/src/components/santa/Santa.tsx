@@ -6,13 +6,13 @@ import View from "../View";
 import config from "./config";
 import MessageParser from "./MessageParser";
 import ActionProvider from "./ActionProvider";
+import { deviceMax } from "../../types/constants";
 import santa from "../../assets/images/santa_happy.svg";
 
 const StyledView = styled(View)`
   display: flex;
   justify-content: flex-end;
   position: absolute;
-  margin-right: 0.5em;
   right: 0%;
 
   /* Overides for Chatbot */
@@ -20,8 +20,13 @@ const StyledView = styled(View)`
     const { palette } = theme;
     return css`
       .react-chatbot-kit-chat-container {
-        margin-right: 1em;
         z-index: 1;
+        margin-right: 1em;
+        @media ${deviceMax.small} {
+          margin-right: 0;
+          width: 80%;
+          margin-left: auto;
+        }
 
         .react-chatbot-kit-chat-inner-container {
           border: 0.5px solid ${palette.grey.muted};
