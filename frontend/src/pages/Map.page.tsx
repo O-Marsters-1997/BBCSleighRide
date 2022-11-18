@@ -18,7 +18,7 @@ import {
   TextWrapper,
 } from "../components/Lib";
 import { endpoints, forseenErrors } from "../types/constants";
-import axios from "../services/quizTest";
+import axios from "../services";
 import useAxios from "../hooks/useAxios";
 
 const MapController = () => {

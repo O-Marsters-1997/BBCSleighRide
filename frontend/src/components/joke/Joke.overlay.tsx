@@ -17,7 +17,7 @@ import {
 import { endpoints } from "../../types/constants";
 import { useViewport } from "../../hooks/useViewport";
 import useAxios from "../../hooks/useAxios";
-import axios from "../../services/quizTest";
+import axios from "../../services";
 import santa from "../../assets/images/santa_happy.svg";
 
 const StyledJokeRow = styled(RowContainerOverlayBorderBottom)`

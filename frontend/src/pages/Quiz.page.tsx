@@ -12,7 +12,7 @@ import {
 } from "../components/Lib";
 import { endpoints } from "../types/constants";
 import useAxios from "../hooks/useAxios";
-import axios from "../services/quizTest";
+import axios from "../services";
 
 const Quiz = () => {
   const { totalQuestions, livesLeft, readyToPlay } = useSelector(
