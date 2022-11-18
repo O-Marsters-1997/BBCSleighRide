@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import Grid from "@mui/material/Grid";
 import Snowflakes from "magic-snowflakes";
 import { CountdownImage } from "../components/Lib/Image";
@@ -15,6 +16,12 @@ import { useViewport } from "../hooks/useViewport";
 import { ActionsContext } from "../contexts/StateActions.context";
 import snowflake from "../assets/images/snowflake_button.svg";
 import present from "../assets/images/present.svg";
+
+const StyledGrid = styled(Grid)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const BBCSleighride = () => {
   const [snowflakes, setSnowflakes] = useState<Snowflakes | null>(null);
@@ -60,67 +67,73 @@ const BBCSleighride = () => {
       </CentralRowContainer>
       <Grid container spacing={2}>
         {viewport("medium") ? (
-          <Grid item xs={4}>
+          <StyledGrid item xs={4}>
             <MapCracker pageSide="left" onClick={() => navigate("/map")} />
-          </Grid>
+          </StyledGrid>
         ) : (
-          <Grid item xs={12}>
+          <StyledGrid item xs={12}>
             <View style={{ paddingTop: "2em" }}>
               <Countdown />
             </View>
-          </Grid>
+          </StyledGrid>
         )}
         {viewport("medium") ? (
-          <Grid item xs={4}>
+          <StyledGrid item xs={4}>
             <Countdown />
-          </Grid>
+          </StyledGrid>
         ) : (
-          <Grid item xs={4}>
+          <StyledGrid item xs={4}>
             <MapCracker pageSide="left" onClick={() => navigate("/map")} />
-          </Grid>
+          </StyledGrid>
         )}
-        <Grid item xs={4}>
+        <StyledGrid item xs={4}>
           <QuizCracker pageSide="right" onClick={() => navigate("/quiz")} />
-        </Grid>
+        </StyledGrid>
         {viewport("medium") ? (
-          <Grid item xs={4}>
+          <StyledGrid item xs={4}>
             <Image
               src={snowflake}
               alt="snowflakes"
-              width="100%"
+              width="clamp(150px, 25vw, 300px)"
               pointer
               onClick={snowStart}
             />
-          </Grid>
+          </StyledGrid>
         ) : (
-          <Grid item xs={4}>
+          <StyledGrid item xs={4}>
             <JokeCracker pageSide="right" onClick={showModal} />
-          </Grid>
+          </StyledGrid>
         )}
         {viewport("medium") ? (
-          <Grid item xs={4}>
+          <StyledGrid item xs={4}>
             <JokeCracker pageSide="right" onClick={showModal} />
-          </Grid>
+          </StyledGrid>
         ) : (
-          <Grid item xs={6}>
+          <StyledGrid item xs={6}>
             <Image
               src={snowflake}
               alt="snowflakes"
-              width="100%"
+              width="clamp(60px, 35vw, 200px)"
+              height="fit-content"
               pointer
               onClick={snowStart}
             />
-          </Grid>
+          </StyledGrid>
         )}
-        <Grid item xs={viewport("medium") ? 4 : 6}>
+        <StyledGrid item xs={viewport("medium") ? 4 : 6}>
           <Image
             src={present}
             alt="present brings you to 404"
-            width="100%"
+            width={
+              viewport("medium")
+                ? "clamp(150px, 25vw, 300px)"
+                : "clamp(60px, 35vw, 200px)"
+            }
+            height="fit-content"
             pointer
             onClick={navigateErrorPage}
           />
-        </Grid>
+        </StyledGrid>
       </Grid>
     </View>
   );

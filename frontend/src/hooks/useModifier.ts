@@ -8,17 +8,17 @@ export const useModifier = (variant: Utils.TextVariant): number => {
 
   const body1Modifier = () => {
     switch (true) {
-      case viewport(breakpoints.large as Utils.Breakpoints):
+      case viewport(breakpoints.large):
         return modifiers.x7;
-      case viewport(breakpoints.mediumLarge as Utils.Breakpoints):
+      case viewport(breakpoints.mediumLarge):
         return modifiers.x7;
-      case viewport(breakpoints.mediumPlus as Utils.Breakpoints):
+      case viewport(breakpoints.mediumPlus):
         return modifiers.x6;
-      case viewport(breakpoints.medium as Utils.Breakpoints):
+      case viewport(breakpoints.medium):
         return modifiers.x5;
-      case viewport(breakpoints.smallMedium as Utils.Breakpoints):
+      case viewport(breakpoints.smallMedium):
         return modifiers.x4;
-      case viewport(breakpoints.small as Utils.Breakpoints):
+      case viewport(breakpoints.small):
         return modifiers.x4;
       default:
         return modifiers.x3;
@@ -27,17 +27,17 @@ export const useModifier = (variant: Utils.TextVariant): number => {
 
   const body2Modifier = () => {
     switch (true) {
-      case viewport(breakpoints.large as Utils.Breakpoints):
+      case viewport(breakpoints.large):
         return modifiers.x7;
-      case viewport(breakpoints.mediumLarge as Utils.Breakpoints):
+      case viewport(breakpoints.mediumLarge):
         return modifiers.x7;
-      case viewport(breakpoints.mediumPlus as Utils.Breakpoints):
+      case viewport(breakpoints.mediumPlus):
         return modifiers.x6;
-      case viewport(breakpoints.medium as Utils.Breakpoints):
+      case viewport(breakpoints.medium):
         return modifiers.x5;
-      case viewport(breakpoints.smallMedium as Utils.Breakpoints):
+      case viewport(breakpoints.smallMedium):
         return modifiers.x4;
-      case viewport(breakpoints.small as Utils.Breakpoints):
+      case viewport(breakpoints.small):
         return modifiers.x4;
       default:
         return modifiers.x3;
@@ -46,19 +46,19 @@ export const useModifier = (variant: Utils.TextVariant): number => {
 
   const h1Modifier = () => {
     switch (true) {
-      case viewport(breakpoints.xLarge as Utils.Breakpoints):
-        return modifiers.x10;
-      case viewport(breakpoints.large as Utils.Breakpoints):
-        return modifiers.x5;
-      case viewport(breakpoints.mediumLarge as Utils.Breakpoints):
+      case viewport(breakpoints.xLarge):
+        return modifiers.x11;
+      case viewport(breakpoints.large):
+        return modifiers.x6;
+      case viewport(breakpoints.mediumLarge):
         return modifiers.x3;
-      case viewport(breakpoints.mediumPlus as Utils.Breakpoints):
+      case viewport(breakpoints.mediumPlus):
         return modifiers.x3;
-      case viewport(breakpoints.medium as Utils.Breakpoints):
+      case viewport(breakpoints.medium):
         return modifiers.x1;
-      case viewport(breakpoints.smallMedium as Utils.Breakpoints):
-        return modifiers.x3;
-      case viewport(breakpoints.small as Utils.Breakpoints):
+      case viewport(breakpoints.smallMedium):
+        return modifiers.x4;
+      case viewport(breakpoints.small):
         return modifiers.x1;
       default:
         return modifiers.x1;
@@ -67,17 +67,17 @@ export const useModifier = (variant: Utils.TextVariant): number => {
 
   const h2Modifier = () => {
     switch (true) {
-      case viewport(breakpoints.large as Utils.Breakpoints):
+      case viewport(breakpoints.large):
         return modifiers.x8;
-      case viewport(breakpoints.mediumLarge as Utils.Breakpoints):
+      case viewport(breakpoints.mediumLarge):
         return modifiers.x7;
-      case viewport(breakpoints.mediumPlus as Utils.Breakpoints):
+      case viewport(breakpoints.mediumPlus):
         return modifiers.x6;
-      case viewport(breakpoints.medium as Utils.Breakpoints):
+      case viewport(breakpoints.medium):
         return modifiers.x5;
-      case viewport(breakpoints.smallMedium as Utils.Breakpoints):
+      case viewport(breakpoints.smallMedium):
         return modifiers.x4;
-      case viewport(breakpoints.small as Utils.Breakpoints):
+      case viewport(breakpoints.small):
         return modifiers.x3;
       default:
         return modifiers.x2;
@@ -86,17 +86,17 @@ export const useModifier = (variant: Utils.TextVariant): number => {
 
   const h3Modifier = () => {
     switch (true) {
-      case viewport(breakpoints.large as Utils.Breakpoints):
+      case viewport(breakpoints.large):
         return modifiers.x9;
-      case viewport(breakpoints.mediumLarge as Utils.Breakpoints):
+      case viewport(breakpoints.mediumLarge):
         return modifiers.x5;
-      case viewport(breakpoints.mediumPlus as Utils.Breakpoints):
+      case viewport(breakpoints.mediumPlus):
         return modifiers.x5;
-      case viewport(breakpoints.medium as Utils.Breakpoints):
+      case viewport(breakpoints.medium):
         return modifiers.x4;
-      case viewport(breakpoints.smallMedium as Utils.Breakpoints):
+      case viewport(breakpoints.smallMedium):
         return modifiers.x4;
-      case viewport(breakpoints.small as Utils.Breakpoints):
+      case viewport(breakpoints.small):
         return modifiers.x3;
       default:
         return modifiers.x2;
@@ -105,17 +105,17 @@ export const useModifier = (variant: Utils.TextVariant): number => {
 
   const h4Modifier = () => {
     switch (true) {
-      case viewport(breakpoints.large as Utils.Breakpoints):
+      case viewport(breakpoints.large):
         return modifiers.x9;
-      case viewport(breakpoints.mediumLarge as Utils.Breakpoints):
+      case viewport(breakpoints.mediumLarge):
         return modifiers.x7;
-      case viewport(breakpoints.mediumPlus as Utils.Breakpoints):
+      case viewport(breakpoints.mediumPlus):
         return modifiers.x6;
-      case viewport(breakpoints.medium as Utils.Breakpoints):
+      case viewport(breakpoints.medium):
         return modifiers.x6;
-      case viewport(breakpoints.smallMedium as Utils.Breakpoints):
+      case viewport(breakpoints.smallMedium):
         return modifiers.x5;
-      case viewport(breakpoints.small as Utils.Breakpoints):
+      case viewport(breakpoints.small):
         return modifiers.x4;
       default:
         return modifiers.x3;
@@ -124,17 +124,17 @@ export const useModifier = (variant: Utils.TextVariant): number => {
 
   const h5Modifier = () => {
     switch (true) {
-      case viewport(breakpoints.large as Utils.Breakpoints):
+      case viewport(breakpoints.large):
         return modifiers.x8;
-      case viewport(breakpoints.mediumLarge as Utils.Breakpoints):
+      case viewport(breakpoints.mediumLarge):
         return modifiers.x6;
-      case viewport(breakpoints.mediumPlus as Utils.Breakpoints):
+      case viewport(breakpoints.mediumPlus):
         return modifiers.x6;
-      case viewport(breakpoints.medium as Utils.Breakpoints):
+      case viewport(breakpoints.medium):
         return modifiers.x5;
-      case viewport(breakpoints.smallMedium as Utils.Breakpoints):
+      case viewport(breakpoints.smallMedium):
         return modifiers.x5;
-      case viewport(breakpoints.small as Utils.Breakpoints):
+      case viewport(breakpoints.small):
         return modifiers.x4;
       default:
         return modifiers.x3;

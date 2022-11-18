@@ -116,7 +116,9 @@ export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
   }
 `;
 
-export const HomePageCracker = styled(Cracker)``;
+export const HomePageCracker = styled(Cracker)`
+  width: 90%;
+`;
 
 export const MapCracker = styled(Cracker)<{ translateY?: string }>`
   @media ${deviceMax.medium} {
