@@ -48,7 +48,7 @@ const Countdown = () => {
 
   useEffect(() => {
     createTimer();
-  }, []);
+  }, [timerSeconds]);
 
   if (!timerSeconds) {
     return <Loading title="fetching countdown" size="medium" />;
