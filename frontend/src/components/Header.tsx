@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Image from "./Image";
+import { useViewport } from "../hooks/useViewport";
 import { SantaContext } from "../contexts/SantaContext";
 import logo from "../assets/images/logo_star.svg";
 import santa from "../assets/images/santa_happy.svg";
@@ -15,18 +16,12 @@ const StyledToolbar = styled(Toolbar)`
   justify-content: flex-start;
   align-items: center;
   position: relative;
-
-  .chat-bot {
-    height: 7vh;
-    width: 10vh;
-    margin: 0 5% 0 auto;
-    cursor: pointer;
-  }
 `;
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const { dispatch } = useContext(SantaContext);
+  const viewport = useViewport();
 
   const navigateBack = (): void => {
     navigate("/");
@@ -42,15 +37,19 @@ const Header: React.FC = () => {
         <Image
           logo
           src={logo}
-          alt="BBC Sleighrid logo"
+          alt="BBC Sleighride logo"
           className="logo"
+          width={viewport("medium") ? "300px" : "150px"}
           onClick={navigateBack}
         />
 
         <Image
           src={santa}
           alt="santa chatbot image"
-          className="chat-bot"
+          height={viewport("medium") ? "7vh" : "50px"}
+          width={viewport("medium") ? "10vh" : "60px"}
+          margin=" 0 5% 0 auto"
+          pointer
           onClick={handleClick}
         />
       </StyledToolbar>
