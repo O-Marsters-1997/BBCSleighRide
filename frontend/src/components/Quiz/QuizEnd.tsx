@@ -12,6 +12,7 @@ import QuizReplayCracker from "../Svg/QuizReplayCracker";
 import QuizExitCracker from "../Svg/QuizExitCracker";
 import {
   CardOverlayWrapper,
+  CardWrapper,
   RowContainer,
   CentralRowContainer,
   DetailsContainer,
@@ -22,6 +23,7 @@ import {
 import { useViewport } from "../../hooks/useViewport";
 import { ActionsContext } from "../../contexts/StateActions.context";
 import { correctPercentage } from "../../utils/quizHelpers";
+import { getElfSize } from "../../utils/style/styleHelpers";
 import quizElf from "../../assets/images/elf_happy.svg";
 
 const QuizEnd = () => {
@@ -74,8 +76,8 @@ const QuizEnd = () => {
         <Image
           src={quizElf}
           alt="Buddy elf"
-          height={viewport("medium") ? "14em" : "10em"}
-          width={viewport("medium") ? "14em" : "10em"}
+          height={getElfSize(viewport)}
+          width={getElfSize(viewport)}
         />
       </ElfImageWrapper>
     </>
@@ -84,28 +86,30 @@ const QuizEnd = () => {
   return (
     <CardOverlayWrapper>
       <Card>
-        {viewport("mediumLarge") ? (
-          <CentralRowContainer>{endContentMainRow()}</CentralRowContainer>
-        ) : (
-          <CentralColumnContainer reverse>
-            {endContentMainRow()}
-          </CentralColumnContainer>
-        )}
-        {viewport("mediumPlus") ? (
-          <RowContainer
-            style={{ padding: "0 4em" }}
-            justifyContent="center"
-            gap="4vw"
-          >
-            <QuizReplayCracker onClick={endQuiz} />
-            <QuizExitCracker onClick={handleEndQuiz} pageSide="right" />
-          </RowContainer>
-        ) : (
-          <CentralColumnContainer>
-            <QuizReplayCracker onClick={endQuiz} />
-            <QuizExitCracker onClick={handleEndQuiz} pageSide="right" />
-          </CentralColumnContainer>
-        )}
+        <CardWrapper padding={viewport("small") ? 60 : 40}>
+          {viewport("mediumLarge") ? (
+            <CentralRowContainer>{endContentMainRow()}</CentralRowContainer>
+          ) : (
+            <CentralColumnContainer reverse>
+              {endContentMainRow()}
+            </CentralColumnContainer>
+          )}
+          {viewport("mediumPlus") ? (
+            <RowContainer
+              style={{ padding: "0 4em" }}
+              justifyContent="center"
+              gap="4vw"
+            >
+              <QuizReplayCracker onClick={endQuiz} />
+              <QuizExitCracker onClick={handleEndQuiz} pageSide="right" />
+            </RowContainer>
+          ) : (
+            <CentralColumnContainer>
+              <QuizReplayCracker onClick={endQuiz} />
+              <QuizExitCracker onClick={handleEndQuiz} pageSide="right" />
+            </CentralColumnContainer>
+          )}
+        </CardWrapper>
       </Card>
     </CardOverlayWrapper>
   );

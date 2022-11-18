@@ -85,8 +85,8 @@ const QuizQuestion: React.FC<Props> = ({ question }: { question: Quiz }) => {
       src={candy_cane}
       alt={`${livesLeft} candy canes to show how many lives are left`}
       key={index}
-      height="3.5em"
-      width="3.5em"
+      height={viewport("large") ? "3.5em" : "2.5em"}
+      width={viewport("large") ? "3.5em" : "2.5em"}
     />
   ));
 

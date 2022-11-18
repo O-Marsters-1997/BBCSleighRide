@@ -377,7 +377,7 @@ declare global {
       | "xLarge"
       | undefined;
 
-    type BreakpointsMap = { [breakpoint in Breakpoints]: string };
+    type BreakpointsMap = { [breakpoint in Breakpoints]: Breakpoints };
 
     type Devices = {
       mobileS: number;

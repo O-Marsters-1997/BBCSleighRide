@@ -156,3 +156,14 @@ export const getBreakpointMatches = (breakpoint?: string): number | null => {
       return null;
   }
 };
+
+export const getElfSize = (modify: (size: Utils.Breakpoints) => boolean) => {
+  switch (true) {
+    case modify(breakpoints.medium):
+      return "14em";
+    case modify(breakpoints.small):
+      return "10em";
+    default:
+      return "8em";
+  }
+};

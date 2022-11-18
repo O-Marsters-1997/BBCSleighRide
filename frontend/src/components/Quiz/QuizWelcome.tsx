@@ -15,18 +15,7 @@ import {
 import QuizCracker from "../Svg/QuizStartCracker";
 import quizElf from "../../assets/images/elf_happy.svg";
 import { useViewport } from "../../hooks/useViewport";
-import { breakpoints } from "../../types/constants";
-
-const getElfSize = (modify: (size: any) => boolean) => {
-  switch (true) {
-    case modify(breakpoints.medium):
-      return "14em";
-    case modify(breakpoints.small):
-      return "10em";
-    default:
-      return "8em";
-  }
-};
+import { getElfSize } from "../../utils/style/styleHelpers";
 
 const QuizWelcome = () => {
   const { startQuiz } = useContext(ActionsContext) ?? {};

@@ -49,7 +49,7 @@ export const useModifier = (variant: Utils.TextVariant): number => {
   const h3Modifier = () => {
     switch (true) {
       case viewport(breakpoints.large as Utils.Breakpoints):
-        return modifiers.x7;
+        return modifiers.x8;
       case viewport(breakpoints.mediumLarge as Utils.Breakpoints):
         return modifiers.x4;
       case viewport(breakpoints.mediumPlus as Utils.Breakpoints):
@@ -65,24 +65,41 @@ export const useModifier = (variant: Utils.TextVariant): number => {
     }
   };
 
-  const h5Modifier = () => {
-    const width = window.innerWidth;
-
+  const h4Modifier = () => {
     switch (true) {
-      case width > viewports.laptopL:
-        return modifiers.x7;
-      case width > viewports.laptopM:
-        return modifiers.x7;
-      case width > viewports.laptop:
-        return modifiers.x7;
-      case width > viewports.tablet:
-        return modifiers.x7;
-      case width > viewports.mobileL:
+      case viewport(breakpoints.large as Utils.Breakpoints):
+        return modifiers.x8;
+      case viewport(breakpoints.mediumLarge as Utils.Breakpoints):
+        return modifiers.x6;
+      case viewport(breakpoints.mediumPlus as Utils.Breakpoints):
+        return modifiers.x5;
+      case viewport(breakpoints.medium as Utils.Breakpoints):
+        return modifiers.x5;
+      case viewport(breakpoints.smallMedium as Utils.Breakpoints):
+        return modifiers.x4;
+      case viewport(breakpoints.small as Utils.Breakpoints):
         return modifiers.x3;
-      case width > viewports.mobileS:
-        return modifiers.x2;
       default:
-        return modifiers.x1;
+        return modifiers.x2;
+    }
+  };
+
+  const h5Modifier = () => {
+    switch (true) {
+      case viewport(breakpoints.large as Utils.Breakpoints):
+        return modifiers.x7;
+      case viewport(breakpoints.mediumLarge as Utils.Breakpoints):
+        return modifiers.x5;
+      case viewport(breakpoints.mediumPlus as Utils.Breakpoints):
+        return modifiers.x5;
+      case viewport(breakpoints.medium as Utils.Breakpoints):
+        return modifiers.x4;
+      case viewport(breakpoints.smallMedium as Utils.Breakpoints):
+        return modifiers.x4;
+      case viewport(breakpoints.small as Utils.Breakpoints):
+        return modifiers.x3;
+      default:
+        return modifiers.x2;
     }
   };
 
@@ -93,8 +110,9 @@ export const useModifier = (variant: Utils.TextVariant): number => {
       case textVariants.h2:
         return h2Modifier();
       case textVariants.h3:
-        console.log(h3Modifier());
         return h3Modifier();
+      case textVariants.h4:
+        return h4Modifier();
       case textVariants.h5:
         return h5Modifier();
       default:
