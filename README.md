@@ -32,6 +32,8 @@ A full brief - including future developments - is included below.
    - `yarn` or `npm install`
    - `yarn start` (should be listening on port 3000)
 
+Alternatively to install dependencies if using together as a monorepo then run `yarn` from the root directory.
+
 **FULL BRIEF**
 
 **MVP - the must haves**
