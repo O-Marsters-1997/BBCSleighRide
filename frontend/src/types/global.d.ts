@@ -400,6 +400,8 @@ declare global {
       x7: number;
       x8: number;
       x9: number;
+      x10: number;
+      x11: number;
     };
 
     type ButtonVariant = "normal" | "rounded";

@@ -65,7 +65,9 @@ const BBCSleighride = () => {
           </Grid>
         ) : (
           <Grid item xs={12}>
-            <Countdown />
+            <View style={{ paddingTop: "2em" }}>
+              <Countdown />
+            </View>
           </Grid>
         )}
         {viewport("medium") ? (

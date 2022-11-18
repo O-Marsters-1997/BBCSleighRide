@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Typography from "@mui/material/Typography";
+import Text from "./Text";
 import View from "./View";
 import Loading from "./Loading";
+import { useViewport } from "../hooks/useViewport";
+import { deviceMin } from "../types/constants";
 
 const StyledView = styled(View)`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+  .timer-colon-span {
+    font-size: inherit;
+    transform: translateX(-10px);
+    @media ${deviceMin.medium} {
+      transform: translateX(-15px);
+    }
+  }
 `;
 
 const Countdown = () => {
@@ -20,6 +29,7 @@ const Countdown = () => {
   const [timerSeconds, setTimerSeconds] = useState<
     string | number | undefined
   >();
+  const viewport = useViewport();
 
   const createTimer = async () => {
     const target = new Date("December 25 2022 00:00:00");
@@ -51,30 +61,36 @@ const Countdown = () => {
   }, [timerSeconds]);
 
   if (!timerSeconds) {
-    return <Loading title="fetching countdown" size="medium" />;
+    return (
+      <Loading
+        title="fetching countdown"
+        size={viewport("medium") ? "medium" : "small"}
+      />
+    );
   }
 
   return (
     <StyledView>
-      <Typography
+      <Text
         variant="h1"
         className="timer-clock"
-        style={{ fontFamily: "Raleway Extra Bold" }}
+        colorvariant="primary"
+        sizeadjust={!viewport("xSmall") ? 0.8 : 1}
       >
         {timerDays}
-        <View display="inline" className="timer-colon-span">
+        <View component="span" display="inline" className="timer-colon-span">
           :
         </View>
         {timerHours}
-        <View display="inline" className="timer-colon-span">
+        <View component="span" display="inline" className="timer-colon-span">
           :
         </View>
         {timerMinutes}
-        <View display="inline" className="timer-colon-span">
+        <View component="span" display="inline" className="timer-colon-span">
           :
         </View>
         {timerSeconds}
-      </Typography>
+      </Text>
     </StyledView>
   );
 };

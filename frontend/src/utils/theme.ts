@@ -1,5 +1,4 @@
 import { DefaultTheme, createGlobalStyle } from "styled-components";
-
 import RalewayRegularTTF from "../assets/fonts/RalewayRegularTTF.ttf";
 import RalewayRegularWOFF from "../assets/fonts/RalewayRegularWOFF.woff";
 import RalewayItalicTTF from "../assets/fonts/RalewayItalic.ttf";
@@ -58,9 +57,9 @@ export const theme: DefaultTheme = {
   },
   typography: {
     h1: {
-      fontWeight: 800,
+      fontWeight: 400,
       fontFamily: "Roboto",
-      fontSize: 3,
+      fontSize: 4.75,
     },
     h2: {
       fontWeight: 700,
@@ -119,15 +118,17 @@ export const theme: DefaultTheme = {
     desktop: 2560,
   },
   modifiers: {
-    x1: 0.6,
-    x2: 0.7,
-    x3: 0.8,
-    x4: 0.9,
-    x5: 1,
-    x6: 1.1,
-    x7: 1.2,
-    x8: 1.3,
-    x9: 1.4,
+    x1: 0.5,
+    x2: 0.6,
+    x3: 0.7,
+    x4: 0.8,
+    x5: 0.9,
+    x6: 1,
+    x7: 1.1,
+    x8: 1.2,
+    x9: 1.3,
+    x10: 1.4,
+    x11: 1.5,
   },
 };
 
