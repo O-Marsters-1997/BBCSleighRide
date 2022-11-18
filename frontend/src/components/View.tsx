@@ -65,7 +65,6 @@ const StyledOverlay = styled(Box)`
 const View: React.FC<Props> = ({
   width,
   height,
-
   background,
   fontWeight,
   className,
