@@ -84,7 +84,7 @@ const View: React.FC<Props> = ({
         fontWeight={fontWeight}
         className={className}
         display={display}
-        component={component && "div"}
+        as={component && "div"}
         style={style}
         onClick={onClick}
       >
@@ -101,6 +101,7 @@ const View: React.FC<Props> = ({
       fontWeight={fontWeight}
       className={className}
       display={display}
+      as={component ?? "div"}
       style={style}
       onClick={onClick}
     >
