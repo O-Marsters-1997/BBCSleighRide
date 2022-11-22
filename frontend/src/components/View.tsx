@@ -31,6 +31,7 @@ const StyledView = styled(Box)<StyleProps>`
     props.fontWeight
       ? props.theme.typography.body2.fontWeight
       : props.theme.typography.body1.fontWeight};
+  cursor: ${({ onClick }) => (onClick ? "pointer" : "auto")};
   ${(props) =>
     props.display == "inline" &&
     css`

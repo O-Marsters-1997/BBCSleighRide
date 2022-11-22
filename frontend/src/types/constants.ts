@@ -92,7 +92,7 @@ export const deviceMax = {
 
 // Error handling
 
-export const forseenErrors = {
+export const forseenErrors: Utils.ErrorTypes = {
   database: "database error, please refresh",
 };
 

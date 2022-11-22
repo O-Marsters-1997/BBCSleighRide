@@ -392,6 +392,12 @@ declare global {
     };
 
     type ButtonVariant = "normal" | "rounded";
+
+    // Error Handling
+
+    interface ErrorTypes {
+      database: string;
+    }
   }
 
   declare namespace CSS {
