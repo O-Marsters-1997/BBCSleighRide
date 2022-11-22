@@ -121,6 +121,7 @@ const Map: React.FC<Props> = ({ countriesData }) => {
       countriesData={countriesData}
       width={viewport("small") ? "clamp(400px, 60vw, 1000px)" : "300px"}
       reverse={!viewport("medium")}
+      cursor="sleigh"
     >
       {viewport("medium") ? (
         <CentralRowContainer gap="30px" style={{ paddingTop: "50px" }}>

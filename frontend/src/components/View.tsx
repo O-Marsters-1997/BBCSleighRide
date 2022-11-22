@@ -1,6 +1,7 @@
 import React, { ReactNode, ElementType } from "react";
 import styled, { css } from "styled-components";
 import Box from "@mui/material/Box";
+import { cursors } from "../types/constants";
 import app_background from "../assets/images/green_background.png";
 
 type StyleProps = {
@@ -10,6 +11,7 @@ type StyleProps = {
   fontWeight?: string;
   display?: string;
   paddingLeft?: string;
+  cursor?: string;
 };
 
 type Props = {
@@ -21,6 +23,13 @@ type Props = {
   onClick?: (e?: any) => void;
 } & StyleProps;
 
+const getCursor = (cursor?: string): any => {
+  if (cursor?.includes(cursors.sleigh)) {
+    return cursors.sleighReturn;
+  }
+  return cursor;
+};
+
 const StyledView = styled(Box)<StyleProps>`
   position: relative;
   padding-left: ${({ paddingLeft }) => paddingLeft && paddingLeft};
@@ -31,7 +40,7 @@ const StyledView = styled(Box)<StyleProps>`
     props.fontWeight
       ? props.theme.typography.body2.fontWeight
       : props.theme.typography.body1.fontWeight};
-  cursor: ${({ onClick }) => (onClick ? "pointer" : "auto")};
+  cursor: ${({ cursor }) => cursor && getCursor(cursor)};
   ${(props) =>
     props.display == "inline" &&
     css`
@@ -71,6 +80,7 @@ const View: React.FC<Props> = ({
   background,
   fontWeight,
   paddingLeft,
+  cursor,
   className,
   backgroundImg,
   children,
@@ -87,6 +97,7 @@ const View: React.FC<Props> = ({
         background={background}
         fontWeight={fontWeight}
         paddingLeft={paddingLeft}
+        cursor={cursor}
         className={className}
         display={display}
         as={component && "div"}
@@ -105,6 +116,7 @@ const View: React.FC<Props> = ({
       background={background}
       fontWeight={fontWeight}
       paddingLeft={paddingLeft}
+      cursor={cursor}
       className={className}
       display={display}
       as={component ?? "div"}

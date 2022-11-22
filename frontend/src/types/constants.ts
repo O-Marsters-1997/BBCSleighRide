@@ -1,4 +1,5 @@
 import { theme } from "../utils/theme";
+import Sleigh from "../assets/images/sleigh_55_33.svg";
 
 const { viewports } = theme;
 
@@ -54,6 +55,13 @@ export const textVariants: Utils.TextVariantMap = {
   button: "button",
   overline: "overline",
   inherit: "inherit",
+};
+
+export const cursors: Utils.Cursor = {
+  pointer: "pointer",
+  sleigh: "sleigh",
+  sleighReturn: `url(${Sleigh}) 6 6, auto`,
+  auto: "auto",
 };
 
 // Responsiveness Components
