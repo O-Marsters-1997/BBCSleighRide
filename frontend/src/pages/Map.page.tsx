@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../state/reducers";
 import { ActionsContext } from "../contexts/StateActions.context";
-import Loading from "../components/Loading";
 import Map from "../components/Map/map";
 import Text from "../components/Text";
 import Card from "../components/Card";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
 import ExitCracker from "../components/Svg/QuizExitCracker";
 import {
   RowContainerOverlayBorderBottom,
@@ -53,7 +54,7 @@ const MapController = () => {
   if (error) {
     return (
       <ErrorWrapper>
-        <Loading size="medium" error title={`${error.message}`} />
+        <Error title={`${error.message}`} />
       </ErrorWrapper>
     );
   }
@@ -61,7 +62,7 @@ const MapController = () => {
   if (!selectedMapFilter) {
     return (
       <ErrorWrapper>
-        <Loading size="medium" error title={forseenErrors.database} />
+        <Error title={forseenErrors.database} />
       </ErrorWrapper>
     );
   }
