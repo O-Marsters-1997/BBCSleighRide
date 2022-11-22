@@ -9,6 +9,7 @@ type StyleProps = {
   background?: string;
   fontWeight?: string;
   display?: string;
+  paddingLeft?: string;
 };
 
 type Props = {
@@ -22,6 +23,7 @@ type Props = {
 
 const StyledView = styled(Box)<StyleProps>`
   position: relative;
+  padding-left: ${({ paddingLeft }) => paddingLeft && paddingLeft};
   width: ${(props) => props.width && `${props.width}`};
   height: ${(props) => props.height && `${props.height} `};
   background: ${(props) => props.background && props.background};
@@ -67,6 +69,7 @@ const View: React.FC<Props> = ({
   height,
   background,
   fontWeight,
+  paddingLeft,
   className,
   backgroundImg,
   children,
@@ -82,6 +85,7 @@ const View: React.FC<Props> = ({
         height={height}
         background={background}
         fontWeight={fontWeight}
+        paddingLeft={paddingLeft}
         className={className}
         display={display}
         as={component && "div"}
@@ -99,6 +103,7 @@ const View: React.FC<Props> = ({
       height={height}
       background={background}
       fontWeight={fontWeight}
+      paddingLeft={paddingLeft}
       className={className}
       display={display}
       as={component ?? "div"}

@@ -95,3 +95,9 @@ export const deviceMax = {
 export const forseenErrors = {
   database: "database error, please refresh",
 };
+
+export const errorConstants = {
+  errorHeading: "Oops",
+  errorInstructions:
+    "Please try again or submit a bug report if the issue persists!",
+};
