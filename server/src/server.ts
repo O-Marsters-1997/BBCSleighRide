@@ -5,7 +5,7 @@ import { config } from "./config/config";
 import logger from "./logger";
 import createRouter from "./routes/createRouter";
 import cors from "cors";
-// heelo world
+
 const app = express();
 app.use(cors());
 
