@@ -6,8 +6,8 @@
   },
   "extends": [
     "standard-with-typescript",
-    "plugin:prettier/recommended",
-    "prettier"
+    "plugin:prettier/recommended"
+    // "prettier"
   ],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
