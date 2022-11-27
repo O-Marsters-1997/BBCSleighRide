@@ -11,6 +11,8 @@ type StyleProps = {
   fontWeight?: string;
   display?: string;
   paddingLeft?: string;
+  paddingTop?: string;
+
   cursor?: string;
 };
 
@@ -32,6 +34,7 @@ const getCursor = (cursor?: string): any => {
 
 const StyledView = styled(Box)<StyleProps>`
   position: relative;
+  padding-top: ${({ paddingTop }) => paddingTop && paddingTop};
   padding-left: ${({ paddingLeft }) => paddingLeft && paddingLeft};
   width: ${(props) => props.width && `${props.width}`};
   height: ${(props) => props.height && `${props.height} `};
@@ -79,6 +82,7 @@ const View: React.FC<Props> = ({
   height,
   background,
   fontWeight,
+  paddingTop,
   paddingLeft,
   cursor,
   className,
@@ -96,6 +100,7 @@ const View: React.FC<Props> = ({
         height={height}
         background={background}
         fontWeight={fontWeight}
+        paddingTop={paddingTop}
         paddingLeft={paddingLeft}
         cursor={cursor}
         className={className}
@@ -115,6 +120,7 @@ const View: React.FC<Props> = ({
       height={height}
       background={background}
       fontWeight={fontWeight}
+      paddingTop={paddingTop}
       paddingLeft={paddingLeft}
       cursor={cursor}
       className={className}

@@ -70,6 +70,9 @@ export const DetailsContainer = styled(View)<{ reverse?: boolean }>`
   flex-direction: ${({ reverse }) => (reverse ? "column-reverse" : "column")};
 `;
 
+// prettier-ignore
+export const CollectionContainer = styled(DetailsContainer)<{countries?: Country[];}>``;
+
 export const CentralRowContainer = styled(View)<{ gap?: string }>`
   display: flex;
   justify-content: center;
@@ -117,7 +120,7 @@ export const Cracker = styled.svg<{ pageSide: Utils.PageSide }>`
 `;
 
 export const HomePageCracker = styled(Cracker)`
-  width: 90%;
+  width: 70%;
 `;
 
 export const MapCracker = styled(Cracker)<{ translateY?: string }>`

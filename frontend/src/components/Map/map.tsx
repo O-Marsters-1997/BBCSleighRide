@@ -19,30 +19,21 @@ import DateCracker from "../Svg/DateCracker";
 import FoodCracker from "../Svg/FoodCracker";
 import GreetingCracker from "../Svg/GreetingCracker";
 import {
+  CollectionContainer,
   CentralRowContainer,
   RowContainer,
   CentralColumnContainer,
-  DetailsContainer,
 } from "../Lib";
 import { useViewport } from "../../hooks/useViewport";
 import useSounds from "../../hooks/useSounds";
 import { ActionsContext } from "../../contexts/StateActions.context";
 import { HandleZoom, randomChristmasSound } from "../../utils";
 import { shake } from "../../utils/style/keyframes";
-import { deviceMax } from "../../types/constants";
 import BaubleInstructions from "../../assets/images/bauble_instructions.svg";
-import Sleigh from "../../assets/images/sleigh_55_33.svg";
 
 type Props = {
   countriesData: Country[];
 };
-
-const StyledView = styled(DetailsContainer)<Props>`
-  cursor: url(${Sleigh}) 6 6, auto;
-  @media ${deviceMax.medium} {
-    padding-top: 50px;
-  }
-`;
 
 const StyledBaubleWrapper = styled(View)`
   position: absolute;
@@ -117,10 +108,11 @@ const Map: React.FC<Props> = ({ countriesData }) => {
   );
 
   return (
-    <StyledView
-      countriesData={countriesData}
+    <CollectionContainer
+      countries={countriesData}
       width={viewport("small") ? "clamp(400px, 60vw, 1000px)" : "300px"}
       reverse={!viewport("medium")}
+      paddingTop={!viewport("medium") ? "50px" : "0px"}
       cursor="sleigh"
     >
       {viewport("medium") ? (
@@ -229,7 +221,6 @@ const Map: React.FC<Props> = ({ countriesData }) => {
                       <circle cx="12" cy="10" r="3" />
                       <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z" />
                     </g>
-
                     <text
                       textAnchor="middle"
                       y="-27"
@@ -249,15 +240,15 @@ const Map: React.FC<Props> = ({ countriesData }) => {
               <Image
                 src={BaubleInstructions}
                 alt="instructions"
-                width={viewport("medium") ? "10wv" : "50px"}
-                height={viewport("medium") ? "10vw" : "50px"}
+                width={viewport("medium") ? "7vw" : "50px"}
+                height={viewport("medium") ? "7vw" : "50px"}
                 onClick={toggleInstructions}
               />
             </StyledBaubleWrapper>
           </RowContainer>
         </Card>
       </View>
-    </StyledView>
+    </CollectionContainer>
   );
 };
 

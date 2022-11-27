@@ -26,6 +26,7 @@ const adjustSize = (defaultSize: number, multiplier?: number) => {
 };
 
 type Props = TextProps & StyleProps;
+
 const StyledText = styled(Typography)<Props>`
   color: ${({ colorvariant }) => colorvariant && getTextColor(colorvariant)};
   font-family: ${({ variant }) =>
