@@ -1,0 +1,7 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+exec 1> /dev/tty
+
+yarn lint:push:front
+yarn lint:push:back
