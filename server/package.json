@@ -23,10 +23,10 @@
     "lint:all": "eslint ."
   },
   "lint-staged": {
-    "src/**/*.+ts": [
+    "src/**/*.+(ts)": [
       "eslint --fix"
     ],
-    "src/**/*.{js,ts,json}": [
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write"
     ],
     "*.js": "eslint --cache --fix"
