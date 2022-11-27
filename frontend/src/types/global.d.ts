@@ -392,6 +392,20 @@ declare global {
     };
 
     type ButtonVariant = "normal" | "rounded";
+
+    // Cursors
+    type Cursor = {
+      pointer: string;
+      sleigh: string;
+      sleighReturn: string;
+      auto: string;
+    };
+
+    // Error Handling
+
+    interface ErrorTypes {
+      database: string;
+    }
   }
 
   declare namespace CSS {

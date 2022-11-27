@@ -1,4 +1,5 @@
 import { theme } from "../utils/theme";
+import Sleigh from "../assets/images/sleigh_55_33.svg";
 
 const { viewports } = theme;
 
@@ -56,6 +57,13 @@ export const textVariants: Utils.TextVariantMap = {
   inherit: "inherit",
 };
 
+export const cursors: Utils.Cursor = {
+  pointer: "pointer",
+  sleigh: "sleigh",
+  sleighReturn: `url(${Sleigh}) 6 6, auto`,
+  auto: "auto",
+};
+
 // Responsiveness Components
 export const breakpoints: Utils.BreakpointsMap = {
   xSmall: "xSmall",
@@ -92,6 +100,12 @@ export const deviceMax = {
 
 // Error handling
 
-export const forseenErrors = {
+export const forseenErrors: Utils.ErrorTypes = {
   database: "database error, please refresh",
+};
+
+export const errorConstants = {
+  errorHeading: "Oops",
+  errorInstructions:
+    "Please try again or submit a bug report if the issue persists!",
 };

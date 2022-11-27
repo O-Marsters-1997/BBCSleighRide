@@ -5,6 +5,7 @@ import QuizWelcome from "../components/Quiz/QuizWelcome";
 import QuizQuestion from "../components/Quiz/QuizQuestion";
 import QuizEnd from "../components/Quiz/QuizEnd";
 import Loading from "../components/Loading";
+import Error from "../components/Error";
 import {
   LoadingWrapper,
   CentralOverlayContainer,
@@ -45,7 +46,7 @@ const Quiz = () => {
   if (error) {
     return (
       <ErrorWrapper>
-        <Loading size="medium" error title={`${error.message}`} />
+        <Error title={`${error.message}`} />
       </ErrorWrapper>
     );
   }
