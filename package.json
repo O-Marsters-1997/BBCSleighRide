@@ -6,12 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
-    "lint:front": "cd frontend && yarn lint:staged",
-    "lint:back": "cd server && yarn lint:staged"
+    "lint:commit:front": "cd frontend && yarn lint:staged",
+    "lint:commit:back": "cd server && yarn lint:staged",
+    "lint:push:front": "cd frontend && yarn lint:all",
+    "lint:push:back": "cd server && yarn lint:all"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "env FORCE_COLOR=1 yarn lint"
+      "pre-commit": "env FORCE_COLOR=1 yarn lint",
+      "pre-push": "env FORCE_COLOR=1 yarn lint"
     }
   },
   "repository": {
